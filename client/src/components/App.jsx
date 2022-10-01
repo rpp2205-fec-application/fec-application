@@ -14,8 +14,10 @@ class App extends React.Component {
 
 
   componentDidMount() {
+    console.log('update app');
     axios.get('/products')
       .then(res => {
+        console.log('app: ', res.data[0])
         this.setState({
           product: res.data[0]
         })
@@ -24,13 +26,19 @@ class App extends React.Component {
 
 
   render() {
-    return (
-      <div>
-        <Overview product={this.state.product} />
-        <Reviews product={this.state.product}/>
-        <QA product={this.state.product}/>
-      </div>
-    )
+    console.log('render app!', this.state.product);
+    if (JSON.stringify(this.state.product) !=='{}') {
+      return (
+        <div>
+          <Overview product={this.state.product} />
+          <Reviews product={this.state.product}/>
+          <QA product={this.state.product}/>
+        </div>
+      )
+    } else {
+      return null;
+    }
+
   }
 }
 
