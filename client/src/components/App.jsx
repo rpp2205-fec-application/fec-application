@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Reviews from './reviews/Reviews.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -7,12 +7,13 @@ class App extends React.Component {
     }
   }
 
-  
+
 
   render() {
     return (
       <div className="hello">
         Hello World
+        <Reviews />
       </div>
     )
   }
