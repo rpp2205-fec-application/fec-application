@@ -2,6 +2,8 @@ import React from 'react';
 import Reviews from './reviews/Reviews.jsx';
 import Overview from './overview/Overview.jsx';
 import axios from 'axios';
+import QA from './questions-and-answers/QA.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +11,7 @@ class App extends React.Component {
       product: {}
     }
   }
+
 
   componentDidMount() {
     axios.get('/products')
@@ -25,6 +28,7 @@ class App extends React.Component {
       <div>
         <Overview product={this.state.product} />
         <Reviews product={this.state.product}/>
+        <QA/>
       </div>
     )
   }

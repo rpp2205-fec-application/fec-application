@@ -1,10 +1,12 @@
 require('dotenv').config();
 const path = require('path');
 const axios = require('axios');
-const express = require('express'); // npm installed
+const express = require('express');
 const app = express();
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
+
 // other configuration...
 app.get('/products', async (req, res) => {
   let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products";
@@ -22,8 +24,10 @@ app.get('/review', (req, res) => {
     })
 })
 
-
+// app.get('/QA', (req, res) => {
+//   axios.get()
+// })
 
 
 let PORT = process.env.PORT || 3000;
-app.listen(PORT);
+app.listen(PORT, () => console.log(`Listening at Port: ${PORT}`));
