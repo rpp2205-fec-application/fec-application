@@ -28,7 +28,7 @@ class App extends React.Component {
       <div>
         <Overview product={this.state.product} />
         <Reviews product={this.state.product}/>
-        <QA/>
+        <QA product={this.state.product}/>
       </div>
     )
   }
