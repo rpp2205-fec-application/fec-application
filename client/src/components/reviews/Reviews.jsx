@@ -8,19 +8,24 @@ class Reviews extends React.Component {
       views: []
     }
   }
-  componentDidMont() {
+  componentDidMount() {
+    console.log('updated!');
     axios.get('/review')
-      .then((data) => {
+      .then((res) => {
+        console.log('data: ', res.data);
         this.setState({
-          views: data
+          views: res.data.results
         })
       })
   }
   render() {
+    console.log('render!');
+    return  (
     <div>
       <h2>This is for Rating and Reviews</h2>
-      <p>{this.state.views}</p>
+      <p>{JSON.stringify(this.state.views)}</p>
     </div>
+    )
   }
 }
 
