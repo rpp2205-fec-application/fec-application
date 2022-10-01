@@ -15,11 +15,10 @@ app.get('/products', async (req, res) => {
   res.status(200).json(products.data);
 })
 
-app.get('/review', (req, res) => {
-  let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=71697";
+app.post('/review', (req, res) => {
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.body.id}`;
   return axios.get(url, {headers: {authorization: process.env.TOKEN}})
     .then((results) => {
-      // console.log('results: ', results.data);
       res.status(200).json(results.data);
     })
 })

@@ -5,12 +5,15 @@ class Reviews extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      product: {},
       views: []
     }
   }
+
+
   componentDidMount() {
-    console.log('updated!');
-    axios.get('/review')
+    console.log('mont: ', this.props.product);
+    axios.post('/review', {id: this.props.product.id})
       .then((res) => {
         console.log('data: ', res.data);
         this.setState({
@@ -18,13 +21,13 @@ class Reviews extends React.Component {
         })
       })
   }
+
   render() {
-    console.log('render!');
     return  (
-    <div>
-      <h2>This is for Rating and Reviews</h2>
-      <p>{JSON.stringify(this.state.views)}</p>
-    </div>
+      <div>
+        <h2>This is for Rating and Reviews</h2>
+        <p>{JSON.stringify(this.state.views)}</p>
+      </div>
     )
   }
 }
