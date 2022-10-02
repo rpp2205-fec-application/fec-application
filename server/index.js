@@ -11,7 +11,6 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('/products', async (req, res) => {
   let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products";
   const products = await axios.get(url, {headers: {authorization: process.env.TOKEN}});
-  console.log(products.data);
   res.status(200).json(products.data);
 })
 
