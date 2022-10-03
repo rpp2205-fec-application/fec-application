@@ -1,23 +1,25 @@
 import React from 'react';
 import axios from 'axios';
-
+import "./reviews.scss";
+import ReviewsList from './ReviewsList.jsx';
+import Rating from './Rating.jsx';
+import Product from './Product.jsx';
 class Reviews extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       product: {},
-      views: []
+      reviews: []
     }
   }
 
 
   componentDidMount() {
-    console.log('mont: ', this.props.product);
     axios.post('/review', {id: this.props.product.id})
       .then((res) => {
-        console.log('data: ', res.data);
+        console.log('data: ', res.data.results);
         this.setState({
-          views: res.data.results
+          reviews: res.data.results
         })
       })
   }
@@ -25,8 +27,18 @@ class Reviews extends React.Component {
   render() {
     return  (
       <div ref={this.props.scrollToReviews}>
-        <h2>This is for Rating and Reviews</h2>
-        <p>{JSON.stringify(this.state.views)}</p>
+        <hr/>
+        <h2>Below is RATINGS &#38; REVIEWS</h2>
+        <p id="title">RATINGS &#38; REVIEWS</p>
+        <div className="revs">
+          <div clssName="revs-rating">
+            <Rating />
+            <Product />
+          </div>
+
+          <ReviewsList reviews={this.state.reviews} />
+        </div>
+
       </div>
     )
   }
