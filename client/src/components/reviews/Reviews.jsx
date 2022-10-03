@@ -24,7 +24,7 @@ class Reviews extends React.Component {
 
   render() {
     return  (
-      <div>
+      <div ref={this.props.scrollToReviews}>
         <h2>This is for Rating and Reviews</h2>
         <p>{JSON.stringify(this.state.views)}</p>
       </div>

@@ -11,6 +11,7 @@ class App extends React.Component {
     this.state = {
       product: {}
     }
+    this.reviewsRef = React.createRef();
   }
 
 
@@ -23,15 +24,19 @@ class App extends React.Component {
       })
   }
 
+  handleScrollToReviews(event) {
+    window.scrollTo(0, this.reviewsRef.current.offsetTop);
+  }
+
 
   render() {
     if (JSON.stringify(this.state.product) !=='{}') {
       return (
         <div className='container'>
-          <Overview product={this.state.product} />
+          <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} />
           {/* <RelatedItems product={this.state.product}/> */}
           <QA product={this.state.product}/>
-          <Reviews product={this.state.product}/>
+          <Reviews product={this.state.product} scrollToReviews={this.reviewsRef}/>
         </div>
       )
     } else {
