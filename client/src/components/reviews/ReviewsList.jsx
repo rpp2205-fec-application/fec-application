@@ -13,7 +13,7 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className="revs-right">
-        <div classNam="rev-sum">{this.props.reviews.length} reviews, sorted by relevace</div>
+        <div className="rev-sum">{this.props.reviews.length} reviews, sorted by relevace</div>
         <ul className="revs-list">
 
           {this.props.reviews.map(review => <ReviewEntry review={review} key={review.review_id} />)}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import "./reviews.scss";
 import ReviewsList from './ReviewsList.jsx';
 import Rating from './Rating.jsx';
-
+import Product from './Product.jsx';
 class Reviews extends React.Component {
   constructor(props){
     super(props);
@@ -31,7 +31,11 @@ class Reviews extends React.Component {
         <h2>Below is RATINGS &#38; REVIEWS</h2>
         <p id="title">RATINGS &#38; REVIEWS</p>
         <div className="revs">
-          <Rating />
+          <div clssName="revs-rating">
+            <Rating />
+            <Product />
+          </div>
+
           <ReviewsList reviews={this.state.reviews} />
         </div>
 
