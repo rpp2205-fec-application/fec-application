@@ -61,7 +61,7 @@ class Overview extends React.Component {
     return (
       <div>
         <h2>This is for Overview</h2>
-        <RatingInfo rating={this.state.rating} />
+        {(this.state.rating !== 0) && <RatingInfo rating={this.state.rating} handleScrollToReviews={this.props.handleScrollToReviews} />}
         <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
         {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
         <Description slogan={slogan} description={description} />
