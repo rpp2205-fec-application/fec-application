@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 const headers = {headers: {authorization: process.env.TOKEN}};
 // other configuration...
 app.get('/products', async (req, res) => {
-  let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products";
+  let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products?count=20";
   const products = await axios.get(url, headers);
   res.status(200).json(products.data);
 })

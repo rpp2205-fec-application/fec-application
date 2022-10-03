@@ -18,6 +18,7 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/products')
       .then(res => {
+        console.log('Products: ', res.data)
         this.setState({
           product: res.data[0]
         })
