@@ -1,8 +1,9 @@
 import React from 'react';
-import Reviews from './reviews/Reviews.jsx';
 import Overview from './overview/Overview.jsx';
+// import RelatedItems from './relatedItems/relatedItems.jsx';
+import QA from './qa/QA.jsx';
+import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
-import QA from './questions-and-answers/QA.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,8 +29,9 @@ class App extends React.Component {
       return (
         <div className='container'>
           <Overview product={this.state.product} />
-          <Reviews product={this.state.product}/>
+          {/* <RelatedItems product={this.state.product}/> */}
           <QA product={this.state.product}/>
+          <Reviews product={this.state.product}/>
         </div>
       )
     } else {

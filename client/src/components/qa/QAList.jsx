@@ -1,6 +1,7 @@
 import React from 'react';
+import QAEntry from './QAEntry.jsx';
 
-class QA extends React.Component {
+class QAList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,10 +11,11 @@ class QA extends React.Component {
   render() {
     return (
       <div>
-        This is the Q & A Section!
+        <QAEntry/>
+        <QAEntry/>
       </div>
     )
   }
 }
 
-export default QA;
+export default QAList;
