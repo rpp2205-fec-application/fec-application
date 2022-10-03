@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./Overview.scss";
 import ProductInfo from './ProductInfo.jsx';
 import RatingInfo from './RatingInfo.jsx';
+import StylesSection from './StylesSection.jsx';
 import Description from './Description.jsx';
 
 import calculateRating from '../../helpers.js';
@@ -13,8 +14,9 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       rating: 0,
-      price: this.props.product.default_price,
-      styles: []
+      salePrice: '',
+      styles: [],
+      selectedStyle: {}
     }
   }
 
@@ -29,11 +31,24 @@ class Overview extends React.Component {
   getStyles() {
     axios.get(`/products/${this.props.product.id}/styles`)
       .then(res => {
-        console.log(res.data.results);
+        console.log('Styles:', res.data.results)
+        var selectedStyle = {};
+        for (var style of res.data.results) {
+          if (style['default?']) {
+            selectedStyle = style;
+            break;
+          }
+        }
         this.setState({
-          styles: res.data.results
+          styles: res.data.results,
+          selectedStyle
         })
       })
+  }
+
+  selectStyle(selectedStyle) {
+    var salePrice = selectedStyle.sale_price || '';
+    this.setState({selectedStyle, salePrice})
   }
 
   componentDidMount() {
@@ -42,12 +57,13 @@ class Overview extends React.Component {
   }
 
   render() {
-    const {name, category, slogan, description} = this.props.product;
+    const {name, category, slogan, description, default_price} = this.props.product;
     return (
       <div>
         <h2>This is for Overview</h2>
         <RatingInfo rating={this.state.rating} />
-        <ProductInfo name={name} category={category} price={this.state.price} />
+        <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
+        {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
         <Description slogan={slogan} description={description} />
       </div>
     )
