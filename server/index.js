@@ -7,11 +7,19 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+const headers = {headers: {authorization: process.env.TOKEN}};
 // other configuration...
 app.get('/products', async (req, res) => {
   let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products";
-  const products = await axios.get(url, {headers: {authorization: process.env.TOKEN}});
+  const products = await axios.get(url, headers);
   res.status(200).json(products.data);
+})
+
+app.get('/:product_id/styles', async (req, res) => {
+  console.log(req.params.product_id);
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/?product_id=${req.params.product_id}/styles`;
+  const styles = await axios.get(url, headers);
+  res.status(200).json(styles.data);
 })
 
 app.post('/review', (req, res) => {

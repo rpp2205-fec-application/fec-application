@@ -13,8 +13,8 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       rating: 0,
-      price: this.props.product.default_price
-
+      price: this.props.product.default_price,
+      styles: []
     }
   }
 
@@ -26,8 +26,19 @@ class Overview extends React.Component {
       })
   }
 
+  getStyles() {
+    axios.get(`/products/${this.props.product.id}/styles`)
+      .then(res => {
+        console.log(res.data.results);
+        this.setState({
+          styles: res.data.results
+        })
+      })
+  }
+
   componentDidMount() {
     this.getRating();
+    this.getStyles();
   }
 
   render() {
