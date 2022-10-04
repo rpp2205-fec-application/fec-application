@@ -13,7 +13,7 @@ class Product extends React.Component {
       <div className="breakdown">
         <div className="rat-size">
           <div>Size</div>
-          <div className="progress">
+          <div className="progress small_font">
             <div>Too small</div>
             <div>Perfect</div>
             <div>Too large</div>
@@ -21,7 +21,7 @@ class Product extends React.Component {
         </div>
         <div className="rat-comfort">
           <div>Comfort</div>
-          <div className="progress">
+          <div className="progress small_font">
             <div>poor</div>
             <div>perfect</div>
           </div>

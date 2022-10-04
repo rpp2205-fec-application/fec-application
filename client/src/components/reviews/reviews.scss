@@ -17,7 +17,6 @@
 .progress{
   display: inline-flex;
   justify-content: baseline;
-  font-size:14px;
   font: darkgray;
 }
 
@@ -45,7 +44,7 @@ ul {
   width: 100px;
   margin-top: 0;
   margin-left: 300px;
-  font-size: 14px;
+  // font-size: 14px;
   color: darkgray;
 }
 
@@ -54,11 +53,14 @@ ul {
   font-size: 18px;
 }
 
-.review {
-  font-size:14px;
-}
+// .review {
+//   font-size:14px;
+// }
 
-.rev-footer {
+// .rev-footer {
+//   font-size: 14px;
+// }
+
+.small_font {
   font-size: 14px;
 }
-
