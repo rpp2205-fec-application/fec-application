@@ -31,7 +31,7 @@ class Reviews extends React.Component {
         <h2>Below is RATINGS &#38; REVIEWS</h2>
         <p id="title">RATINGS &#38; REVIEWS</p>
         <div className="revs">
-          <div clssName="revs-rating">
+          <div className="revs-rating">
             <Rating />
             <Product />
           </div>

@@ -9,14 +9,23 @@ class StyleCircle extends React.Component {
 
   select() {
     this.props.selectStyle(this.props.style);
-    this.props.changeStyleName(this.props.style.name);
+    this.props.changeStyle(
+      {
+        style_id: this.props.style.style_id,
+        name: this.props.style.name
+      }
+    )
   }
 
   render() {
     return (
       <div className='style-container'>
         {this.props.selected && <FontAwesomeIcon icon={faCircleCheck} className='check-icon' />}
-        <div onClick={this.select.bind(this)} className={this.props.selected ? 'style-circle selected-style' : 'style-circle'} style={{backgroundImage:`url(${this.props.style.photos[0].thumbnail_url})`}} ></div>
+        {this.props.style.photos[0].thumbnail_url !== null
+          ? <div onClick={this.select.bind(this)} className={this.props.selected ? 'style-circle selected-style' : 'style-circle'} style={{backgroundImage:`url(${this.props.style.photos[0].thumbnail_url})`}} ></div>
+          : <div onClick={this.select.bind(this)} className={this.props.selected ? 'style-circle selected-style no-thumbnail' : 'style-circle no-thumbnail'} ></div>
+        }
+
       </div>
 
     )
