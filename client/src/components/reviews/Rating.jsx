@@ -1,5 +1,5 @@
 import React from 'react';
-import Star from '../getReviews/Star.jsx';
+import Star from '../Star/Star.jsx';
 import {calculateRating} from '../../helpers.js';
 class Rating extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { format, parseJSON } from 'date-fns';
-import Star from '../getReviews/Star.jsx';
+import Star from '../Star/Star.jsx';
 const ReviewEntry = (props) => {
   return (
     <li>
