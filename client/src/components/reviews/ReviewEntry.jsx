@@ -7,7 +7,7 @@ const ReviewEntry = (props) => {
       <div className="rev">
         <div className="rev-header">
           <Star rating={props.review.rating} />
-          <div className="date small_font">{props.review.reviewer_name}, {format(parseJSON(props.review.date), "MMMM/dd/yyyy")}</div>
+          <div className="date">{props.review.reviewer_name}, {format(parseJSON(props.review.date), "MMMM/dd/yyyy")}</div>
         </div>
         <div className="rev-body">
           <div className="rev-summary">{props.review.summary}</div>

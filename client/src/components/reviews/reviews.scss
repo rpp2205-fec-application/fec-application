@@ -1,3 +1,4 @@
+
 .revs {
   display: flex;
   justify-content: baseline;
@@ -20,6 +21,9 @@
   font: darkgray;
 }
 
+.rat-header{
+
+}
 .rat-comfort {
   margin-top:20px;
 }
@@ -44,13 +48,15 @@ ul {
   width: 100px;
   margin-top: 0;
   margin-left: 300px;
-  // font-size: 14px;
-  color: darkgray;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
 }
 
 .rev-summary {
-  font-weight: bold;
-  font-size: 18px;
+  font-family: 'Poppins', sans-serif;;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 // .review {
@@ -63,4 +69,13 @@ ul {
 
 .small_font {
   font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
+
+.xxl_font {
+  font-size: 60px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+

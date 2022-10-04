@@ -33,7 +33,7 @@
   --percent: calc(var(--rating) / 5 * 97%);
   display: inline-block;
   font-size: var(--star-size);
-  font-family: Times; // make sure ★ appears correctly
+  //font-family: Times; // make sure ★ appears correctly
   line-height: 1;
 
   &::before {

@@ -22,7 +22,7 @@ class Rating extends React.Component {
 
           {this.avg_rating ?
           <div className="rat-header">
-            <h1>{this.avg_rating}</h1>
+            <div className="xxl_font">{this.avg_rating}</div>
             <Star rating={this.avg_rating}/>
           </div>
           : null}
