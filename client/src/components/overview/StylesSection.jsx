@@ -6,25 +6,30 @@ class StylesSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      styleName: this.props.selectedStyle.name
+      selectedStyleId: this.props.selectedStyle.style_id,
+      selectedStyleName: this.props.selectedStyle.name
     }
   }
 
-  changeStyleName(styleName) {
-    this.setState({styleName})
+  changeStyle(selectedStyle) {
+    this.setState({
+      selectedStyleId: selectedStyle.style_id,
+      selectedStyleName: selectedStyle.name
+    })
   }
 
   render() {
     return(
-      <div>
-        {`Style > ${this.state.styleName}`}
+      <div className='styles-container'>
+        <span className='bold-text'>STYLE </span>
+        <span className='style-name'> > {this.state.selectedStyleName.toUpperCase()}</span>
         <div className='style-list'>
           {this.props.styles.map(style => (
             <StyleCircle key={style.style_id}
               style={style}
               selectStyle={this.props.selectStyle}
-              changeStyleName={this.changeStyleName.bind(this)}
-              selected={this.state.styleName === style.name ? true : false} />
+              changeStyle={this.changeStyle.bind(this)}
+              selected={this.state.selectedStyleId === style.style_id ? true : false} />
           ))}
         </div>
       </div>

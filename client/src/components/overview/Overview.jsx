@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-import "./Overview.scss";
 import ProductInfo from './ProductInfo.jsx';
 import RatingInfo from './RatingInfo.jsx';
 import StylesSection from './StylesSection.jsx';
 import Description from './Description.jsx';
 
-import calculateRating from '../../helpers.js';
+import {calculateRating} from '../../helpers.js';
+import "./Overview.scss";
 
 class Overview extends React.Component {
   constructor(props) {
@@ -41,7 +41,8 @@ class Overview extends React.Component {
         }
         this.setState({
           styles: res.data.results,
-          selectedStyle
+          selectedStyle,
+          salePrice: selectedStyle.sale_price || ''
         })
       })
   }

@@ -1,4 +1,4 @@
-const calculateRating = (reviewArr) => {
+export const calculateRating = (reviewArr) => {
   const arr = [3, 4, 5, 4, 4.5, 3.5, 5]
   let avgRating = 0;
   for (var review of reviewArr) {
@@ -8,4 +8,6 @@ const calculateRating = (reviewArr) => {
   return avgRating;
 }
 
-export default calculateRating;
+export const roundNearQtr = function(number) {
+  return (Math.round(number * 4) / 4).toFixed(2);
+};

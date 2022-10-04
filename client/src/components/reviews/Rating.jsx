@@ -1,20 +1,33 @@
 import React from 'react';
-
+import Star from '../Star/Star.jsx';
+import {calculateRating} from '../../helpers.js';
 class Rating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      avg_rating:0,
       click: ''
     }
+    this.avg_rating;
   }
 
   render() {
+
+    if (this.props.reviews.length) {
+      this.avg_rating = calculateRating(this.props.reviews);
+    }
+
     return (
       <div className="breakdown">
-        <div className="rat-header">
-          <h3>3.5</h3>
-          <a>star</a>
-        </div>
+
+          {this.avg_rating ?
+          <div className="rat-header">
+            <div className="xxl_font">{this.avg_rating}</div>
+            <Star rating={this.avg_rating}/>
+          </div>
+          : null}
+
+
         <div>% of reviews recommend this product</div>
         <div className="rav-body">
           <div className="rev-chart">

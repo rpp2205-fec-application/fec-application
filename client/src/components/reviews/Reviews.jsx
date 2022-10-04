@@ -19,6 +19,7 @@ class Reviews extends React.Component {
       .then((res) => {
         console.log('data: ', res.data.results);
         this.setState({
+          product: this.props.product,
           reviews: res.data.results
         })
       })
@@ -26,14 +27,14 @@ class Reviews extends React.Component {
 
   render() {
     return  (
-      <div ref={this.props.scrollToReviews}>
+      <div ref={this.props.scrollToReviews} className="widget">
         <hr/>
         <h2>Below is RATINGS &#38; REVIEWS</h2>
         <p id="title">RATINGS &#38; REVIEWS</p>
         <div className="revs">
           <div className="revs-rating">
-            <Rating />
-            <Product />
+            <Rating reviews={this.state.reviews}/>
+            <Product reviews={this.state.reviews}/>
           </div>
 
           <ReviewsList reviews={this.state.reviews} />
