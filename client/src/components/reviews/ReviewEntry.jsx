@@ -12,7 +12,7 @@ const ReviewEntry = (props) => {
           <div className="rev-summary">{props.review.summary}</div>
           <div className="review">{props.review.body}</div>
         </div>
-        <div class="rev-footer">
+        <div className="rev-footer">
           <p>Helpful?Yes. | Report</p>
           <hr/>
         </div>

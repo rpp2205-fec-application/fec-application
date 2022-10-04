@@ -29,9 +29,19 @@ app.post('/review', (req, res) => {
     })
 })
 
-// app.get('/QA', (req, res) => {
-//   axios.get()
-// })
+app.get('/products/:product_id', (req, res) => {
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
+  return axios.get(url, headers)
+          .then(result => {
+            console.log('result//', result.data);
+            res.status(200).json(result.data)})
+});
+
+app.get('/products/:product_id/related', async (req, res) => {
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}/related`;
+  const relatedItems = await axios.get(url, headers);
+  res.status(200).json(relatedItems.data);
+})
 
 
 let PORT = process.env.PORT || 3000;
