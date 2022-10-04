@@ -6,7 +6,7 @@ import RatingInfo from './RatingInfo.jsx';
 import StylesSection from './StylesSection.jsx';
 import Description from './Description.jsx';
 
-import calculateRating from '../../helpers.js';
+import {calculateRating} from '../../helpers.js';
 import "./Overview.scss";
 
 class Overview extends React.Component {

@@ -9,20 +9,41 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {}
+      products: [],
+      product: {},
+      reviews: []
     }
     this.reviewsRef = React.createRef();
   }
 
-
-  componentDidMount() {
+  getProducts() {
     axios.get('/products')
       .then(res => {
         console.log('Products: ', res.data)
         this.setState({
+          products: res.data,
           product: res.data[0]
         })
       })
+  }
+
+  getReviews() {
+    axios.post('/review', {id: this.state.product.id})
+      .then((res) => {
+        const rating = calculateRating(res.data.results);
+        this.setState({
+          reviews: res.data
+        });
+      })
+  }
+
+  selectProduct(product) {
+    this.setState({product})
+  }
+
+
+  componentDidMount() {
+    this.getProducts();
   }
 
   handleScrollToReviews(event) {
