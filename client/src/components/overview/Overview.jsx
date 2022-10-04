@@ -5,6 +5,8 @@ import ProductInfo from './ProductInfo.jsx';
 import RatingInfo from './RatingInfo.jsx';
 import StylesSection from './StylesSection.jsx';
 import Description from './Description.jsx';
+import SizeSelector from './SizeSelector.jsx'
+import QuantitySelector from './QuantitySelector.jsx'
 
 import {calculateRating} from '../../helpers.js';
 import "./Overview.scss";
@@ -16,7 +18,10 @@ class Overview extends React.Component {
       rating: 0,
       salePrice: '',
       styles: [],
-      selectedStyle: {}
+      selectedStyle: {},
+      selectedSizeId: 'SELECT SIZE',
+      sizeQuantity: 0,
+      selectedQuantity: '-'
     }
   }
 
@@ -49,7 +54,19 @@ class Overview extends React.Component {
 
   selectStyle(selectedStyle) {
     var salePrice = selectedStyle.sale_price || '';
-    this.setState({selectedStyle, salePrice})
+    this.setState({selectedStyle, salePrice, selectedSizeId: 'SELECT SIZE'})
+  }
+
+  selectSize(selectedSizeId) {
+    this.setState({
+      selectedSizeId,
+      sizeQuantity: selectedSizeId !== 'SELECT SIZE' ? this.state.selectedStyle.skus[selectedSizeId].quantity : 0,
+      selectedQuantity: selectedSizeId !== 'SELECT SIZE' ? 1 : '-'
+    })
+  }
+
+  selectQuantity(selectedQuantity) {
+    this.setState({selectedQuantity})
   }
 
   componentDidMount() {
@@ -58,6 +75,8 @@ class Overview extends React.Component {
   }
 
   render() {
+    console.log('Size quantity: ', this.state.sizeQuantity);
+    console.log('selected quantity: ', this.state.selectedQuantity)
     const {name, category, slogan, description, default_price} = this.props.product;
     return (
       <div>
@@ -65,6 +84,8 @@ class Overview extends React.Component {
         {(this.state.rating !== 0) && <RatingInfo rating={this.state.rating} handleScrollToReviews={this.props.handleScrollToReviews} />}
         <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
         {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
+        {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectSize={this.selectSize.bind(this)}/>}
+        {this.state.styles.length !== 0 && <QuantitySelector sizeQuantity={this.state.sizeQuantity} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
         <Description slogan={slogan} description={description} />
       </div>
     )

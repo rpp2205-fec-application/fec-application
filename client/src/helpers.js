@@ -8,6 +8,17 @@ export const calculateRating = (reviewArr) => {
   return avgRating;
 }
 
-export const roundNearQtr = function(number) {
+export const roundNearQtr = (number) => {
   return (Math.round(number * 4) / 4).toFixed(2);
 };
+
+export const quantityList = (number) => {
+  const array = [];
+  for (var i = 1; i <= number; i++) {
+    array.push(i);
+    if (i === 15) {
+      break;
+    }
+  }
+  return array
+}
