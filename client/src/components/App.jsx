@@ -30,7 +30,6 @@ class App extends React.Component {
   getReviews() {
     axios.post('/review', {id: this.state.product.id})
       .then((res) => {
-        const rating = calculateRating(res.data.results);
         this.setState({
           reviews: res.data
         });

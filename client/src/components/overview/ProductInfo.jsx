@@ -4,7 +4,7 @@ const ProductInfo = (props) => {
   return (
     <div>
       <p>{props.category.toUpperCase()}</p>
-      <h2>{props.name}</h2>
+      <h1>{props.name}</h1>
       <div className='prices-flex'>
         {props.salePrice !== '' && <p className='sale-price'>${props.salePrice}</p>}
         <p className={props.salePrice !== '' ? 'crossed' : ''}>${props.originalPrice}</p>
