@@ -4,7 +4,7 @@ import Overview from './overview/Overview.jsx';
 import QA from './qa/QA.jsx';
 import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
-
+import Star from './getReviews/Star.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);

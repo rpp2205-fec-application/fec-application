@@ -1,0 +1,46 @@
+// .star {
+//   font-size: large;
+//   width: 20px;
+//   display: inline-block;
+//   color: gray;
+
+// }
+// .star:last-child {
+//   margin-right: 0;
+// }
+// .star:before {
+//   content:'\2605';
+// }
+// .star.on {
+//   color: gold;
+// }
+// .star.half:after {
+//   content:'\2605';
+//   color: gold;
+//   position: absolute;
+//   margin-left: -25px;
+//   width: 50px;
+//   overflow: hidden;
+// }
+
+:root {
+  --star-size: 17px;
+  --star-color: grey;
+  --star-background: #fc0;
+}
+
+.Stars {
+  --percent: calc(var(--rating) / 5 * 97%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+
+  &::before {
+    content: '\2605\2605\2605\2605\2605';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
