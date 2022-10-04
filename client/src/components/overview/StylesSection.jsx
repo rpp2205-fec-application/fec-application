@@ -20,7 +20,7 @@ class StylesSection extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className='styles-container'>
         <span className='bold-text'>STYLE </span>
         <span className='style-name'> > {this.state.selectedStyleName.toUpperCase()}</span>
         <div className='style-list'>

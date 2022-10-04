@@ -4,11 +4,16 @@
   gap: 20px;
 }
 
+.styles-container {
+  margin-top: 20px
+}
+
 .style-list {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   width: 300px;
+  margin-top: 20px;
 }
 
 .style-container {
@@ -44,6 +49,15 @@
 
 .bold-text {
   font-weight: 600;
+}
+
+.prices-flex {
+  display: flex;
+  gap: 20px;
+}
+
+.prices-flex p {
+  margin: 0
 }
 
 .sale-price {
