@@ -20,7 +20,7 @@ class Overview extends React.Component {
       styles: [],
       selectedStyle: {},
       selectedSizeId: 'SELECT SIZE',
-      sizeQuantity: 0,
+      quantityOfSelectedSize: 0,
       selectedQuantity: '-'
     }
   }
@@ -37,7 +37,7 @@ class Overview extends React.Component {
     axios.get(`/products/${this.props.product.id}/styles`)
       .then(res => {
         console.log('Styles:', res.data.results)
-        var selectedStyle = {};
+        var selectedStyle = res.data.results[0];
         for (var style of res.data.results) {
           if (style['default?']) {
             selectedStyle = style;
@@ -54,13 +54,13 @@ class Overview extends React.Component {
 
   selectStyle(selectedStyle) {
     var salePrice = selectedStyle.sale_price || '';
-    this.setState({selectedStyle, salePrice, selectedSizeId: 'SELECT SIZE'})
+    this.setState({selectedStyle, salePrice, selectedSizeId: 'SELECT SIZE', quantityOfSelectedSize: 0, selectedQuantity: '-'})
   }
 
   selectSize(selectedSizeId) {
     this.setState({
       selectedSizeId,
-      sizeQuantity: selectedSizeId !== 'SELECT SIZE' ? this.state.selectedStyle.skus[selectedSizeId].quantity : 0,
+      quantityOfSelectedSize: selectedSizeId !== 'SELECT SIZE' ? this.state.selectedStyle.skus[selectedSizeId].quantity : 0,
       selectedQuantity: selectedSizeId !== 'SELECT SIZE' ? 1 : '-'
     })
   }
@@ -75,8 +75,6 @@ class Overview extends React.Component {
   }
 
   render() {
-    console.log('Size quantity: ', this.state.sizeQuantity);
-    console.log('selected quantity: ', this.state.selectedQuantity)
     const {name, category, slogan, description, default_price} = this.props.product;
     return (
       <div>
@@ -84,8 +82,10 @@ class Overview extends React.Component {
         {(this.state.rating !== 0) && <RatingInfo rating={this.state.rating} handleScrollToReviews={this.props.handleScrollToReviews} />}
         <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
         {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
-        {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectSize={this.selectSize.bind(this)}/>}
-        {this.state.styles.length !== 0 && <QuantitySelector sizeQuantity={this.state.sizeQuantity} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
+        <div className='close-flex'>
+          {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)}/>}
+          {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
+        </div>
         <Description slogan={slogan} description={description} />
       </div>
     )

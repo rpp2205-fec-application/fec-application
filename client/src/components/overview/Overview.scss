@@ -2,10 +2,11 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  padding: 10px 0;
 }
 
 .styles-container {
-  margin-top: 20px
+  margin: 20px 0;
 }
 
 .style-list {
@@ -88,4 +89,23 @@
   -webkit-appearance: none !important;
   appearance: none !important;
   padding-right: 2rem !important;
+}
+
+.inactive-selector {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  background-color: white;
+  color: #434242;
+  padding: 10px;
+  border: solid #434242 1px;
+  background-position: calc(100% - 0.75rem) center !important;
+  -moz-appearance:none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  padding-right: 2rem !important;
+}
+
+.qty-selector {
+  width: 60px;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {quantityList} from '../../helpers.js';
+import {generateQuantityArray} from '../../helpers.js';
 
 class QuantitySelector extends React.Component {
   constructor(props) {
@@ -20,12 +20,12 @@ class QuantitySelector extends React.Component {
   render() {
     return (
       <div>
-        {this.props.sizeQuantity === 0
-          ? <select className='selector' value='-' disabled>
+        {this.props.quantityOfSelectedSize === 0
+          ? <select className='selector qty-selector' value='-' disabled>
               <option>-</option>
             </select>
-          : <select className='selector' value={this.props.selectedQuantity} onChange={this.handleChange.bind(this)}>
-              {quantityList(this.props.sizeQuantity).map(qty => (
+          : <select className='selector qty-selector' value={this.props.selectedQuantity} onChange={this.handleChange.bind(this)}>
+              {generateQuantityArray(this.props.quantityOfSelectedSize).map(qty => (
                 <option key={qty} value={qty}>{qty}</option>
               ))}
             </select>

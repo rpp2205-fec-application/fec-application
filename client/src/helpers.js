@@ -12,7 +12,7 @@ export const roundNearQtr = (number) => {
   return (Math.round(number * 4) / 4).toFixed(2);
 };
 
-export const quantityList = (number) => {
+export const generateQuantityArray = (number) => {
   const array = [];
   for (var i = 1; i <= number; i++) {
     array.push(i);
@@ -21,4 +21,12 @@ export const quantityList = (number) => {
     }
   }
   return array
+}
+
+export const getTotalQuantity = (skuObj) => {
+  const quantityList = [];
+  for (var item of Object.values(skuObj)) {
+    quantityList.push(item.quantity)
+  }
+  return quantityList.reduce((a, b) => a+b, 0)
 }
