@@ -27,7 +27,7 @@ class Reviews extends React.Component {
 
   render() {
     return  (
-      <div ref={this.props.scrollToReviews}>
+      <div ref={this.props.scrollToReviews} className="widget">
         <hr/>
         <h2>Below is RATINGS &#38; REVIEWS</h2>
         <p id="title">RATINGS &#38; REVIEWS</p>
