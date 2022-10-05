@@ -36,6 +36,7 @@
   border-radius: 100px;
   background-size: cover;
   cursor: pointer;
+  box-shadow:0px 0px 0px 1px rgb(211, 214, 211) inset;
 }
 
 .selected-style {
@@ -50,15 +51,6 @@
 
 .bold-text {
   font-weight: 600;
-}
-
-.prices-flex {
-  display: flex;
-  gap: 20px;
-}
-
-.prices-flex p {
-  margin: 0
 }
 
 .sale-price {
