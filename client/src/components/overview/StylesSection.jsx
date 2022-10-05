@@ -22,7 +22,7 @@ class StylesSection extends React.Component {
     return(
       <div className='styles-container'>
         <span className='bold-text'>STYLE </span>
-        <span className='style-name'> > {this.state.selectedStyleName.toUpperCase()}</span>
+        <span className='style-name'> {this.state.selectedStyleName.toUpperCase()}</span>
         <div className='style-list'>
           {this.props.styles.map(style => (
             <StyleCircle key={style.style_id}
