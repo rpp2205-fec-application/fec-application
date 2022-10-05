@@ -15,7 +15,6 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: 0,
       salePrice: '',
       styles: [],
       selectedStyle: {},
@@ -25,13 +24,13 @@ class Overview extends React.Component {
     }
   }
 
-  getRating() {
-    axios.post('/review', {id: this.props.product.id})
-      .then((res) => {
-        const rating = calculateRating(res.data.results);
-        this.setState({rating});
-      })
-  }
+  // getRating() {
+  //   axios.post('/review', {id: this.props.product.id})
+  //     .then((res) => {
+  //       const rating = calculateRating(res.data.results);
+  //       this.setState({rating});
+  //     })
+  // }
 
   getStyles() {
     axios.get(`/products/${this.props.product.id}/styles`)
@@ -70,7 +69,7 @@ class Overview extends React.Component {
   }
 
   componentDidMount() {
-    this.getRating();
+    // this.getRating();
     this.getStyles();
   }
 
@@ -79,7 +78,7 @@ class Overview extends React.Component {
     return (
       <div>
         <h2>This is for Overview</h2>
-        {(this.state.rating !== 0) && <RatingInfo rating={this.state.rating} handleScrollToReviews={this.props.handleScrollToReviews} />}
+        <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} />
         <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
         {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
         <div className='close-flex'>
