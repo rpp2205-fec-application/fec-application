@@ -12,18 +12,16 @@ class Rating extends React.Component {
   }
 
   render() {
-
     if (this.props.reviews.length) {
       this.avg_rating = calculateRating(this.props.reviews);
     }
 
     return (
       <div className="breakdown">
-
           {this.avg_rating ?
           <div className="rat-header">
             <div className="xxl_font">{this.avg_rating}</div>
-            <Star rating={this.avg_rating}/>
+            <div className="stars"><Star rating={this.avg_rating}/></div>
           </div>
           : null}
 

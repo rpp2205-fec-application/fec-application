@@ -74,8 +74,14 @@ ul {
 }
 
 .xxl_font {
-  font-size: 60px;
+  display: inline;
+  font-size: 55px;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 
+.stars {
+  display:inline;
+  vertical-align:top;
+
+}

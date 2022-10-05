@@ -9,7 +9,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       product: {},
-      reviews: []
+      reviews: [],
     }
   }
 
@@ -17,15 +17,15 @@ class Reviews extends React.Component {
   componentDidMount() {
     axios.post('/review', {id: this.props.product.id})
       .then((res) => {
-        console.log('data: ', res.data.results);
         this.setState({
           product: this.props.product,
-          reviews: res.data.results
+          reviews: res.data.results,
         })
       })
   }
 
   render() {
+    console.log(this.state.reviews.length);
     return  (
       <div ref={this.props.scrollToReviews} className="widget">
         <hr/>
@@ -37,7 +37,7 @@ class Reviews extends React.Component {
             <Product reviews={this.state.reviews}/>
           </div>
 
-          <ReviewsList reviews={this.state.reviews} />
+         <ReviewsList reviews={this.state.reviews} />
         </div>
 
       </div>
