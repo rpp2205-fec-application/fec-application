@@ -1,6 +1,7 @@
 import React from 'react';
 import Overview from './overview/Overview.jsx';
-// import RelatedItems from './relatedItems/relatedItems.jsx';
+import RelatedItems from './relatedItems/RelatedItems.jsx';
+import Outfit from './relatedItems/Outfit.jsx';
 import QA from './qa/QA.jsx';
 import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
@@ -64,7 +65,8 @@ class App extends React.Component {
       return (
         <div className='container'>
           <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating}/>
-          {/* <RelatedItems product={this.state.product}/> */}
+          <RelatedItems product={this.state.product}/> 
+          <Outfit product={this.state.product}/>
           <QA product={this.state.product}/>
           {JSON.stringify(this.state.reviewsMeta) !=='{}' && <Reviews product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef}/>}
         </div>
