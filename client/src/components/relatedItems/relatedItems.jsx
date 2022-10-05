@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import {SingleCard} from './SingleCard.jsx';
+import SingleCard from './SingleCard.jsx';
 import axios from 'axios';
 
 class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
-      item: []
+      items: []
     }
   }
 
@@ -19,24 +18,18 @@ class RelatedItems extends React.Component {
       this.setState({
         items: response.data
       })
-    })
-    .then(() => {
-      console.log(this.state);
-      axios.get(`/products/${this.state.items[0]}`)
-    })
-    .then((response) => {
-      console.log('response///', response);
-      this.setState({
-        item:response
-      })
-    })
+    }) 
   }
 
   render() {
     return (
       <div>
         <h4>Related Products</h4>
-        <SingleCard />
+        {this.state.items.map((item, index) => {
+           return (
+            <SingleCard product={item} key={index}/>
+           )
+        })}
       </div>
     )
   }
