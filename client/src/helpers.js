@@ -1,10 +1,14 @@
-export const calculateRating = (reviewArr) => {
-  const arr = [3, 4, 5, 4, 4.5, 3.5, 5]
-  let avgRating = 0;
-  for (var review of reviewArr) {
-    avgRating += review.rating;
+export const calculateRating = (reviewObj) => {
+  if (Object.keys(reviewObj).length === 0) {
+    return 0;
   }
-  avgRating = Math.round((avgRating/reviewArr.length) * 10) / 10;
+  let avgRating = 0;
+  let total = 0
+  for (var rate in reviewObj) {
+    avgRating += rate * reviewObj[rate];
+    total += Number(reviewObj[rate]);
+  }
+  avgRating = Math.round((avgRating/total) * 10) / 10;
   return avgRating;
 }
 

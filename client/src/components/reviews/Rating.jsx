@@ -1,27 +1,27 @@
 import React from 'react';
 import Star from '../Star/Star.jsx';
-import {calculateRating} from '../../helpers.js';
+import {calculateRating, roundNearQtr} from '../../helpers.js';
 class Rating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      avg_rating:0,
+      avg_rating: this.props.rating,
       click: ''
     }
-    this.avg_rating;
+    // this.avg_rating;
   }
 
   render() {
-    if (this.props.reviews.length) {
-      this.avg_rating = calculateRating(this.props.reviews);
-    }
+    // if (this.props.reviews.length) {
+    //   this.avg_rating = calculateRating(this.props.reviews);
+    // }
 
     return (
       <div className="breakdown">
-          {this.avg_rating ?
+          {this.props.rating ?
           <div className="rat-header">
-            <div className="xxl_font">{this.avg_rating}</div>
-            <div className="stars"><Star rating={this.avg_rating}/></div>
+            <div className="xxl_font">{this.props.rating}</div>
+            <div className="stars"><Star rating={roundNearQtr(this.props.rating)}/></div>
           </div>
           : null}
 

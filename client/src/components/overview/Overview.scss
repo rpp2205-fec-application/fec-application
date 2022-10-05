@@ -36,7 +36,7 @@
   border-radius: 100px;
   background-size: cover;
   cursor: pointer;
-  box-shadow:0px 0px 0px 1px rgb(211, 214, 211) inset;
+  box-shadow:0px 0px 0px 2px rgb(195, 197, 195) inset;
 }
 
 .selected-style {
@@ -81,6 +81,7 @@
   -webkit-appearance: none !important;
   appearance: none !important;
   padding-right: 2rem !important;
+  cursor: pointer;
 }
 
 .inactive-selector {
@@ -96,6 +97,7 @@
   -webkit-appearance: none !important;
   appearance: none !important;
   padding-right: 2rem !important;
+  cursor: auto;
 }
 
 .qty-selector {
