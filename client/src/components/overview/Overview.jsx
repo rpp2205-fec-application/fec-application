@@ -73,6 +73,15 @@ class Overview extends React.Component {
     this.getStyles();
   }
 
+  //Getting the new style list after the new product is passed to props
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.getStyles();
+    }
+  }
+
+
+
   render() {
     const {name, category, slogan, description, default_price} = this.props.product;
     return (
@@ -86,6 +95,7 @@ class Overview extends React.Component {
           {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
         </div>
         <Description slogan={slogan} description={description} />
+
       </div>
     )
   }
