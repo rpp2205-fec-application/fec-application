@@ -14,19 +14,19 @@ class SingleCard extends React.Component {
   componentDidMount() {
     axios.get(`/products/${this.props.product}`)
       .then(response => {
-        console.log('response///', response.data);
+        // console.log('response///', response.data);
         this.setState({
           product: response.data
         })
       })
       axios.get(`/products/${this.props.product}/styles`)
       .then(response => {
-        console.log('styles///', response.data);
+        // console.log('styles///', response.data);
         this.setState({
           productStyle: response.data
         })
       })
-    
+
   }
 
   render() {

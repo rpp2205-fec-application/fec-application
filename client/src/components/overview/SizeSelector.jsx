@@ -17,6 +17,15 @@ class SizeSelector extends React.Component {
     this.props.selectSize(event.target.value);
   }
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.selectedSizeId !== state.selectedSizeId) {
+      return {
+        selectedSizeId: props.selectedSizeId
+      }
+    }
+    return null;
+  }
+
   render() {
     const totalQuantity = getTotalQuantity(this.props.selectedStyle.skus)
     return (
@@ -25,7 +34,7 @@ class SizeSelector extends React.Component {
           ? <select className='inactive-selector' value='OUT OF STOCK' disabled>
               <option>OUT OF STOCK</option>
             </select>
-          : <select className='selector' value={this.props.selectedSizeId} onChange={this.handleChange.bind(this)}>
+          : <select className='selector' value={this.state.selectedSizeId} onChange={this.handleChange.bind(this)}>
               <option value='SELECT SIZE'>SELECT SIZE</option>
               {Object.keys(this.props.selectedStyle.skus).map(item => {
                 if (this.props.selectedStyle.skus[item].quantity > 0) {

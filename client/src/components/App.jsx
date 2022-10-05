@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Overview from './overview/Overview.jsx';
 import RelatedItems from './relatedItems/RelatedItems.jsx';
 import Outfit from './relatedItems/Outfit.jsx';
@@ -45,7 +46,9 @@ class App extends React.Component {
   }
 
   selectProduct(product) {
-    this.setState({product})
+    return this.setState({product}, () => {
+      return this.getReviewsMeta()
+    })
   }
 
 
@@ -60,15 +63,17 @@ class App extends React.Component {
     window.scrollTo(0, this.reviewsRef.current.offsetTop);
   }
 
+
   render() {
-    if (JSON.stringify(this.state.product) !=='{}') {
+    if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
       return (
         <div className='container'>
-          <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating}/>
-          <RelatedItems product={this.state.product}/> 
+          <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} />
+          <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
           <Outfit product={this.state.product}/>
           <QA product={this.state.product}/>
           {JSON.stringify(this.state.reviewsMeta) !=='{}' && <Reviews product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef}/>}
+
         </div>
       )
     } else {
