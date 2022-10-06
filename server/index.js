@@ -55,7 +55,6 @@ app.get('/products/:product_id', (req, res) => {
   let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
   return axios.get(url, headers)
           .then(result => {
-            console.log('result//', result.data);
             res.status(200).json(result.data)})
 });
 
