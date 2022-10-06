@@ -8,7 +8,11 @@
     "client-dev": "npx webpack --watch",
     "build": "npx webpack",
     "start": "node server/index.js",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test-review": "jest test/review.test.js --watch",
+    "test-overview": "jest test/overview.test.js --watch",
+    "test-relatedItems": "jest test/relatedItems.test.js --watch",
+    "test-qa": "jest test/qa.test.js --watch"
   },
   "repository": {
     "type": "git",
