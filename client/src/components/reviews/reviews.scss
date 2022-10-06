@@ -21,9 +21,6 @@
   font: darkgray;
 }
 
-.rat-header{
-
-}
 .rat-comfort {
   margin-top:20px;
 }
@@ -59,20 +56,23 @@ ul {
   font-size: 16px;
 }
 
-// .review {
-//   font-size:14px;
-// }
 
-// .rev-footer {
-//   font-size: 14px;
-// }
 
 .small_font {
   font-size: 14px;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
-
+.xs_font {
+  font-size: 12px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+.xxs_font {
+  font-size: 10px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
 .xxl_font {
   display: inline;
   font-size: 55px;
@@ -84,4 +84,18 @@ ul {
   display:inline;
   vertical-align:top;
 
+}
+
+.rat-progress {
+  --percent: calc(var(--stars) * 100%);
+  display: inline-block;
+  margin-left: 5px;
+  background: gray;
+  background: linear-gradient(90deg, rgb(130,196,139) var(--percent), gray var(--percent));
+  width:150px;
+  height:10px;
+}
+
+.underline {
+  text-decoration: underline;
 }
