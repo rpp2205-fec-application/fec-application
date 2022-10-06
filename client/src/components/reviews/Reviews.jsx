@@ -39,7 +39,8 @@ class Reviews extends React.Component {
         <p id="title">RATINGS &#38; REVIEWS</p>
         <div className="revs">
           <div className="revs-rating">
-            <Rating rating={this.props.rating} reviews={this.state.reviews}/>
+            {/* <Rating rating={this.props.rating} reviews={this.state.reviews} reviewsMeta={this.props.reviewsMeta}/> */}
+            <Rating rating={this.props.rating} reviewsMeta={this.props.reviewsMeta}/>
             <Product reviews={this.state.reviews}/>
           </div>
 
