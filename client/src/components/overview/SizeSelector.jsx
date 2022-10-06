@@ -17,13 +17,23 @@ class SizeSelector extends React.Component {
     this.props.selectSize(event.target.value);
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.selectedSizeId !== state.selectedSizeId) {
-      return {
-        selectedSizeId: props.selectedSizeId
-      }
+  // Updating the state if there's any changes between the current state and the new props, happen after the props is passed with new value
+  // static getDerivedStateFromProps(props, state) {
+  //   if (props.selectedSizeId !== state.selectedSizeId) {
+  //     return {
+  //       selectedSizeId: props.selectedSizeId
+  //     }
+  //   }
+  //   return null;
+  // }
+
+  //Getting the new style list after the new product is passed to props
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selectedSizeId !== this.props.selectedSizeId) {
+      this.setState({
+        selectedSizeId: this.props.selectedSizeId
+      })
     }
-    return null;
   }
 
   render() {
