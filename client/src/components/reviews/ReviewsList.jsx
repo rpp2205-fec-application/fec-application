@@ -3,7 +3,6 @@ import ReviewEntry from './ReviewEntry.jsx';
 
 
 const ReviewsList = (props) => {
-
   if (!props.reviews.length) {
     return (<button className="btn new-revs">ADD A REVIEW +</button>);
   } else {
