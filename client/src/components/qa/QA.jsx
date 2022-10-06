@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import QuestionBar from './QuestionBar.jsx';
 import QAList from './QAList.jsx';
-import LoadMore from './LoadMore.jsx';
 import Add from './Add.jsx';
 
 class QA extends React.Component {
@@ -28,11 +27,10 @@ class QA extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="widget">
         <h1> Questions & Answers </h1>
         <QuestionBar/>
         <QAList questions={this.state.questions}/>
-        <LoadMore/>
         <Add/>
       </div>
     )
