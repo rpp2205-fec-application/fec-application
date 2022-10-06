@@ -1,21 +1,12 @@
 import React from 'react';
 import QAEntry from './QAEntry.jsx';
 
-class QAList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <QAEntry/>
-        <QAEntry/>
-      </div>
-    )
-  }
+const QAList = (props) => {
+  return (
+    <div>
+      {props.questions.map(question => <QAEntry qa={question} key={question.question_id}/>)}
+    </div>
+  )
 }
 
 export default QAList;

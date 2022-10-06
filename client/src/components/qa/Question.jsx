@@ -1,19 +1,11 @@
 import React from 'react';
 
-class Question extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        Q: This is the Question
-      </div>
-    )
-  }
+const Question = (props) => {
+  return (
+    <div>
+      Q: {props.question.question_body}
+    </div>
+  )
 }
 
 export default Question;
