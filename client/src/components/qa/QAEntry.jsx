@@ -45,11 +45,11 @@ class QAEntry extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="q-a-entry">
         <Question question={this.props.qa}/>
         {this.state.shownAnswers}
-        {this.state.loadMore ? <button className="btn" onClick={this.handleLoadMore.bind(this)}> Load More </button> : null}
-        {this.state.collapse ? <button className="btn" onClick={this.collapseAnswers.bind(this)}> Collapse </button> : null}
+        {this.state.loadMore ? <p className="load-collapse" onClick={this.handleLoadMore.bind(this)}> LOAD MORE </p> : null}
+        {this.state.collapse ? <p className="load-collapse" onClick={this.collapseAnswers.bind(this)}> COLLAPSE </p> : null}
       </div>
     )
   }

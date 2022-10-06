@@ -9,9 +9,9 @@ class Add extends React.Component {
 
   render() {
     return (
-      <div>
-        <p> More Answered Questions </p>
-        <p> Add a Question </p>
+      <div className="addSection">
+        <button className="add"> MORE ANSWERED QUESTIONS </button>
+        <button className="add"> ADD A QUESTION + </button>
       </div>
     )
   }

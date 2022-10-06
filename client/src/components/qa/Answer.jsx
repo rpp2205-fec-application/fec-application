@@ -2,8 +2,9 @@ import React from 'react';
 
 const Answer = (props) => {
   return (
-    <div>
-      A: {props.answer.body}
+    <div className="answer-section">
+      <p className="questionBody"> A: </p>
+      <p className="answerBody"> {props.answer.body} </p>
     </div>
   )
 }

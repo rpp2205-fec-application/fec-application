@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import "./QA.scss";
 
 import QuestionBar from './QuestionBar.jsx';
 import QAList from './QAList.jsx';
@@ -28,7 +29,7 @@ class QA extends React.Component {
   render() {
     return (
       <div className="widget">
-        <h1> Questions & Answers </h1>
+        <h2 className="title"> QUESTIONS & ANSWERS </h2>
         <QuestionBar/>
         <QAList questions={this.state.questions}/>
         <Add/>
