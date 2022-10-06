@@ -10,7 +10,7 @@ class QuestionBar extends React.Component {
   render() {
     return (
       <div>
-        <button> Have a Question? Search for Answers... </button>
+        <button className="btn"> Have a Question? Search for Answers... </button>
       </div>
     )
   }
