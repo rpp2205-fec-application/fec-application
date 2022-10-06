@@ -35,7 +35,7 @@ class SingleCard extends React.Component {
       <div className='slide-content'>
         <div className='card-wrapper'>
           <div className='card'>
-           <div className='imgae-content'>
+           <div className='image-content'>
             <span className='overlay' />
             <div className="card-image">
               <img className='card-img'/>
