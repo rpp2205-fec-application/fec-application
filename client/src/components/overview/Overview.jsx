@@ -5,8 +5,9 @@ import ProductInfo from './ProductInfo.jsx';
 import RatingInfo from './RatingInfo.jsx';
 import StylesSection from './StylesSection.jsx';
 import Description from './Description.jsx';
-import SizeSelector from './SizeSelector.jsx'
-import QuantitySelector from './QuantitySelector.jsx'
+import SizeSelector from './SizeSelector.jsx';
+import QuantitySelector from './QuantitySelector.jsx';
+import Carousel from './Carousel.jsx';
 
 import {calculateRating} from '../../helpers.js';
 import "./Overview.scss";
@@ -20,7 +21,8 @@ class Overview extends React.Component {
       selectedStyle: {},
       selectedSizeId: 'SELECT SIZE',
       quantityOfSelectedSize: 0,
-      selectedQuantity: '-'
+      selectedQuantity: '-',
+      photos: []
     }
   }
 
@@ -95,6 +97,7 @@ class Overview extends React.Component {
           {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
         </div>
         <Description slogan={slogan} description={description} />
+        <Carousel />
 
       </div>
     )
