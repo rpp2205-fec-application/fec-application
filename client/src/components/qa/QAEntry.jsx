@@ -22,7 +22,11 @@ class QAEntry extends React.Component {
     for (let key in this.props.qa.answers) {
       ans.push(this.props.qa.answers[key])
     }
-    ans = ans.map(a => <Answer answer={a} key={a.id} />)
+    let i = -1;
+    ans = ans.map(a => {
+      i++;
+      return (<Answer answer={a} key={a.id} first={!i?true:false}/>)
+    });
 
     if (ans.length > 2) {
       this.setState({
