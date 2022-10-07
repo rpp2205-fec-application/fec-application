@@ -33,8 +33,9 @@ app.get('/qa/questions/:product_id', async (req, res) => {
 })
 
 // product reviews
-app.get('/reviews/:product_id', (req, res) => {
-  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.params.product_id}&count=20&sort="newest"`;
+app.post('/reviews/:product_id', (req, res) => {
+  let sort = req.body;
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.params.product_id}&count=20&sort=${req.body.sort}`;
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);

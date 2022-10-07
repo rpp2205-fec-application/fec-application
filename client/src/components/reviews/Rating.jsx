@@ -9,7 +9,7 @@ const Rating = (props) => {
   const totalRating = Object.values(reviewsMeta.ratings).reduce((acc, n) => {
     return acc = acc + parseInt(n);
   }, 0)
-  console.log('total: ', totalRating);
+
   return (
     <div className="breakdown">
       <div className="rat-header">

@@ -29,7 +29,7 @@ class App extends React.Component {
         console.log('Product: ', res.data[0])
         return this.setState({
           products: res.data,
-          product: res.data[0]
+          product: res.data[1]
         })
       })
   }
