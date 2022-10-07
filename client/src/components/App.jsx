@@ -22,14 +22,21 @@ class App extends React.Component {
     this.reviewsRef = React.createRef();
   }
 
+  componentDidMount() {
+    this.getProducts()
+    .then(()=> {
+      this.getReviewsMeta()
+    })
+  }
+
   getProducts() {
     return axios.get('/products')
       .then(res => {
         console.log('Products: ', res.data)
-        console.log('Product: ', res.data[0])
+        console.log('Product: ', res.data[4])
         return this.setState({
           products: res.data,
-          product: res.data[0]
+          product: res.data[4]
         })
       })
   }
@@ -51,18 +58,9 @@ class App extends React.Component {
     })
   }
 
-
-  componentDidMount() {
-    this.getProducts()
-    .then(()=> {
-      this.getReviewsMeta()
-    })
-  }
-
   handleScrollToReviews(event) {
     window.scrollTo(0, this.reviewsRef.current.offsetTop);
   }
-
 
   render() {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
@@ -79,6 +77,9 @@ class App extends React.Component {
     } else {
       return null;
     }
+
+
+
 
     // if (JSON.stringify(this.state.product) !=='{}' && this.state.reviews.length !== 0 && JSON.stringify(this.state.reviewsMeta) !=='{}') {
     //   return (
