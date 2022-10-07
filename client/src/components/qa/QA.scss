@@ -11,6 +11,7 @@
   width: 100%;
   height: 50px;
   border-width: 3px;
+  padding-left: 20px
 }
 
 ::placeholder {
@@ -24,7 +25,7 @@
 
 .question-section {
   display: grid;
-  grid-template-columns: 30px 700px 100px auto;
+  grid-template-columns: 30px 650px 100px 100px;
 }
 
 .options {
@@ -43,9 +44,15 @@
   color: #373737
 }
 
-.answerBody {
+.answer {
   color: gray;
   font-weight: lighter;
+  display: grid;
+  grid-template-columns: 200px 200px auto;
+}
+
+.answer-body {
+  grid-column: 1 / 4;
 }
 
 .load-collapse {
@@ -54,7 +61,7 @@
 
 .addSection {
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr;
+  grid-template-columns: 250px auto;
 
 }
 
@@ -63,4 +70,9 @@
   padding: 10px;
   color: grey;
   background-color: white;
+}
+
+.add:hover {
+  background: #a2a8ab;
+  text-decoration: none;
 }
