@@ -1,4 +1,20 @@
+.small_font {
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+.xs_font {
+  font-size: x-small;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
 
+.xxl_font {
+  display: inline;
+  font-size: 55px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
 .revs {
   display: flex;
   justify-content: baseline;
@@ -47,55 +63,50 @@ ul {
   margin-left: 300px;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
-  font-size: 12px;
 }
 
 .rev-summary {
+  margin-top:15px;
   font-family: 'Poppins', sans-serif;;
   font-weight: 500;
-  font-size: 16px;
-}
-
-
-
-.small_font {
   font-size: 14px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
 }
-.xs_font {
-  font-size: 12px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+
+.review {
+  margin-top:15px;
 }
-.xxs_font {
-  font-size: 10px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-}
-.xxl_font {
-  display: inline;
-  font-size: 55px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-}
+
+
+
 
 .stars {
   display:inline;
   vertical-align:top;
 
 }
-
+.rat-stars {
+  margin-top: 10px;
+}
 .rat-progress {
   --percent: calc(var(--stars) * 100%);
   display: inline-block;
   margin-left: 5px;
   background: gray;
-  background: linear-gradient(90deg, rgb(130,196,139) var(--percent), gray var(--percent));
+  background: linear-gradient(90deg, rgb(130,196,139) var(--percent), lightgray var(--percent));
   width:150px;
-  height:10px;
+  height:6px;
 }
 
 .underline {
   text-decoration: underline;
+}
+.rev-footer {
+  margin-top: 15px;
+}
+.rev-helpful {
+  margin-left: 10px;
+}
+.rev-helpdata {
+  margin-left: 2px;
+  margin-right: 10px;
 }
