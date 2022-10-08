@@ -22,14 +22,21 @@ class Reviews extends React.Component {
     //       reviews: res.data.results
     //     });
     //   })
-    this.getReviews('relevant');
+    this.getReviews(this.props.product.id, 'relevant');
   }
-
-  getReviews(sort, cb) {
-    axios.post(`/reviews/${this.props.product.id}`, {sort})
+  componentDidUpdate(prev, state) {
+    if (prev.product.id !== this.state.product.id) {
+      console.log('prev: ', prev.product.id);
+      console.log('state: ', this.state.product.id);
+      this.componentDidMount();
+    }
+  }
+  getReviews(id, sort) {
+    axios.post(`/reviews/${id}`, {sort})
     .then((res) => {
       console.log('Reviews: ', res.data.results)
       this.setState({
+        product: this.props.product,
         reviews: res.data.results
       });
     })
@@ -46,10 +53,10 @@ class Reviews extends React.Component {
           <div className="revs-rating">
             {/* <Rating rating={this.props.rating} reviews={this.state.reviews} reviewsMeta={this.props.reviewsMeta}/> */}
             <Rating rating={this.props.rating} reviewsMeta={this.props.reviewsMeta}/>
-            <Product reviews={this.state.reviews}/>
+            <Product reviewsMeta={this.props.reviewsMeta}/>
           </div>
 
-         <ReviewsList reviews={this.state.reviews} getReviews={this.getReviews.bind(this)}/>
+         <ReviewsList reviews={this.state.reviews} id={this.props.product.id} getReviews={this.getReviews.bind(this)}/>
         </div>
 
       </div>
