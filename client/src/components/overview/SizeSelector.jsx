@@ -41,10 +41,10 @@ class SizeSelector extends React.Component {
     return (
       <div>
         {totalQuantity === 0
-          ? <select className='inactive-selector' value='OUT OF STOCK' disabled>
+          ? <select className='inactive-selector big-selector' value='OUT OF STOCK' disabled>
               <option>OUT OF STOCK</option>
             </select>
-          : <select className='selector' value={this.state.selectedSizeId} onChange={this.handleChange.bind(this)}>
+          : <select className='selector big-selector' value={this.state.selectedSizeId} onChange={this.handleChange.bind(this)}>
               <option value='SELECT SIZE'>SELECT SIZE</option>
               {Object.keys(this.props.selectedStyle.skus).map(item => {
                 if (this.props.selectedStyle.skus[item].quantity > 0) {
