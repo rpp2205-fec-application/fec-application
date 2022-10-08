@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffact} from 'react';
 import ReviewEntry from './ReviewEntry.jsx';
 
 
@@ -7,10 +7,15 @@ const ReviewsList = (props) => {
     return (<button className="btn new-revs">ADD A REVIEW +</button>);
   } else {
     const [reviews, setReviews] = useState(props.reviews.slice());
+    if (reviews !== props.reviews) {
+      console.log('differ reviews list: ', reviews);
+      console.log('differ porps reviews: ', props.reviews);
+    }
     console.log('reviewslist review: ', reviews);
     const [renderList, setList] = useState(reviews.splice(0, 2));
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevace");
+
     return (
       <div className="revs-right">
         <div className="rev-sum">{props.reviews.length} reviews, sorted by
