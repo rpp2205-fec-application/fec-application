@@ -26,7 +26,7 @@ class App extends React.Component {
   getProducts() {
     return axios.get('/products')
       .then(res => {
-        console.log('Products: ', res.data)
+        //console.log('Products: ', res.data)
         console.log('Product: ', res.data[0])
         return this.setState({
           products: res.data,
@@ -38,7 +38,7 @@ class App extends React.Component {
   getReviewsMeta() {
     return axios.get(`/reviews/meta/${this.state.product.id}`)
       .then((res) => {
-        console.log('Review Meta: ', res.data)
+        //console.log('Review Meta: ', res.data)
         return this.setState({
           reviewsMeta: res.data,
           rating: calculateRating(res.data.ratings)
@@ -46,22 +46,28 @@ class App extends React.Component {
       })
   }
 
-  selectProduct(product) {
-    return this.setState({product}, () => {
-      return this.getReviewsMeta()
-    })
-  }
+
 
   getReviews(sort) {
+    console.log('product!!: ', this.state.product.id);
     axios.post(`/reviews/${this.state.product.id}`, {sort})
     .then((res) => {
-      // console.log('Reviews: ', res.data.results)
+      console.log('Reviews: ', res.data.results)
       this.setState({
 
         reviews: res.data.results
       });
     })
   }
+
+  selectProduct(product) {
+    this.setState({product}, () => {
+      this.getReviewsMeta();
+      this.getReviews('relevant');
+    })
+
+  }
+
   componentDidMount() {
     this.getProducts()
     .then(()=> {
