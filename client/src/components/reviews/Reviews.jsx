@@ -18,8 +18,7 @@ const Reviews = (props) => {
           <Rating rating={props.rating} reviewsMeta={props.reviewsMeta}/>
           <Product reviewsMeta={props.reviewsMeta}/>
         </div>
-
-       <ReviewsList reviews={props.reviews} getReviews={props.getReviews}/>
+       <ReviewsList reviews={props.reviews} getReviews={props.getReviews} id={props.product.id}/>
       </div>
 
     </div>
