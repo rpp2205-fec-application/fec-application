@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffact} from 'react';
 import ReviewEntry from './ReviewEntry.jsx';
 
 
@@ -7,11 +7,27 @@ const ReviewsList = (props) => {
     return (<button className="btn new-revs">ADD A REVIEW +</button>);
   } else {
     const [reviews, setReviews] = useState(props.reviews.slice());
+    if (reviews !== props.reviews) {
+      console.log('differ reviews list: ', reviews);
+      console.log('differ porps reviews: ', props.reviews);
+    }
+    console.log('reviewslist review: ', reviews);
     const [renderList, setList] = useState(reviews.splice(0, 2));
     const [isEnd, setIsEnd] = useState(false);
+    const [select, setSelect] = useState("relevace");
+
     return (
       <div className="revs-right">
-        <div className="rev-sum">{props.reviews.length} reviews, sorted by relevace</div>
+        <div className="rev-sum">{props.reviews.length} reviews, sorted by
+        <select value={select} onChange={(e) => {
+          setSelect(e.target.value);
+          props.getReviews(e.target.value);
+          }}>
+          <option value="relevace">relevace</option>
+          <option value="newest">newest</option>
+          <option value="helpful">helpful</option>
+        </select>
+        </div>
         <ul className="revs-list">
           {renderList.map(review => <ReviewEntry review={review} key={review.review_id} />)}
         </ul>

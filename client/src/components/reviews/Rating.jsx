@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Star from '../Star/Star.jsx';
 import {calculateRating, roundNearQtr} from '../../helpers.js';
 
 const Rating = (props) => {
   const [rating, setRating] = useState(props.rating);
+  if (rating !== props.rating) {
+    console.log('differ');
+    setRating(props.rating);
+  }
   const [reviewsMeta, setMeta] = useState(props.reviewsMeta);
+  if (reviewsMeta !== props.reviewsMeta) {
+    console.log('meta differ: ',reviewsMeta);
+    console.log('meta differ props: ',props.reviewsMeta);
+    setMeta(props.reviewsMeta);
+  }
   const recommend = parseInt(reviewsMeta.recommended.true) / (parseInt(reviewsMeta.recommended.true) + parseInt(reviewsMeta.recommended.false));
   const totalRating = Object.values(reviewsMeta.ratings).reduce((acc, n) => {
     return acc = acc + parseInt(n);
   }, 0)
-  console.log('total: ', totalRating);
+
+
+
   return (
     <div className="breakdown">
       <div className="rat-header">

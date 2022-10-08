@@ -15,20 +15,25 @@ class Reviews extends React.Component {
 
 
   componentDidMount() {
-    // axios.post('/review', {id: this.props.product.id})
+    // axios.get(`/reviews/${this.props.product.id}`)
     //   .then((res) => {
+    //     console.log('Reviews: ', res.data.results)
     //     this.setState({
-    //       product: this.props.product,
-    //       reviews: res.data.results,
-    //     })
+    //       reviews: res.data.results
+    //     });
     //   })
-    axios.get(`/reviews/${this.props.product.id}`)
-      .then((res) => {
-        console.log('Reviews: ', res.data.results)
-        this.setState({
-          reviews: res.data.results
-        });
-      })
+    this.getReviews('relevant');
+  }
+
+  getReviews(sort, cb) {
+    axios.post(`/reviews/${this.props.product.id}`, {sort})
+    .then((res) => {
+      console.log('Reviews: ', res.data.results)
+      this.setState({
+        reviews: res.data.results
+      });
+    })
+
   }
 
   render() {
@@ -44,7 +49,7 @@ class Reviews extends React.Component {
             <Product reviews={this.state.reviews}/>
           </div>
 
-         <ReviewsList reviews={this.state.reviews} />
+         <ReviewsList reviews={this.state.reviews} getReviews={this.getReviews.bind(this)}/>
         </div>
 
       </div>
