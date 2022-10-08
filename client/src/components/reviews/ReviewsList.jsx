@@ -8,16 +8,23 @@ const ReviewsList = (props) => {
   } else {
     const [reviews, setReviews] = useState(props.reviews);
     const [copyReviews, setCopy] = useState(reviews.slice());
-    const [renderList, setList] = useState(copyReviews.splice(0, 2));
-    // console.log('props reviews:', props.reviews);
+
+    const [renderList, setList] = useState([]);
+
+    console.log('props reviews:', props.reviews.length);
+    console.log('reviewslist review2: ', copyReviews.length);
     if (reviews !== props.reviews) {
       // console.log('diff!');
       setReviews(props.reviews);
       setCopy(reviews.slice());
-      setList(copyReviews.splice(0, 2));
+
     }
-    // console.log('reviewslist review2: ', copyReviews);
+    //console.log('reviewslist review2: ', copyReviews);
     // console.log('reviews:', reviews);
+    // useEffect(() => {
+
+    // }, [copyReviews])
+    !renderList.length ? setList(copyReviews.splice(0, 2)) : renderList
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevace");
 
@@ -39,7 +46,11 @@ const ReviewsList = (props) => {
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {
             if (copyReviews.length >= 2) {
-              setList(renderList.concat(copyReviews.splice(0, 2)));
+              console.log('renderList', renderList);
+              let add = copyReviews.splice(0, 2)
+              console.log('add: ,', add);
+              setList(renderList.concat(add));
+
             } else if (copyReviews.length === 1) {
               setList(renderList.concat(copyReviews));
             } else if (!copyReviews.length) {
