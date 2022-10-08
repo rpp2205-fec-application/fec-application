@@ -7,7 +7,8 @@ import StylesSection from './StylesSection.jsx';
 import Description from './Description.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
-import Carousel from './Carousel.jsx';
+import PhotoSection from './PhotoSection.jsx';
+
 
 import {calculateRating} from '../../helpers.js';
 import "./Overview.scss";
@@ -22,6 +23,7 @@ class Overview extends React.Component {
       selectedSizeId: 'SELECT SIZE',
       quantityOfSelectedSize: 0,
       selectedQuantity: '-',
+      thumbnails: [],
       photos: []
     }
   }
@@ -45,10 +47,20 @@ class Overview extends React.Component {
             break;
           }
         }
+        const thumbnails = [];
+        const photos = [];
+        res.data.results.forEach(style => {
+          for (var photo of style.photos) {
+            thumbnails.push(photo.thumbnail_url);
+            photos.push(photo.url);
+          }
+        })
         this.setState({
           styles: res.data.results,
           selectedStyle,
-          salePrice: selectedStyle.sale_price || ''
+          salePrice: selectedStyle.sale_price || '',
+          thumbnails,
+          photos
         })
       })
   }
@@ -89,16 +101,17 @@ class Overview extends React.Component {
     return (
       <div>
         <h2>This is for Overview</h2>
-        <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} />
-        <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
-        {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
-        <div className='close-flex'>
-          {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)}/>}
-          {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
+        <PhotoSection thumbnails={this.state.thumbnails} photos={this.state.photos} selectedStyle={this.state.selectedStyle}/>
+        <div className='right'>
+          <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} />
+          <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
+          {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
+          <div className='close-flex'>
+            {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)}/>}
+            {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
+          </div>
         </div>
         <Description slogan={slogan} description={description} />
-        <Carousel />
-
       </div>
     )
   }
