@@ -6,13 +6,18 @@ const ReviewsList = (props) => {
   if (!props.reviews.length) {
     return (<button className="btn new-revs">ADD A REVIEW +</button>);
   } else {
-    const [reviews, setReviews] = useState(props.reviews.slice());
+    const [reviews, setReviews] = useState(props.reviews);
+    const [copyReviews, setCopy] = useState(reviews.slice());
+    const [renderList, setList] = useState(copyReviews.splice(0, 2));
+    console.log('props reviews:', props.reviews);
     if (reviews !== props.reviews) {
-      console.log('differ reviews list: ', reviews);
-      console.log('differ porps reviews: ', props.reviews);
+      console.log('diff!');
+      setReviews(props.reviews);
+      setCopy(reviews.slice());
+      setList(copyReviews.splice(0, 2));
     }
-    console.log('reviewslist review: ', reviews);
-    const [renderList, setList] = useState(reviews.splice(0, 2));
+    console.log('reviewslist review2: ', copyReviews);
+    console.log('reviews:', reviews);
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevace");
 
@@ -33,12 +38,11 @@ const ReviewsList = (props) => {
         </ul>
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {
-            if (reviews.length >= 2) {
-              let add = reviews.splice(0, 2)
-              setList(renderList.concat(add));
-            } else if (reviews.length === 1) {
-              setList(renderList.concat(reviews));
-            } else if (!reviews.length) {
+            if (copyReviews.length >= 2) {
+              setList(renderList.concat(copyReviews.splice(0, 2)));
+            } else if (copyReviews.length === 1) {
+              setList(renderList.concat(copyReviews));
+            } else if (!copyReviews.length) {
               setIsEnd(true);
             }
           }} className="btn more-revs">MORE REVIEWS</button>}

@@ -5,13 +5,10 @@ import {calculateRating, roundNearQtr} from '../../helpers.js';
 const Rating = (props) => {
   const [rating, setRating] = useState(props.rating);
   if (rating !== props.rating) {
-    console.log('differ');
     setRating(props.rating);
   }
   const [reviewsMeta, setMeta] = useState(props.reviewsMeta);
   if (reviewsMeta !== props.reviewsMeta) {
-    console.log('meta differ: ',reviewsMeta);
-    console.log('meta differ props: ',props.reviewsMeta);
     setMeta(props.reviewsMeta);
   }
   const recommend = parseInt(reviewsMeta.recommended.true) / (parseInt(reviewsMeta.recommended.true) + parseInt(reviewsMeta.recommended.false));
@@ -19,15 +16,13 @@ const Rating = (props) => {
     return acc = acc + parseInt(n);
   }, 0)
 
-
-
   return (
     <div className="breakdown">
       <div className="rat-header">
         <div className="xxl_font">{rating}</div>
         <div className="stars"><Star rating={roundNearQtr(rating)}/></div>
       </div>
-      <div className="xs_font">{recommend * 100}% of reviews recommend this product</div>
+      <div className="xs_font">{recommend.toFixed(2) * 100}% of reviews recommend this product</div>
       <div className="rat-body xs_font">
         {Object.keys(reviewsMeta.ratings).reverse().map(key =>
             <div className="rat-chart" key={key}>
