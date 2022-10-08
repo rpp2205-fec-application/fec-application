@@ -17,7 +17,8 @@ class App extends React.Component {
       products: [],
       product: {},
       rating: 0,
-      reviewsMeta: {}
+      reviewsMeta: {},
+      reviews:[]
     }
     this.reviewsRef = React.createRef();
   }
@@ -45,17 +46,34 @@ class App extends React.Component {
       })
   }
 
-  selectProduct(product) {
-    return this.setState({product}, () => {
-      return this.getReviewsMeta()
+
+
+  getReviews(sort) {
+    axios.post(`/reviews/${this.state.product.id}`, {sort})
+    .then((res) => {
+      //console.log('Reviews: ', res.data.results)
+      this.setState({
+
+        reviews: res.data.results
+      });
     })
   }
 
+  selectProduct(product) {
+    this.setState({product}, () => {
+      this.getReviewsMeta();
+      this.getReviews('relevant');
+    })
+
+  }
 
   componentDidMount() {
     this.getProducts()
     .then(()=> {
-      this.getReviewsMeta()
+      return this.getReviewsMeta();
+    })
+    .then(() => {
+      this.getReviews('relevant');
     })
   }
 
@@ -72,7 +90,7 @@ class App extends React.Component {
           <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
           <Outfit product={this.state.product}/>
           <QA product={this.state.product}/>
-          <Reviews product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef}/>
+          <Reviews getReviews={this.getReviews.bind(this)} reviews={this.state.reviews} product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef}/>
         </div>
       )
     } else {
