@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import StyleCircle from './StyleCircle.jsx';
 
@@ -32,8 +34,11 @@ class StylesSection extends React.Component {
     console.log('Selected style: ', this.props.selectedStyle)
     return(
       <div className='styles-container'>
-        <span className='bold-text'>STYLE </span>
-        <span className='style-name'>> {this.state.selectedStyleName.toUpperCase()}</span>
+        <div className='closest-flex'>
+          <span className='bold-text'>STYLE</span>
+          <FontAwesomeIcon icon={faChevronRight} />
+          <span className='style-name'>{this.state.selectedStyleName.toUpperCase()}</span>
+        </div>
         <div className='style-list'>
           {this.props.styles.map(style => (
             <StyleCircle key={style.style_id}
