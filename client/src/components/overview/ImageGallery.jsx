@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Thumbnails from './Thumbnails.jsx';
-import MainImage from './MainImage.jsx';
+import DefaultView from './DefaultView.jsx';
 
-class PhotoSection extends React.Component {
+class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,12 +13,12 @@ class PhotoSection extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='gallery-flex'>
         <Thumbnails thumbnails={this.props.thumbnails} styles={this.props.styles} />
-        <MainImage photos={this.props.photos} />
+        <DefaultView photos={this.props.photos} />
       </div>
     )
   }
 }
 
-export default PhotoSection;
+export default ImageGallery;

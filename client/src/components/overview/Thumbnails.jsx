@@ -39,7 +39,7 @@ class Thumbnails extends React.Component {
     }
 
     return (
-      <div className='column-flex'>
+      <div className='thumbnails-flex'>
         <FontAwesomeIcon icon={faChevronUp} className={this.state.currentIndex !== 0 ? 'chevron-icon' : 'chevron-icon hidden'} onClick={this.previous.bind(this)} />
         {visibleThumbnails.map((thumbnail, index) => (
           (thumbnail !== null
