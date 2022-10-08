@@ -5,6 +5,13 @@
   padding: 10px 0;
 }
 
+.closest-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
 .styles-container {
   margin: 20px 0;
 }
@@ -82,6 +89,8 @@
   appearance: none !important;
   padding-right: 2rem !important;
   cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 .inactive-selector {
@@ -98,6 +107,7 @@
   appearance: none !important;
   padding-right: 2rem !important;
   cursor: auto;
+  text-decoration: none;
 }
 
 .qty-selector {

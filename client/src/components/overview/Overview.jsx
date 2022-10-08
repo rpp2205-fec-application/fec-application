@@ -101,7 +101,7 @@ class Overview extends React.Component {
     return (
       <div>
         <h2>This is for Overview</h2>
-        <PhotoSection thumbnails={this.state.thumbnails} photos={this.state.photos} selectedStyle={this.state.selectedStyle}/>
+        <PhotoSection thumbnails={this.state.thumbnails} photos={this.state.photos} selectedStyle={this.state.selectedStyle} styles={this.state.styles} />
         <div className='right'>
           <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} />
           <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />

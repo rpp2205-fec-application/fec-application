@@ -30,15 +30,23 @@ class Thumbnails extends React.Component {
     var visibleThumbnails = [];
     if (this.state.currentIndex + 7 < this.props.thumbnails.length) {
       visibleThumbnails = this.props.thumbnails.slice(this.state.currentIndex, this.state.currentIndex + 7);
-    } else {
-      visibleThumbnails = this.props.thumbnails.slice(this.props.thumbnails.length - 7, this.props.thumbnails.length);
+    } else if (this.state.currentIndex + 7 >= this.props.thumbnails.length) {
+      if (this.props.thumbnails.length < 7) {
+        visibleThumbnails = this.props.thumbnails.slice('');
+      } else {
+        visibleThumbnails = this.props.thumbnails.slice(this.props.thumbnails.length - 7, this.props.thumbnails.length);
+      }
     }
 
     return (
       <div className='column-flex'>
         <FontAwesomeIcon icon={faChevronUp} className={this.state.currentIndex !== 0 ? 'chevron-icon' : 'chevron-icon hidden'} onClick={this.previous.bind(this)} />
         {visibleThumbnails.map((thumbnail, index) => (
-          <div key={index} index={index} className='thumbnail' style={{backgroundImage:`url(${thumbnail})`}} ></div>
+          (thumbnail !== null
+            ? <div key={index} index={index} className='thumbnail' style={{backgroundImage:`url(${thumbnail})`}} ></div>
+            : <div key={index} index={index} className='thumbnail no-thumbnail' ></div>
+            )
+
         ))}
         <FontAwesomeIcon icon={faChevronDown} className={(this.state.currentIndex + 7 < this.props.thumbnails.length) ? 'chevron-icon' : 'chevron-icon hidden'} onClick={this.next.bind(this)} />
       </div>

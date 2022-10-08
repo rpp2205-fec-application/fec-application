@@ -26,15 +26,15 @@ class Reviews extends React.Component {
   }
   componentDidUpdate(prev, state) {
     if (prev.product.id !== this.state.product.id) {
-      console.log('prev: ', prev.product.id);
-      console.log('state: ', this.state.product.id);
+      // console.log('prev: ', prev.product.id);
+      // console.log('state: ', this.state.product.id);
       this.componentDidMount();
     }
   }
   getReviews(id, sort) {
     axios.post(`/reviews/${id}`, {sort})
     .then((res) => {
-      console.log('Reviews: ', res.data.results)
+      // console.log('Reviews: ', res.data.results)
       this.setState({
         product: this.props.product,
         reviews: res.data.results

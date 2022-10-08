@@ -9,15 +9,15 @@ const ReviewsList = (props) => {
     const [reviews, setReviews] = useState(props.reviews);
     const [copyReviews, setCopy] = useState(reviews.slice());
     const [renderList, setList] = useState(copyReviews.splice(0, 2));
-    console.log('props reviews:', props.reviews);
+    // console.log('props reviews:', props.reviews);
     if (reviews !== props.reviews) {
-      console.log('diff!');
+      // console.log('diff!');
       setReviews(props.reviews);
       setCopy(reviews.slice());
       setList(copyReviews.splice(0, 2));
     }
-    console.log('reviewslist review2: ', copyReviews);
-    console.log('reviews:', reviews);
+    // console.log('reviewslist review2: ', copyReviews);
+    // console.log('reviews:', reviews);
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevace");
 

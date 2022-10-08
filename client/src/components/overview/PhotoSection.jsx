@@ -14,7 +14,7 @@ class PhotoSection extends React.Component {
   render() {
     return (
       <div>
-        <Thumbnails thumbnails={this.props.thumbnails} />
+        <Thumbnails thumbnails={this.props.thumbnails} styles={this.props.styles} />
         <MainImage photos={this.props.photos} />
       </div>
     )
