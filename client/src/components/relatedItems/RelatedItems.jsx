@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SingleCard from './SingleCard.jsx';
-import './singleCard.scss';
+import Slider from './Slider.jsx';
 import axios from 'axios';
 
 class RelatedItems extends React.Component {
@@ -28,17 +28,12 @@ class RelatedItems extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='widget'>
         <h4>Related Products</h4>
         <button onClick={this.selectProduct.bind(this)}>Test switch product</button>
-        <div className='cards_container'>
-        {this.state.items.map((item, index) => {
-           return (
-               <SingleCard product={item} key={index}/>
-           )
-        })}
+        <Slider products={this.state.items} />
         </div>
-      </div>
+        
     )
   }
 }
