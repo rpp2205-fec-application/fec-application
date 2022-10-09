@@ -28,8 +28,10 @@ class QA extends React.Component {
     return (
       axios.get(`/qa/questions/${this.props.product.id}`)
       .then((response) => {
+        let qs = response.data.results;
+        qs.sort((q1, q2) => q1.question_helpfulness < q2.question_helpfulness? 1: q1.question_helpfulness > q2.question_helpfulness? -1 : 0)
         console.log('Questions: ', response.data.results);
-        this.setState({allQuestions: response.data.results})
+        this.setState({allQuestions: qs})
       })
     )
   }
