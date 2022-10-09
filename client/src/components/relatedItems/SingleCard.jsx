@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import {AiOutlineStar} from 'react-icons'
 import './singleCard.scss';
 
 class SingleCard extends React.Component {
@@ -37,7 +36,7 @@ class SingleCard extends React.Component {
             <a>
             <img className='card-image' src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
             </a>
-            <AiOutlineStar className='star-icon'/>
+            <button className='star-icon'/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>
