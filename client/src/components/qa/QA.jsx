@@ -12,7 +12,8 @@ class QA extends React.Component {
     this.state = {
       shownQuestions: [],
       allQuestions: [],
-      loadMore: false
+      loadMore: false,
+      collapse: false
     }
   }
 
@@ -42,7 +43,7 @@ class QA extends React.Component {
   }
 
   handleMoreQuestions () {
-    this.setState({ shownQuestions: this.state.allQuestions, loadMore: false});
+    this.setState({ shownQuestions: this.state.allQuestions, loadMore: false, collapse: true});
   }
 
   handleCollapse () {
@@ -55,7 +56,7 @@ class QA extends React.Component {
         <h2 className="title"> QUESTIONS & ANSWERS </h2>
         <QuestionBar questions={this.state.questions}/>
         <QAList questions={this.state.shownQuestions}/>
-        <Add loadMore={this.state.loadMore} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
+        <Add loadMore={this.state.loadMore} collapse={this.state.loadMore} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
       </div>
     )
   }

@@ -6,15 +6,32 @@ const ReviewsList = (props) => {
   if (!props.reviews.length) {
     return (<button className="btn new-revs">ADD A REVIEW +</button>);
   } else {
-    const [reviews, setReviews] = useState(props.reviews.slice());
-    if (reviews !== props.reviews) {
-      console.log('differ reviews list: ', reviews);
-      console.log('differ porps reviews: ', props.reviews);
+    const [reviews, setReviews] = useState({
+      origin:props.reviews,
+      copy: props.reviews.slice(),
+      renderList: []
+    });
+
+    if (reviews.origin !== props.reviews) {
+      console.log('different reviews!');
+      setReviews({
+        origin: props.reviews,
+        copy:props.reviews.slice(),
+        renderList:[]
+      })
     }
-    console.log('reviewslist review: ', reviews);
-    const [renderList, setList] = useState(reviews.splice(0, 2));
     const [isEnd, setIsEnd] = useState(false);
-    const [select, setSelect] = useState("relevace");
+    const [select, setSelect] = useState("relevance");
+    const [id, setId] = useState(props.id);
+    //console.log('id: ', props.id, id);
+    if (id !== props.id) {
+      console.log('different product');
+      setSelect("relevance");
+      setId(props.id);
+    }
+    // console.log('props reviews:', props.reviews);
+    // console.log('reviewslist review2: ', reviews.copy);
+    !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
 
     return (
       <div className="revs-right">
@@ -23,28 +40,27 @@ const ReviewsList = (props) => {
           setSelect(e.target.value);
           props.getReviews(e.target.value);
           }}>
-          <option value="relevace">relevace</option>
+          <option value="relevance">relevance</option>
           <option value="newest">newest</option>
           <option value="helpful">helpful</option>
         </select>
         </div>
         <ul className="revs-list">
-          {renderList.map(review => <ReviewEntry review={review} key={review.review_id} />)}
+          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id} />)}
         </ul>
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {
-            if (reviews.length >= 2) {
-              let add = reviews.splice(0, 2)
-              setList(renderList.concat(add));
-            } else if (reviews.length === 1) {
-              setList(renderList.concat(reviews));
-            } else if (!reviews.length) {
+            if (reviews.copy.length >= 2) {
+              let add = reviews.copy.splice(0, 2)
+              setReviews({...reviews, renderList: reviews.renderList.concat(add)});
+            } else if (reviews.copy.length === 1) {
+              setReviews({...reviews, renderList: reviews.renderList.concat(reviews.copy)});
+            } else if (!reviews.copy.length) {
               setIsEnd(true);
             }
           }} className="btn more-revs">MORE REVIEWS</button>}
           <button className="btn new-revs">ADD A REVIEW +</button>
         </div>
-
       </div>
     )
   }

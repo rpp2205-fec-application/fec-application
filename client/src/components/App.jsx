@@ -17,7 +17,8 @@ class App extends React.Component {
       products: [],
       product: {},
       rating: 0,
-      reviewsMeta: {}
+      reviewsMeta: {},
+      reviews:[]
     }
     this.reviewsRef = React.createRef();
   }
@@ -25,7 +26,10 @@ class App extends React.Component {
   componentDidMount() {
     this.getProducts()
     .then(()=> {
-      this.getReviewsMeta()
+      return this.getReviewsMeta();
+    })
+    .then(() => {
+      this.getReviews('relevant');
     })
   }
 
@@ -36,7 +40,7 @@ class App extends React.Component {
         console.log('Product: ', res.data[4])
         return this.setState({
           products: res.data,
-          product: res.data[1]
+          product: res.data[0]
         })
       })
   }
@@ -52,10 +56,23 @@ class App extends React.Component {
       })
   }
 
-  selectProduct(product) {
-    return this.setState({product}, () => {
-      return this.getReviewsMeta()
+  getReviews(sort) {
+    axios.post(`/reviews/${this.state.product.id}`, {sort})
+    .then((res) => {
+      //console.log('Reviews: ', res.data.results)
+      this.setState({
+
+        reviews: res.data.results
+      });
     })
+  }
+
+  selectProduct(product) {
+    this.setState({product}, () => {
+      this.getReviewsMeta();
+      this.getReviews('relevant');
+    })
+
   }
 
   handleScrollToReviews(event) {
@@ -70,30 +87,12 @@ class App extends React.Component {
           <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
           <Outfit product={this.state.product}/>
           <QA product={this.state.product}/>
-          {JSON.stringify(this.state.reviewsMeta) !=='{}' && <Reviews product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef}/>}
-
+          <Reviews getReviews={this.getReviews.bind(this)} reviews={this.state.reviews} product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef}/>
         </div>
       )
     } else {
       return null;
     }
-
-
-
-
-    // if (JSON.stringify(this.state.product) !=='{}' && this.state.reviews.length !== 0 && JSON.stringify(this.state.reviewsMeta) !=='{}') {
-    //   return (
-    //     <div className='container'>
-    //       <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating}/>
-    //       {/* <RelatedItems product={this.state.product}/> */}
-    //       <QA product={this.state.product}/>
-    //       <Reviews product={this.state.product} reviews={this.state.reviews} scrollToReviews={this.reviewsRef}/>
-    //     </div>
-    //   )
-    // } else {
-    //   return null;
-    // }
-
   }
 }
 

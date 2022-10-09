@@ -17,13 +17,23 @@ class SizeSelector extends React.Component {
     this.props.selectSize(event.target.value);
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.selectedSizeId !== state.selectedSizeId) {
-      return {
-        selectedSizeId: props.selectedSizeId
-      }
+  // Updating the state if there's any changes between the current state and the new props, happen after the props is passed with new value
+  // static getDerivedStateFromProps(props, state) {
+  //   if (props.selectedSizeId !== state.selectedSizeId) {
+  //     return {
+  //       selectedSizeId: props.selectedSizeId
+  //     }
+  //   }
+  //   return null;
+  // }
+
+  //Getting the new style list after the new product is passed to props
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selectedSizeId !== this.props.selectedSizeId) {
+      this.setState({
+        selectedSizeId: this.props.selectedSizeId
+      })
     }
-    return null;
   }
 
   render() {
@@ -31,10 +41,10 @@ class SizeSelector extends React.Component {
     return (
       <div>
         {totalQuantity === 0
-          ? <select className='inactive-selector' value='OUT OF STOCK' disabled>
+          ? <select className='inactive-selector big-selector' value='OUT OF STOCK' disabled>
               <option>OUT OF STOCK</option>
             </select>
-          : <select className='selector' value={this.state.selectedSizeId} onChange={this.handleChange.bind(this)}>
+          : <select className='selector big-selector' value={this.state.selectedSizeId} onChange={this.handleChange.bind(this)}>
               <option value='SELECT SIZE'>SELECT SIZE</option>
               {Object.keys(this.props.selectedStyle.skus).map(item => {
                 if (this.props.selectedStyle.skus[item].quantity > 0) {
