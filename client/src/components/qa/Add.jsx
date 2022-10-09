@@ -1,20 +1,13 @@
 import React from 'react';
 
-class Add extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
-
-  render() {
-    return (
-      <div className="addSection">
-        <button className="add"> MORE ANSWERED QUESTIONS </button>
-        <button className="add"> ADD A QUESTION + </button>
-      </div>
-    )
-  }
+const Add = (props) => {
+  return (
+    <div className="addSection">
+      {props.loadMore? <button className="add" onClick={props.handleMoreQuestions}> MORE ANSWERED QUESTIONS </button>: null}
+      {props.collapse? <button className="add" onClick={props.handleCollapse}> COLLAPSE </button>: null}
+      <button className="add"> ADD A QUESTION + </button>
+    </div>
+  )
 }
 
 export default Add;

@@ -26,8 +26,12 @@
 .question-section {
   display: grid;
   grid-template-columns: 30px 650px 100px 100px;
+  padding-bottom: 15px;
 }
 
+.fake {
+  color: white;
+}
 .answer-additional {
   font-size: x-small;
 }
@@ -41,6 +45,7 @@
 .answer-section {
   display: grid;
   grid-template-columns: 30px auto;
+  padding-bottom: 15px;
 }
 
 .questionBody {
@@ -57,10 +62,14 @@
 
 .answer-body {
   grid-column: 1 / 4;
+  padding-bottom: 15px;
 }
 
 .load-collapse {
   color: grey;
+  font-size: smaller;
+  padding-left: 30px;
+  padding-bottom: 15px;
 }
 
 .addSection {

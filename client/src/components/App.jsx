@@ -23,11 +23,21 @@ class App extends React.Component {
     this.reviewsRef = React.createRef();
   }
 
+  componentDidMount() {
+    this.getProducts()
+    .then(()=> {
+      return this.getReviewsMeta();
+    })
+    .then(() => {
+      this.getReviews('relevant');
+    })
+  }
+
   getProducts() {
     return axios.get('/products')
       .then(res => {
         console.log('Products: ', res.data)
-        console.log('Product: ', res.data[0])
+        console.log('Product: ', res.data[4])
         return this.setState({
           products: res.data,
           product: res.data[0]
@@ -45,8 +55,6 @@ class App extends React.Component {
         });
       })
   }
-
-
 
   getReviews(sort) {
     axios.post(`/reviews/${this.state.product.id}`, {sort})
@@ -67,20 +75,9 @@ class App extends React.Component {
 
   }
 
-  componentDidMount() {
-    this.getProducts()
-    .then(()=> {
-      return this.getReviewsMeta();
-    })
-    .then(() => {
-      this.getReviews('relevant');
-    })
-  }
-
   handleScrollToReviews(event) {
     window.scrollTo(0, this.reviewsRef.current.offsetTop);
   }
-
 
   render() {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
@@ -96,20 +93,6 @@ class App extends React.Component {
     } else {
       return null;
     }
-
-    // if (JSON.stringify(this.state.product) !=='{}' && this.state.reviews.length !== 0 && JSON.stringify(this.state.reviewsMeta) !=='{}') {
-    //   return (
-    //     <div className='container'>
-    //       <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating}/>
-    //       {/* <RelatedItems product={this.state.product}/> */}
-    //       <QA product={this.state.product}/>
-    //       <Reviews product={this.state.product} reviews={this.state.reviews} scrollToReviews={this.reviewsRef}/>
-    //     </div>
-    //   )
-    // } else {
-    //   return null;
-    // }
-
   }
 }
 
