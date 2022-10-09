@@ -36,11 +36,7 @@ class App extends React.Component {
         console.log('Product: ', res.data[4])
         return this.setState({
           products: res.data,
-<<<<<<< HEAD
-          product: res.data[4]
-=======
           product: res.data[1]
->>>>>>> 10ea415783b48f9cb106a8e0686e60865e62f9f9
         })
       })
   }

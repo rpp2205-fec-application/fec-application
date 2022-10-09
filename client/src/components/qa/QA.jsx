@@ -10,29 +10,52 @@ class QA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: []
+      shownQuestions: [],
+      allQuestions: [],
+      loadMore: false
     }
   }
 
   componentDidMount () {
-    this.getQuestions();
+    this.getQuestions()
+    .then(() => {
+      this.setQuestions();
+    })
   }
 
   getQuestions () {
-    axios.get(`/qa/questions/${this.props.product.id}`)
-    .then((response) => {
-      console.log('Questions: ', response.data.results);
-      this.setState({questions: response.data.results})
-    })
+    return (
+      axios.get(`/qa/questions/${this.props.product.id}`)
+      .then((response) => {
+        console.log('Questions: ', response.data.results);
+        this.setState({allQuestions: response.data.results})
+      })
+    )
+  }
+
+  setQuestions () {
+    if (this.state.allQuestions.length > 2) {
+      this.setState({ shownQuestions: this.state.allQuestions.slice(0, 2), loadMore: true})
+    } else {
+      this.setState({ shownQuestions: this.state.allQuestions })
+    }
+  }
+
+  handleMoreQuestions () {
+    this.setState({ shownQuestions: this.state.allQuestions, loadMore: false});
+  }
+
+  handleCollapse () {
+    this.setState({ shownQuestions: this.state.allQuestions.slice(0, 2), loadMore: true});
   }
 
   render() {
     return (
       <div className="widget">
         <h2 className="title"> QUESTIONS & ANSWERS </h2>
-        <QuestionBar/>
-        <QAList questions={this.state.questions}/>
-        <Add/>
+        <QuestionBar questions={this.state.questions}/>
+        <QAList questions={this.state.shownQuestions}/>
+        <Add loadMore={this.state.loadMore} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
       </div>
     )
   }
