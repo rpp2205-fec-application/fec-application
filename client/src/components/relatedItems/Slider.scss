@@ -1,0 +1,45 @@
+#main-slider-container{
+  width: 100%;
+  height: 350px;
+  background: white;
+  position: center;
+  display: flex;
+  align-items: center;
+}
+
+#slider{
+  width: 100%;
+  display: flex;
+  white-space: nowwrap;
+  justify-content: space-around;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+#slider::-webkit-scrollbar{
+  display: none;
+}
+
+.slider-icon-left{
+  background: white;
+  border-radius: 100%;
+  position: relative;
+  left:0
+}
+
+.slider-icon-left:hover {
+  background: #a2a8ab;
+}
+
+.slider-icon-right:hover{
+  background: #a2a8ab;
+}
+
+
+.slider-icon-right{
+  background: white;
+  border-radius: 100%;
+  position: relative;
+  right: 0;
+}

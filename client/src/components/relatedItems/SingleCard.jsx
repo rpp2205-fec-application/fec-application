@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import {AiOutlineStar} from 'react-icons'
 import './singleCard.scss';
 
 class SingleCard extends React.Component {
@@ -32,21 +33,19 @@ class SingleCard extends React.Component {
 
   render() {
     return (
-      <div className='slide-container'>
         <div className="card">
-          <div className='card-image'>
             <a>
-            <img src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
+            <img className='card-image' src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
             </a>
+            <AiOutlineStar className='star-icon'/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
-            <h4 className='name'>{this.state.product.name}</h4>
+            <p className='name'>{this.state.product.name}</p>
             <p className='price'>{this.state.product.default_price}</p>
             <p>ratings</p>
             </div>
-          </div>
         </div>
-      </div>
+    
     
     )
   }
