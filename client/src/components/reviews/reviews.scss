@@ -149,6 +149,20 @@ select {
   border: 2px solid black;
   transform: translate(-50%, -50%);
 }
+
+.sub-modal {
+  background-color: white;
+  position: absolute;
+  top:50%;
+  left:50%;
+  right:auto;
+  bottom: auto;
+  width:50%;
+  padding:1%;
+  border-radius: 5px;
+  border: 2px solid black;
+  transform: translate(-50%, -50%);
+}
 .close{
   color:black;
   float:right;
