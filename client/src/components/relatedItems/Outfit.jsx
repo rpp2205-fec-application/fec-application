@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from './slider.jsx';
+import Slider from './Slider.jsx';
 import axios from 'axios';
 
 class Outfit extends React.Component {
@@ -22,7 +22,7 @@ class Outfit extends React.Component {
     return (
       <div>
         <h4 className='widget'>Your Outfit</h4>
-        {/* <Slider product={this.props.product}/> */}
+         {/* <Slider product={this.props.product}/>  */}
       </div>
     )
   }
