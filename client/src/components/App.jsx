@@ -36,11 +36,12 @@ class App extends React.Component {
   getProducts() {
     return axios.get('/products')
       .then(res => {
-        console.log('Products: ', res.data)
-        console.log('Product: ', res.data[0])
         return this.setState({
           products: res.data,
           product: res.data[0]
+        }, () => {
+          console.log('Products: ', this.state.products)
+          console.log('Product: ', this.state.product)
         })
       })
   }

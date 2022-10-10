@@ -1,6 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 class DefaultView extends React.Component {
   constructor(props) {
@@ -24,12 +25,14 @@ class DefaultView extends React.Component {
     var currentPhoto = this.props.photos[this.props.selectedPhotoIndex];
     return (
       <div className='default-view'>
-        <FontAwesomeIcon icon={faArrowLeft} className={this.props.selectedPhotoIndex !== 0 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.previous.bind(this)} />
+        <HiArrowNarrowLeft className={this.props.selectedPhotoIndex !== 0 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.previous.bind(this)} />
+        {/* <FontAwesomeIcon icon={faArrowLeft} className={this.props.selectedPhotoIndex !== 0 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.previous.bind(this)} /> */}
         {currentPhoto !== null
           ? <div className='big-picture'style={{backgroundImage:`url(${currentPhoto})`}} ></div>
           : <div className='big-picture no-thumbnail' ></div>
         }
-        <FontAwesomeIcon icon={faArrowRight} className={this.props.selectedPhotoIndex !== this.props.photos.length - 1 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.next.bind(this)} />
+        <HiArrowNarrowRight className={this.props.selectedPhotoIndex !== this.props.photos.length - 1 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.next.bind(this)} />
+        {/* <FontAwesomeIcon icon={faArrowRight} className={this.props.selectedPhotoIndex !== this.props.photos.length - 1 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.next.bind(this)} /> */}
       </div>
     )
   }

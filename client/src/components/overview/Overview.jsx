@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from "@fortawesome/free-regular-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaRegStar, FaPlus, FaHeart } from 'react-icons/fa';
 
 import ProductInfo from './ProductInfo.jsx';
 import RatingInfo from './RatingInfo.jsx';
@@ -27,6 +26,7 @@ class Overview extends React.Component {
       selectedSizeId: 'SELECT SIZE',
       quantityOfSelectedSize: 0,
       selectedQuantity: '-',
+      favorite: false
     }
   }
 
@@ -74,6 +74,19 @@ class Overview extends React.Component {
     this.setState({selectedQuantity})
   }
 
+  toggleOutfit() {
+    if (!this.state.favorite) {
+      this.setState({
+        favorite: true
+      })
+    } else {
+      this.setState({
+        favorite: false
+      })
+    }
+
+  }
+
   componentDidMount() {
     // this.getRating();
     this.getStyles();
@@ -99,13 +112,24 @@ class Overview extends React.Component {
               <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} />
               <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
               {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} />}
-              <div className='buttons-flex'>
-                {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)}/>}
-                {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
-              </div>
-              <div className='buttons-flex'>
-                <button className='primary-button'>ADD TO BAG +</button>
-                <div className='button'><FontAwesomeIcon icon={faStar} className='star-icon' /></div>
+              <div className='selectors-buttons-flex'>
+                <div className='buttons-flex'>
+                  {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)}/>}
+                  {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
+                </div>
+                <div className='buttons-flex'>
+                  {/* <button className='primary-button'>ADD TO BAG +</button> */}
+                  <div className='primary-button'>
+                    <p>ADD TO BAG</p>
+                    <FaPlus />
+                  </div>
+                  <div className='button' onClick={this.toggleOutfit.bind(this)}>
+                    {this.state.favorite
+                      ? <FaHeart className='button-icon heart-icon' />
+                      : <FaRegStar className='button-icon' />
+                    }
+                  </div>
+                </div>
               </div>
             </div>
           </div>
