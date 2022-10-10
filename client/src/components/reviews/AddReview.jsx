@@ -1,4 +1,4 @@
-import React, {newRev} from 'react';
+import React, {useState} from 'react';
 
 const AddReview = (props) => {
   const [newRev, setRev] = useState({
@@ -12,15 +12,19 @@ const AddReview = (props) => {
     photos: [],
     characteristics: {}
   })
+  const showOrHide = props.show ? "modal display-block" : "modal display-none";
   return (
-    <div className="addRev widget">
-      <div className="title">Write Your Review</div>
-      <div className="subTitle">About the {props.product.name}</div>
-      <form onSubmit={() => {props.handleClick}}>
+    <div className={showOrHide}>
+      <div className="modal_content">
+        <span className="close" onClick={props.handleClick}>
+          &times;
+        </span>
+        <form onSubmit={() => {props.handleClick}}>
+        <div className="title">Write Your Review</div>
+        <div className="subTitle">About the {props.product.name}</div>
         <div>
           <label>show rating star</label>
         </div>
-
         <div>Recommond?
           <label><input type="radio" value="yes" checked={true} />Yes</label>
           <label><input type="radio" value="no" />No</label>
@@ -45,6 +49,9 @@ const AddReview = (props) => {
           <input className="btn" type="submit" value="Submit"/>
         </div>
       </form>
+      </div>
+
+
     </div>
   )
 }

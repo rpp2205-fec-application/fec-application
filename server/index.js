@@ -43,7 +43,7 @@ app.post('/reviews/:product_id', (req, res) => {
 })
 // add product reviews
 app.post('/reviews/:product_id', (req, res) => {
-  let let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.params.product_id}`;
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.params.product_id}`;
   const newRev = req.body;
   return axios.post(url, headers, newRev)
     .then(() => {
