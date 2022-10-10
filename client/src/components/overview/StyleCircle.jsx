@@ -1,6 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { FaCheckCircle } from 'react-icons/fa';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 class StyleCircle extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class StyleCircle extends React.Component {
   render() {
     return (
       <div className='style-container'>
-        {this.props.selected && <FontAwesomeIcon icon={faCircleCheck} className='check-icon' />}
+        {/* {this.props.selected && <FontAwesomeIcon icon={faCircleCheck} className='check-icon' />} */}
+        {this.props.selected && <FaCheckCircle className='check-icon' />}
         {this.props.style.photos[0].thumbnail_url !== null
           ? <div onClick={this.select.bind(this)} className={this.props.selected ? 'style-circle selected-style' : 'style-circle'} style={{backgroundImage:`url(${this.props.style.photos[0].thumbnail_url})`}} ></div>
           : <div onClick={this.select.bind(this)} className={this.props.selected ? 'style-circle selected-style no-thumbnail' : 'style-circle no-thumbnail'} ></div>

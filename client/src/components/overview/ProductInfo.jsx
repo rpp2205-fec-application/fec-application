@@ -4,12 +4,12 @@ const ProductInfo = (props) => {
   return (
     <div className='close-column-flex'>
       <div className='closest-column-flex'>
-        <p>{props.category.toUpperCase()}</p>
+        <p className='subheading'>{props.category.toUpperCase()}</p>
         <h1>{props.name}</h1>
       </div>
       <div className='close-flex'>
-        {props.salePrice !== '' && <p className='sale-price'>${props.salePrice}</p>}
-        <p className={props.salePrice !== '' ? 'crossed' : ''}>${props.originalPrice}</p>
+        {props.salePrice !== '' && <p className='sale-price price-style'>${props.salePrice}</p>}
+        <p className={props.salePrice !== '' ? 'crossed price-style' : 'price-style'}>${props.originalPrice}</p>
       </div>
     </div>
   )

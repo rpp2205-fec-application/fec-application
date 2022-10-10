@@ -2,6 +2,9 @@
 // ========================================================================================
 // Flex ===================================================================================
 // ========================================================================================
+* {
+  box-sizing: border-box;
+}
 
 .overview-container {
   margin: 50px 0;
@@ -37,17 +40,18 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
 }
 
-
-.buttons-flex {
+.selectors-buttons-flex {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 20px;
-  width: 300px
 }
+
+
+
 
 
 
@@ -56,6 +60,7 @@
 // ========================================================================================
 
 h1 {
+  font-size: 40px;
   margin: 0;
 }
 
@@ -67,15 +72,13 @@ p {
   font-weight: 600;
 }
 
-.chevron-icon {
-  cursor: pointer;
-}
-
 .hidden {
   visibility: hidden;
 }
 
-
+.subheading {
+  color: rgb(107, 108, 109);
+}
 
 
 
@@ -99,14 +102,16 @@ p {
 }
 
 .big-picture {
-  background-color: #dfdada;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 100%;
   flex-grow: 1;
   cursor: zoom-in;
 }
 
 .thumbnails-flex {
-  width: 50px;
+  width: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,17 +119,32 @@ p {
 }
 
 .thumbnail {
-  width: 50px;
-  height: 50px;
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
   background-size: cover;
   cursor: pointer;
-  box-shadow:0px 0px 0px 1px rgb(195, 197, 195) inset;
+  box-shadow: 0px 0px 0px 1px rgb(195, 197, 195) inset;
 }
 
 .no-thumbnail {
   background: url('https://www.qiteplanguage.org/assets/img/noimage2.png');
   background-size: cover;
   background-position: center;
+}
+
+.selected-thumbnail {
+  border: 3px solid rgb(233, 184, 23);
+  box-shadow: 0px 0px 0px 3px rgb(255, 255, 255) inset, 0 5px 20px rgba(255, 201, 65, 0.7);
+}
+
+.chevron-icon {
+  cursor: pointer;
+}
+
+.arrow-icon {
+  font-size: 24px;
+  cursor: pointer;
 }
 
 
@@ -139,6 +159,21 @@ p {
   align-items: flex-start;
   gap: 30px;
   height: 600px;
+}
+
+.price-style {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.sale-price {
+  color: red;
+}
+
+.crossed {
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: line-through;
 }
 
 
@@ -184,7 +219,7 @@ p {
 }
 
 .selected-style {
-  box-shadow:0px 0px 0px 3px rgb(50, 178, 69) inset;
+  box-shadow: 0px 0px 0px 3px rgb(50, 178, 69) inset, 0 5px 30px rgba(76, 223, 108, 0.8);
 }
 
 
@@ -219,7 +254,7 @@ p {
   border-radius: 0px;
   background-color: white;
   color: #434242;
-  padding: 10px;
+  padding: 20px 24px 20px 24px;
   border: solid #434242 1px;
   background-position: calc(100% - 0.75rem) center !important;
   -moz-appearance:none !important;
@@ -241,21 +276,6 @@ p {
 
 
 // ========================================================================================
-// Price ==================================================================================
-// ========================================================================================
-
-
-.sale-price {
-  color: red;
-}
-
-.crossed {
-  text-decoration: line-through;
-}
-
-
-
-// ========================================================================================
 // Rating =================================================================================
 // ========================================================================================
 
@@ -265,34 +285,68 @@ p {
   text-decoration: underline;
 }
 
+.read-all-reviews:hover {
+  color: rgb(14, 104, 163);
+}
+
 
 // ========================================================================================
 // Buttons ================================================================================
 // ========================================================================================
 
+.buttons-flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  width: 300px
+}
+
 .primary-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgb(43, 42, 42);
   font-family: Arial;
   color: #ffffff;
   font-size: 15px;
-  padding: 20px 24px 20px 24px;
+  padding: 0 24px;
   border: solid #000000 1px;
   margin: 0;
-  width: 200px;
   cursor: pointer;
   flex-grow: 1;
+  height: 60px;
 }
 
 .primary-button:hover {
-  background-color: rgb(106, 101, 101);
+  background-color: rgb(75, 78, 81);
 }
 
 .button {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(255, 255, 255);
-  font-family: Arial;
   color: rgb(43, 42, 42);
-  padding: 20px 20px;
+  // padding: 18px 18px;
   border: solid #000000 1px;
-  margin: 0;
   cursor: pointer;
+}
+
+
+.button-icon {
+  font-size: 20px;
+}
+
+.heart-icon {
+  color: rgb(212, 64, 77);
+}
+
+
+
+.description {
+  padding-top: 20px;
+  border-top: 1px solid rgb(191, 194, 196);
 }
