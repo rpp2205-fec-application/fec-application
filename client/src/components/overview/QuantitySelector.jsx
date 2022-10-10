@@ -40,7 +40,7 @@ class QuantitySelector extends React.Component {
     return (
       <div>
         {this.props.quantityOfSelectedSize === 0
-          ? <select className='selector qty-selector' value='-' disabled>
+          ? <select className='inactive-selector qty-selector' value='-' disabled>
               <option>-</option>
             </select>
           : <select className='selector qty-selector' value={this.state.quantity} onChange={this.handleChange.bind(this)}>
