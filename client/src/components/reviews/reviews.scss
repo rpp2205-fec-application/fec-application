@@ -1,3 +1,5 @@
+
+//-----------------> fonts <--------------------
 .small_font {
   font-size: 13px;
   font-family: 'Lato', sans-serif;
@@ -15,6 +17,12 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+//----------------
 .revs {
   display: flex;
   justify-content: baseline;
@@ -78,7 +86,6 @@ ul {
 
 
 
-
 .stars {
   display:inline;
   vertical-align:top;
@@ -97,9 +104,7 @@ ul {
   height:6px;
 }
 
-.underline {
-  text-decoration: underline;
-}
+
 .rev-footer {
   margin-top: 15px;
 }
@@ -115,4 +120,32 @@ select {
   border: none;
   text-decoration: underline;
   font-size:medium
+}
+
+//-----------------> AddReview <------------------
+.addRev {
+  border: 1px solid black;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: black;
+}
+
+.subTitle {
+  text-align: center;
+  font-size: 18px;
+  font-family:  'Lato', sans-serif;
+  font-weight: 400;
+}
+
+form{
+  padding: 10px 30px 10px 30px;
+}
+
+form div{
+  margin: 20px;
 }

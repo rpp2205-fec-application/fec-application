@@ -41,7 +41,18 @@ app.post('/reviews/:product_id', (req, res) => {
       res.status(200).json(results.data);
     })
 })
-
+// add product reviews
+app.post('/reviews/:product_id', (req, res) => {
+  let let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.params.product_id}`;
+  const newRev = req.body;
+  return axios.post(url, headers, newRev)
+    .then(() => {
+      res.status(201).json('added!');
+    })
+    .catch((err) => {
+      console.log('add review err: ', err);
+    })
+})
 // product reviews meta
 app.get('/reviews/meta/:product_id', (req, res) => {
   let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${req.params.product_id}`;
