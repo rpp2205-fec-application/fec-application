@@ -59,7 +59,7 @@ const ReviewsList = (props) => {
               setIsEnd(true);
             }
           }} className="btn more-revs">MORE REVIEWS</button>}
-          <button className="btn new-revs">ADD A REVIEW +</button>
+          <button className="btn new-revs" onClick={props.handleClick}>ADD A REVIEW +</button>
         </div>
       </div>
     )
