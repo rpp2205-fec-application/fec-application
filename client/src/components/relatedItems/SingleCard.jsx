@@ -32,19 +32,16 @@ class SingleCard extends React.Component {
 
   render() {
     return (
-      <div className='slide-container'>
-        <div className="card">
-          <div className='card-image'>
-            <a>
-            <img src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
-            </a>
-            <div className='cardbody'>
-            <p className='category'>{this.state.product.category}</p>
-            <h4 className='name'>{this.state.product.name}</h4>
-            <p className='price'>{this.state.product.default_price}</p>
-            <p>ratings</p>
-            </div>
-          </div>
+      <div className="card">
+        <a>
+          <img className='card-image' src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
+        </a>
+        <button className='star-icon'/>
+        <div className='cardbody'>
+          <p className='category'>{this.state.product.category}</p>
+          <p className='name'>{this.state.product.name}</p>
+          <p className='price'>{this.state.product.default_price}</p>
+          <p>ratings</p>
         </div>
       </div>
 
