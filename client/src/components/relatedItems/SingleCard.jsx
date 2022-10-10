@@ -31,7 +31,6 @@ class SingleCard extends React.Component {
       })
       axios.get(`/products/${this.props.product}/styles`)
       .then(response => {
-<<<<<<< HEAD
          console.log('styles///', response.data);
          console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
          if(response.data.results[0].photos[0].thumbnail_url === null) {
@@ -45,13 +44,6 @@ class SingleCard extends React.Component {
           })
          }
         
-=======
-        //  console.log('styles///', response.data);
-        //  console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
-        this.setState({
-          productStyle: response.data
-        })
->>>>>>> 20fa618fd793a9d1c157e66a5502602174171a38
       })
   
       axios.get(`/reviews/meta/${this.props.product}`)
@@ -78,7 +70,6 @@ class SingleCard extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
         <div className="card" >
             <a>
             <img className='card-image' src={this.state.photo} />
@@ -91,20 +82,8 @@ class SingleCard extends React.Component {
             <p className='price'>${this.state.product.default_price}</p>
             <Star rating={roundNearQtr(this.state.rating)} />
             </div>
-=======
-      <div className="card">
-        <a>
-          <img className='card-image' src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
-        </a>
-        <button className='star-icon'/>
-        <div className='cardbody'>
-          <p className='category'>{this.state.product.category}</p>
-          <p className='name'>{this.state.product.name}</p>
-          <p className='price'>{this.state.product.default_price}</p>
-          <p>ratings</p>
->>>>>>> 20fa618fd793a9d1c157e66a5502602174171a38
         </div>
-      </div>
+     
 
     )
   }
