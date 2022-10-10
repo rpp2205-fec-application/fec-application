@@ -14,15 +14,15 @@ class SingleCard extends React.Component {
   componentDidMount() {
     axios.get(`/products/${this.props.product}`)
       .then(response => {
-        console.log('response///', response.data);
+        // console.log('response///', response.data);
         this.setState({
           product: response.data
         })
       })
       axios.get(`/products/${this.props.product}/styles`)
       .then(response => {
-         console.log('styles///', response.data);
-         console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
+        //  console.log('styles///', response.data);
+        //  console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
         this.setState({
           productStyle: response.data
         })
@@ -47,7 +47,7 @@ class SingleCard extends React.Component {
           </div>
         </div>
       </div>
-    
+
     )
   }
 
