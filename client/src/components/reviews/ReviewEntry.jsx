@@ -15,6 +15,8 @@ const ReviewEntry = (props) => {
         <div className="rev-body">
           <div className="rev-summary">{props.review.summary}</div>
           <div className="review small_font">{props.review.body}</div>
+          {!props.review.photos.length ? null :
+           props.review.photos.map(photo => <img key={photo.id} className="rev-photo" src={photo.url}/>)}
         </div>
         <div className="rev-footer xs_font">
           <div>Helpful?

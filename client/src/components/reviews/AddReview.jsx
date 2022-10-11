@@ -12,6 +12,7 @@ const AddReview = (props) => {
     photos: [],
     characteristics: {}
   })
+
   const [uploadShow, setUploadShow] = useState(false);
   const showOrHide = props.show ? "modal trans-bg display-block" : "modal trans-bg display-none";
   const handleUpload = () => {

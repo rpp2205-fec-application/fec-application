@@ -25,7 +25,6 @@ describe('Parent component Reviews Tests', () => {
   });
 })
 
-
 describe('ReviewsList component Tests', () => {
   test('should render multiple reviews', async() => {
     const { getAllByText} = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} />);
