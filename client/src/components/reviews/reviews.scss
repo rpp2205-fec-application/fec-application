@@ -86,7 +86,7 @@ ul {
 }
 
 
-
+//`---------------->rating breakdown <-----------
 .stars {
   display:inline;
   vertical-align:top;
@@ -104,8 +104,7 @@ ul {
   width:150px;
   height:6px;
 }
-
-
+//-------------->reviewslist & reviewEntry <--------------------
 .rev-footer {
   margin-top: 15px;
 }
@@ -123,7 +122,13 @@ select {
   font-size:medium;
   cursor: pointer;
 }
-
+.rev-photo {
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  margin: 2px;
+}
 //-----------------> AddReview <------------------
 .trans-bg {
   background-color: rgba(0, 0, 0, 0.6);

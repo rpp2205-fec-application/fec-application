@@ -9,7 +9,7 @@
     "build": "npx webpack",
     "start": "node server/index.js",
     "test": "jest --watch",
-    "test-review": "jest test/review.test.js --env=jsdom --watch",
+    "test-review": "jest test/review.test.js --watch",
     "test-overview": "jest test/overview.test.js --watch",
     "test-relatedItems": "jest test/relatedItems.test.js --watch",
     "test-qa": "jest test/qa.test.js --watch"
@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/rpp2205-fec-application/fec-application/issues"
   },
-  "jest":{
+  "jest": {
     "verbose": true,
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
@@ -50,13 +50,16 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jest-css-modules-transform": "^4.4.2",
+    "jest-environment-jsdom": "^29.1.2",
     "jquery": "^3.6.1",
+    "msw": "^0.47.4",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.4.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
+    "save": "^2.9.0",
     "styled-components": "^5.3.6",
     "uuid": "^8.3.2"
   },
