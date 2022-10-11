@@ -36,6 +36,10 @@ class QA extends React.Component {
     )
   }
 
+  addQuestion () {
+    return;
+  }
+
   setQuestions () {
     if (this.state.allQuestions.length > 2) {
       this.setState({ shownQuestions: this.state.allQuestions.slice(0, 2), loadMore: true})
@@ -58,7 +62,7 @@ class QA extends React.Component {
         <h2 className="title"> QUESTIONS & ANSWERS </h2>
         <QuestionBar questions={this.state.questions}/>
         <QAList questions={this.state.shownQuestions}/>
-        <Add loadMore={this.state.loadMore} collapse={this.state.loadMore} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
+        <Add product={this.props.product} addQuestion={this.addQuestion.bind(this)} loadMore={this.state.loadMore} collapse={this.state.loadMore} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
       </div>
     )
   }
