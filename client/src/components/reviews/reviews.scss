@@ -20,6 +20,7 @@
 
 .underline {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 //----------------
@@ -119,7 +120,8 @@ ul {
 select {
   border: none;
   text-decoration: underline;
-  font-size:medium
+  font-size:medium;
+  cursor: pointer;
 }
 
 //-----------------> AddReview <------------------
@@ -163,6 +165,7 @@ select {
   border: 2px solid black;
   transform: translate(-50%, -50%);
 }
+
 .close{
   color:black;
   float:right;
