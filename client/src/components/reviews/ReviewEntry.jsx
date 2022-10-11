@@ -7,7 +7,7 @@ const ReviewEntry = (props) => {
   const [clicked, setClick] = useState(false);
   return (
     <li>
-      <div className="rev">
+      <div className="rev" role="reviews">
         <div className="rev-header">
           <Star rating={roundNearQtr(props.review.rating)} />
           <div className="date xs_font">{props.review.reviewer_name}, {format(parseJSON(props.review.date), "MMMM/dd/yyyy")}</div>
