@@ -9,8 +9,6 @@ const Reviews = (props) => {
 
   return  (
     <div ref={props.scrollToReviews} className="widget">
-      <hr/>
-      <h2>Below is RATINGS &#38; REVIEWS</h2>
       <p id="title">RATINGS &#38; REVIEWS</p>
       <div className="revs">
         <div className="revs-rating">
@@ -18,7 +16,7 @@ const Reviews = (props) => {
           <Rating rating={props.rating} reviewsMeta={props.reviewsMeta}/>
           <Product reviewsMeta={props.reviewsMeta}/>
         </div>
-       <ReviewsList reviews={props.reviews} getReviews={props.getReviews} id={props.product.id}/>
+       <ReviewsList reviews={props.reviews} getReviews={props.getReviews} id={props.product.id} handleClick={props.handleClick}/>
       </div>
 
     </div>

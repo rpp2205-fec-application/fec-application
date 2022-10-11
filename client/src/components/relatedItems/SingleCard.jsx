@@ -1,20 +1,30 @@
 import axios from 'axios';
 import React from 'react';
+import {MdOutlineStarOutline} from 'react-icons/md';
 import './singleCard.scss';
+import Star from '../Star/Star.jsx';
+import Modal from './Modal.jsx';
+import {calculateRating, roundNearQtr} from '../../helpers.js';
 
 class SingleCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       product: [],
-      productStyle: []
+      productStyle: [],
+      reviewsMeta: [],
+      rating: 0,
+      photo:'',
+      show: false
     }
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   componentDidMount() {
     axios.get(`/products/${this.props.product}`)
       .then(response => {
-        console.log('response///', response.data);
+        // console.log('response///', response.data);
         this.setState({
           product: response.data
         })
@@ -23,31 +33,58 @@ class SingleCard extends React.Component {
       .then(response => {
          console.log('styles///', response.data);
          console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
-        this.setState({
-          productStyle: response.data
-        })
+         if(response.data.results[0].photos[0].thumbnail_url === null) {
+          this.setState({
+            photo: 'https://www.qiteplanguage.org/assets/img/noimage2.png'
+          })
+         } else {
+          this.setState({
+            productStyle: response.data,
+            photo: response.data.results[0].photos[0].thumbnail_url
+          })
+         }
+        
       })
+  
+      axios.get(`/reviews/meta/${this.props.product}`)
+          .then((res) => {
+            console.log('Review Meta///: ', res.data)
+            console.log('rating//', calculateRating(res.data.ratings))
+            this.setState({
+              reviewsMeta: res.data,
+              rating: calculateRating(res.data.ratings)
+            });
+          })
+      }
 
-  }
+      showModal = () => {
+        this.setState({show: true});
+      }
+
+      hideModal = () => {
+        this.setState({show: false});
+      }
+
+
+
 
   render() {
     return (
-      <div className='slide-container'>
-        <div className="card">
-          <div className='card-image'>
+        <div className="card" >
             <a>
-            <img src={this.state?.productStyle?.results?.[0]?.photos?.[0]?.thumbnail_url} />
+            <img className='card-image' src={this.state.photo} />
             </a>
+            <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
+            <Modal show={this.state.show} hideModal={this.hideModal}/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
-            <h4 className='name'>{this.state.product.name}</h4>
-            <p className='price'>{this.state.product.default_price}</p>
-            <p>ratings</p>
+            <p className='name'>{this.state.product.name}</p>
+            <p className='price'>${this.state.product.default_price}</p>
+            <Star rating={roundNearQtr(this.state.rating)} />
             </div>
-          </div>
         </div>
-      </div>
-    
+     
+
     )
   }
 

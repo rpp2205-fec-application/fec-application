@@ -2,8 +2,8 @@ import React from 'react';
 
 const Description = ({slogan, description}) => {
   return (
-    <div className='widget'>
-      <h4>{slogan}</h4>
+    <div className='widget description'>
+      <h3>{slogan}</h3>
       <p>{description}</p>
     </div>
   )
