@@ -35,7 +35,7 @@ const ReviewsList = (props) => {
 
     return (
       <div className="revs-right">
-        <div className="rev-sum">{props.reviews.length} reviews, sorted by
+        <div roll="sum" className="rev-sum">{props.reviews.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
           props.getReviews(e.target.value);

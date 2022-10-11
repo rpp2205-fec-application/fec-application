@@ -9,7 +9,7 @@
     "build": "npx webpack",
     "start": "node server/index.js",
     "test": "jest --watch",
-    "test-review": "jest test/review.test.js --watch",
+    "test-review": "jest test/review.test.js --env=jsdom --watch",
     "test-overview": "jest test/overview.test.js --watch",
     "test-relatedItems": "jest test/relatedItems.test.js --watch",
     "test-qa": "jest test/qa.test.js --watch"
@@ -23,6 +23,13 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rpp2205-fec-application/fec-application/issues"
+  },
+  "jest":{
+    "verbose": true,
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "<rootDir>/test/mock/mock.js"
+    }
   },
   "homepage": "https://github.com/rpp2205-fec-application/fec-application#readme",
   "dependencies": {
@@ -38,11 +45,11 @@
     "@mui/material": "^5.10.7",
     "@mui/styled-engine-sc": "^5.10.6",
     "axios": "^0.21.1",
-    "babel-jest": "^29.1.2",
     "bluebird": "^3.7.2",
     "date-fns": "^2.29.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jest-css-modules-transform": "^4.4.2",
     "jquery": "^3.6.1",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
@@ -57,6 +64,8 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^12.1.5",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
