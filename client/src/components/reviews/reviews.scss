@@ -57,9 +57,7 @@ ul {
 .li{
   margin: 10px;
 }
-.rev-header{
-  display: inline;
-}
+
 .star {
   display: inline;
   width:40px;
@@ -99,6 +97,9 @@ ul {
   height:6px;
 }
 //-------------->reviewslist & reviewEntry <--------------------
+.rev-header{
+  display: inline;
+}
 .rev-summary {
   margin-top:15px;
   font-family: 'Poppins', sans-serif;;
@@ -143,10 +144,27 @@ select {
   font-size:medium;
   cursor: pointer;
 }
+.rev-recommend {
+  margin: 10px 0px;
+}
+.rep-Meg {
+  background-color: lightgray;
+  min-height: 30px;
+  padding:18px;
+
+}
+.rep-Meg .rep-title {
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
 .rev-photo {
   margin: 2px;
   border:1px solid black;
 }
+
 //-----------------> AddReview <------------------
 .trans-bg {
   background-color: rgba(0, 0, 0, 0.6);
