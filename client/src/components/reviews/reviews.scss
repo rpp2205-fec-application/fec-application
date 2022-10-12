@@ -74,12 +74,6 @@ ul {
   font-weight: 300;
 }
 
-.rev-summary {
-  margin-top:15px;
-  font-family: 'Poppins', sans-serif;;
-  font-weight: 500;
-  font-size: 14px;
-}
 
 .review {
   margin-top:15px;
@@ -105,6 +99,33 @@ ul {
   height:6px;
 }
 //-------------->reviewslist & reviewEntry <--------------------
+.rev-summary {
+  margin-top:15px;
+  font-family: 'Poppins', sans-serif;;
+  font-weight: 500;
+  font-size: 14px;
+}
+.more-summary {
+  font-family: 'Poppins', sans-serif;;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.sm-btn {
+  background-color: white;
+  font-family: Arial;
+  color: #000000;
+  font-size: 12px;
+  padding: 3px 6px 3px 6px;
+  border: solid #000000 1px;
+  margin: 5px 0px 0px 0px;
+}
+
+.sm-btn:hover {
+  background: #a2a8ab;
+  text-decoration: none;
+}
+
 .rev-footer {
   margin-top: 15px;
 }
@@ -123,11 +144,8 @@ select {
   cursor: pointer;
 }
 .rev-photo {
-  box-sizing: border-box;
-  width: 60px;
-  height: 60px;
-  background-size: cover;
   margin: 2px;
+  border:1px solid black;
 }
 //-----------------> AddReview <------------------
 .trans-bg {
