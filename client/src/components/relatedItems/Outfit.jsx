@@ -1,12 +1,12 @@
 import React from 'react';
-import Slider from './Slider.jsx';
+import OutfitSlider from './OutfitSlider.jsx';
 import axios from 'axios';
 
 class Outfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      currentProduct: []
     }
   }
 
@@ -20,9 +20,9 @@ class Outfit extends React.Component {
 
   render() {
     return (
-      <div>
-        <h4 className='widget'>Your Outfit</h4>
-         {/* <Slider product={this.props.product}/>  */}
+      <div className='widget'>
+        <h4>Your Outfit</h4>
+          <OutfitSlider product={this.props.product}/> 
       </div>
     )
   }

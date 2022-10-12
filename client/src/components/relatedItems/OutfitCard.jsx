@@ -3,10 +3,9 @@ import React from 'react';
 import {MdOutlineStarOutline} from 'react-icons/md';
 import './singleCard.scss';
 import Star from '../Star/Star.jsx';
-import Modal from './Modal.jsx';
 import {calculateRating, roundNearQtr} from '../../helpers.js';
 
-class SingleCard extends React.Component {
+class OutfitCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -17,8 +16,6 @@ class SingleCard extends React.Component {
       photo:'',
       show: false
     }
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
   }
 
   componentDidMount() {
@@ -57,13 +54,6 @@ class SingleCard extends React.Component {
           })
       }
 
-      showModal = () => {
-        this.setState({show: true});
-      }
-
-      hideModal = () => {
-        this.setState({show: false});
-      }
 
 
 
@@ -75,7 +65,6 @@ class SingleCard extends React.Component {
             <img className='card-image' src={this.state.photo} />
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
-            <Modal show={this.state.show} hideModal={this.hideModal}/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>
@@ -90,4 +79,4 @@ class SingleCard extends React.Component {
 
 }
 
-export default SingleCard;
+export default OutfitCard;
