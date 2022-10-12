@@ -6,7 +6,8 @@ const ReviewEntry = (props) => {
   const [helpful, setHelp] = useState(props.review.helpfulness);
   const [clicked, setClick] = useState(false);
   const [showMore, setShowMore] = useState(true);
-
+  const [showBig, setBig] = useState({show: false, url: ''});
+  const showOrhide = !showBig.show ? "modal trans-bg display-none" : "modal trans-bg dispaly-block";
   return (
     <li>
       <div className="rev" role="reviews">
@@ -29,15 +30,34 @@ const ReviewEntry = (props) => {
             </div>)
           }
           {props.review.recommend && <div className="rev-recommend small_font">&#10003; I recommend this product</div>}
-          {!props.review.photos.length ? null :
-           props.review.photos.map(photo => <img key={photo.id} className="thumbnail rev-photo" src={photo.url}/>)
-          }
           {props.review.response &&
           (<div className="rep-Meg">
             <div className="rep-title">Response:</div>
             <div className="rep-body small_font">{props.review.response}</div>
           </div>)
           }
+          {!props.review.photos.length ? null :
+           (<div>
+              <div className={showOrhide} >
+                <div className="modal-img" style={{"--url": showBig.url}}>
+                  <span className="close" onClick={() => setBig({show: !showBig.show, url:''})}>
+                    &times;
+                  </span>
+                  <img className="bigImg" src={showBig.url} />
+                </div>
+
+              </div>
+              {props.review.photos.map(photo =>
+                <img key={photo.id} className="thumbnail rev-photo" src={photo.url} onClick={(e) => {
+                  setBig({show: !showBig.show, url: e.target.src});
+
+                  }}/>
+                )
+              }
+           </div>)
+
+          }
+
         </div>
         <div className="rev-footer xs_font">
           <div>Helpful?

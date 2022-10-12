@@ -164,7 +164,25 @@ select {
   margin: 2px;
   border:1px solid black;
 }
+.modal-img {
 
+  position:fixed;
+
+  width: 50%;
+  height: 50%;
+  top:60%;
+  left:60%;
+  transform: translate(-50%,-50%);
+}
+.bigImg {
+  position:fixed;
+  background: gray;
+  width: 100%;
+  height: 100%;
+  top:53%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
 //-----------------> AddReview <------------------
 .trans-bg {
   background-color: rgba(0, 0, 0, 0.6);
