@@ -17,16 +17,6 @@ class SizeSelector extends React.Component {
     this.props.selectSize(event.target.value);
   }
 
-  // Updating the state if there's any changes between the current state and the new props, happen after the props is passed with new value
-  // static getDerivedStateFromProps(props, state) {
-  //   if (props.selectedSizeId !== state.selectedSizeId) {
-  //     return {
-  //       selectedSizeId: props.selectedSizeId
-  //     }
-  //   }
-  //   return null;
-  // }
-
   //Getting the new style list after the new product is passed to props
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.selectedSizeId !== this.props.selectedSizeId) {
@@ -48,7 +38,7 @@ class SizeSelector extends React.Component {
               <option value='SELECT SIZE'>SELECT SIZE</option>
               {Object.keys(this.props.selectedStyle.skus).map(item => {
                 if (this.props.selectedStyle.skus[item].quantity > 0) {
-                  return <option key={item} value={item}>{this.props.selectedStyle.skus[item].size}</option>;
+                  return <option key={item} value={item} role='size'>{this.props.selectedStyle.skus[item].size}</option>;
                 } else {
                   return null;
                 }

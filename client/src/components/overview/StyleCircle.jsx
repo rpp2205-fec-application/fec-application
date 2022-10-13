@@ -20,7 +20,7 @@ class StyleCircle extends React.Component {
 
   render() {
     return (
-      <div className='style-container'>
+      <div className='style-container' role='style'>
         {/* {this.props.selected && <FontAwesomeIcon icon={faCircleCheck} className='check-icon' />} */}
         {this.props.selected && <FaCheckCircle className='check-icon' />}
         {this.props.style.photos[0].thumbnail_url !== null
