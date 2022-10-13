@@ -53,7 +53,9 @@ class OutfitCard extends React.Component {
           })
       }
 
-
+  delete() {
+    
+  }
 
 
 
