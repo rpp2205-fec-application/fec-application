@@ -16,7 +16,12 @@ const Rating = (props) => {
   const totalRating = Object.values(reviewsMeta.ratings).reduce((acc, n) => {
     return acc = acc + parseInt(n);
   }, 0)
-
+  const calculate = (key) => {
+    if (reviewsMeta.ratings[key] === undefined) {
+      return 0;
+    }
+    return parseInt(reviewsMeta.ratings[key]) / totalRating;
+  }
   return (
     <div className="breakdown">
       <div className="rat-header">
@@ -24,17 +29,22 @@ const Rating = (props) => {
         <div className="stars"><Star rating={roundNearQtr(rating)}/></div>
       </div>
       <div className="xs_font">{recommend.toFixed(2) * 100}% of reviews recommend this product</div>
+      {Object.values(props.toggle).indexOf(true) >= 0 && <div className="sm-btn" onClick={props.clear}>REMOVE ALL FILTER</div>}
       <div className="rat-body xs_font">
-        {Object.keys(reviewsMeta.ratings).reverse().map(key =>
+        {[5,4,3,2,1].map(key =>
             <div className="rat-chart" key={key}>
               <div className={!props.toggle[key] ? "rat-stars" : "rat-stars display-change"}>
                 <span className="underline" onClick={() => {
-                  props.handleStarClick(props.reviews, key)
+                  if (reviewsMeta.ratings[key]) {
+                    props.handleStarClick(props.reviews, key)
+                  }
+
                   }}>{key} stars</span>
-                <span className="rat-progress" style={{"--stars": parseInt(reviewsMeta.ratings[key]) / totalRating}}></span>
+                <span className="rat-progress" style={{"--stars": calculate(key)}}></span>
               </div>
             </div>
         )}
+        Object.keys(reviewsMeta.ratings).reverse()
       </div>
     </div>
   )
