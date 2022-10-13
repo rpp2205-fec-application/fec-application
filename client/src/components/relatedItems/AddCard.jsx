@@ -3,6 +3,7 @@ import './singleCard.scss';
 import {MdAdd} from 'react-icons/md';
 
 const AddCard = (props) => {
+  
   return (
     <div className='addCard'>
       <div id="addIcon" >
