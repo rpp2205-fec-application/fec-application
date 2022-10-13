@@ -124,11 +124,13 @@ ul {
   padding: 3px 6px 3px 6px;
   border: solid #000000 1px;
   margin: 5px 0px 0px 0px;
+  width: 150px;
 }
 
 .sm-btn:hover {
   background: #a2a8ab;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .rev-footer {
@@ -169,9 +171,7 @@ select {
   border:1px solid black;
 }
 .modal-img {
-
   position:fixed;
-
   width: 50%;
   height: 50%;
   top:60%;
