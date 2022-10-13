@@ -27,6 +27,7 @@ const Reviews = (props) => {
   }
   const clearFilter =  () => {
     setToggle(initToggle);
+    setList([]);
   }
   return  (
     <div ref={props.scrollToReviews} className="widget">
