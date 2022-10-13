@@ -18,6 +18,14 @@ app.get('/products', async (req, res) => {
   res.status(200).json(products.data);
 })
 
+// product
+app.get('/products/:product_id', (req, res) => {
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
+  return axios.get(url, headers)
+          .then(result => {
+            res.status(200).json(result.data)})
+});
+
 // product styles
 app.get('/products/:product_id/styles', async (req, res) => {
   let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}/styles`;
@@ -41,6 +49,7 @@ app.post('/reviews/:product_id', (req, res) => {
       res.status(200).json(results.data);
     })
 })
+
 // add product reviews
 app.post('/review/:product_id', (req, res) => {
   let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=${req.params.product_id}`;
@@ -53,6 +62,7 @@ app.post('/review/:product_id', (req, res) => {
       console.log('add review err: ', err);
     })
 })
+
 // product reviews meta
 app.get('/reviews/meta/:product_id', (req, res) => {
   let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${req.params.product_id}`;
@@ -61,14 +71,6 @@ app.get('/reviews/meta/:product_id', (req, res) => {
       res.status(200).json(results.data);
     })
 })
-
-// product
-app.get('/products/:product_id', (req, res) => {
-  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
-  return axios.get(url, headers)
-          .then(result => {
-            res.status(200).json(result.data)})
-});
 
 // related products
 app.get('/products/:product_id/related', async (req, res) => {
