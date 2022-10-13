@@ -4,6 +4,7 @@ import {calculateRating, roundNearQtr} from '../../helpers.js';
 
 const Rating = (props) => {
   const [rating, setRating] = useState(props.rating);
+
   if (rating !== props.rating) {
     setRating(props.rating);
   }
@@ -26,8 +27,10 @@ const Rating = (props) => {
       <div className="rat-body xs_font">
         {Object.keys(reviewsMeta.ratings).reverse().map(key =>
             <div className="rat-chart" key={key}>
-              <div className="rat-stars">
-                <span className="underline">{key} stars</span>
+              <div className={!props.toggle[key] ? "rat-stars" : "rat-stars display-change"}>
+                <span className="underline" onClick={() => {
+                  props.handleStarClick(props.reviews, key)
+                  }}>{key} stars</span>
                 <span className="rat-progress" style={{"--stars": parseInt(reviewsMeta.ratings[key]) / totalRating}}></span>
               </div>
             </div>

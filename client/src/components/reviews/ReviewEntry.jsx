@@ -8,6 +8,8 @@ const ReviewEntry = (props) => {
   const [showMore, setShowMore] = useState(true);
   const [showBig, setBig] = useState({show: false, url: ''});
   const showOrhide = !showBig.show ? "modal trans-bg display-none" : "modal trans-bg dispaly-block";
+  // {format(parseJSON(props.review.date), "MMMM/dd/yyyy")
+
   return (
     <li>
       <div className="rev" role="reviews">
@@ -17,10 +19,10 @@ const ReviewEntry = (props) => {
         </div>
         {/* render review's body*/}
         <div className="rev-body">
-          {props.review.summary.length <= 60 ?  <div className="rev-summary">{props.review.summary}</div>
+          {/* {props.review.summary.length <= 60 ?  <div className="rev-summary">{props.review.summary}</div>
            :  <div className="rev-summary">{props.review.summary.slice(0, 60)}<a className="more-summary">{props.review.summary.slice(60)}</a></div>
-          }
-
+          } */}
+          <div className="rev-summary">{props.review.summary}</div>
           {props.review.body.length <= 250 ? <div className="review small_font">{props.review.body}</div>
           : (<div className="review small_font">
               {props.review.body.slice(0, 250)}
@@ -45,12 +47,10 @@ const ReviewEntry = (props) => {
                   </span>
                   <img className="bigImg" src={showBig.url} />
                 </div>
-
               </div>
               {props.review.photos.map(photo =>
                 <img key={photo.id} className="thumbnail rev-photo" src={photo.url} onClick={(e) => {
                   setBig({show: !showBig.show, url: e.target.src});
-
                   }}/>
                 )
               }

@@ -11,15 +11,28 @@ const ReviewsList = (props) => {
       copy: props.reviews.slice(),
       renderList: []
     });
-
-    if (reviews.origin !== props.reviews) {
-      console.log('different reviews!');
+    const handleReviewsChange = (reviewsList) => {
       setReviews({
-        origin: props.reviews,
-        copy:props.reviews.slice(),
+        origin: reviewsList,
+        copy: reviewsList.slice(),
         renderList:[]
       })
     }
+    // if (reviews.origin !== props.reviews && !props.newList.length) {
+    //   console.log('different reviews!');
+    //   handleReviewsChange(props.reviews)
+    // }
+    if (!props.newList.length) {
+      if (reviews.origin !== props.reviews) {
+        handleReviewsChange(props.reviews);
+      }
+    } else {
+      if (reviews.origin !== props.newList) {
+        handleReviewsChange(props.newList);
+      }
+    }
+
+    console.log("render list: ", reviews.renderList);
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
@@ -33,9 +46,10 @@ const ReviewsList = (props) => {
     // console.log('reviewslist review2: ', reviews.copy);
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
 
+
     return (
       <div className="revs-right">
-        <div roll="sum" className="rev-sum">{props.reviews.length} reviews, sorted by
+        <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
           props.getReviews(e.target.value);
