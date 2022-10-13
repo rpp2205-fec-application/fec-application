@@ -9,12 +9,13 @@ const ReviewEntry = (props) => {
   const [showBig, setBig] = useState({show: false, url: ''});
   const showOrhide = !showBig.show ? "modal trans-bg display-none" : "modal trans-bg dispaly-block";
   // {format(parseJSON(props.review.date), "MMMM/dd/yyyy")
+
   return (
     <li>
       <div className="rev" role="reviews">
         <div className="rev-header">
           <Star rating={roundNearQtr(props.review.rating)} />
-          <div className="date xs_font">{props.review.reviewer_name}, {props.review.date}</div>
+          <div className="date xs_font">{props.review.reviewer_name}, {format(parseJSON(props.review.date), "MMMM/dd/yyyy")}</div>
         </div>
         {/* render review's body*/}
         <div className="rev-body">
