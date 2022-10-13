@@ -35,7 +35,7 @@ class QuantitySelector extends React.Component {
             </select>
           : <select className='selector qty-selector' value={this.state.quantity} onChange={this.handleChange.bind(this)}>
               {generateQuantityArray(this.props.quantityOfSelectedSize).map(qty => (
-                <option key={qty} value={qty}>{qty}</option>
+                <option key={qty} value={qty} role='qty'>{qty}</option>
               ))}
             </select>
         }

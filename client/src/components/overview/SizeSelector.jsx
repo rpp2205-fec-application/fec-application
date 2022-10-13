@@ -38,7 +38,7 @@ class SizeSelector extends React.Component {
               <option value='SELECT SIZE'>SELECT SIZE</option>
               {Object.keys(this.props.selectedStyle.skus).map(item => {
                 if (this.props.selectedStyle.skus[item].quantity > 0) {
-                  return <option key={item} value={item}>{this.props.selectedStyle.skus[item].size}</option>;
+                  return <option key={item} value={item} role='size'>{this.props.selectedStyle.skus[item].size}</option>;
                 } else {
                   return null;
                 }
