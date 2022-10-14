@@ -12,11 +12,14 @@ const ReviewEntry = (props) => {
   const [showReview, setShowReview] = useState(true);
   const grayOrNot = !showReview ? "rev-gray" : "rev";
   const sendToServer = (review_id) => {
-    return axios.put(`/review/${review_id}/helpful`)
+    return axios.put(`/reviews/${review_id}/helpful`)
       .then(() => {setClick(true)})
   }
   const sendReport = (review_id) => {
-    return axios.put(`/review/${review_id}/report`)
+    return axios.put(`/reviews/${review_id}/report`)
+     .then(() => {
+      setShowReview(false);
+     })
 
   }
   return (
@@ -70,7 +73,7 @@ const ReviewEntry = (props) => {
         </div>
         <div className="rev-footer xs_font">
           <div>Helpful?
-            <a className="underline rev-helpful" onClick={() => {
+            <a className="underline rev-helpful" onClick={(e) => {
               if (!clicked) {
                 setHelp(helpful + 1);
                 sendToServer(props.review.review_id);
@@ -83,9 +86,9 @@ const ReviewEntry = (props) => {
             </a>
             <span className="rev-helpdata">({helpful})</span>
             |
-            <a className="underline rev-helpful" onClick={() => {
+            <a className="underline rev-helpful" value="report" onClick={(e) => {
+              console.log('report: ', e.target);
               sendReport(props.review.review_id);
-              setShowReview(false);
             }}> Report </a>
           </div>
           <hr/>

@@ -283,3 +283,19 @@ form{
 form div{
   margin: 20px;
 }
+
+//-----------------> StarRating <----------------
+.invisi-btn {
+  background-color: transparent;
+  border:none;
+  outline:none;
+  cursor: pointer;
+}
+
+.on {
+  color: gold;
+}
+
+.off {
+  color:lightgray;
+}
