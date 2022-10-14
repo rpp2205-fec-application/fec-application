@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import {MdOutlineStarOutline} from 'react-icons/md';
+import {MdClear} from 'react-icons/md';
 import './singleCard.scss';
 import Star from '../Star/Star.jsx';
 import {calculateRating, roundNearQtr} from '../../helpers.js';
@@ -14,7 +14,6 @@ class OutfitCard extends React.Component {
       reviewsMeta: [],
       rating: 0,
       photo:'',
-      show: false
     }
   }
 
@@ -54,7 +53,9 @@ class OutfitCard extends React.Component {
           })
       }
 
-
+  delete() {
+    
+  }
 
 
 
@@ -64,7 +65,7 @@ class OutfitCard extends React.Component {
             <a>
             <img className='card-image' src={this.state.photo} />
             </a>
-            <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
+            <MdClear className='clear-icon' onClick={this.showModal}/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>

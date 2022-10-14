@@ -20,6 +20,7 @@ body {
   padding: 11px 20px 10px 20px;
   border: solid #000000 1px;
   margin: 20px;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -28,8 +29,11 @@ body {
 }
 
 .header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: gray;
-  margin: 0 50px;
+  // margin: 0 50px;
   height: 60px;
 }
 .header-content{

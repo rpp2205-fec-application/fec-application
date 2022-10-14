@@ -12,14 +12,13 @@
   margin-left: 50px;
   margin-right: 10px;
   border-style: solid;
-  z-index: 1;
 }
 .addCard{
   height: 320px;
   width: 250px;
   display: inline-block;
   margin-left: 50px;
-  margin-right: 20px;
+  margin-right: 10px;
   border-style: solid;
   position: relative;
 }
@@ -53,7 +52,7 @@
 }
 
 .card-image{
-  width: 248px;
+  width: 245px;
   height: 220px;
   z-index: -1;
 }
@@ -82,4 +81,15 @@
 
 #addCardContent{
   text-align: center;
+}
+
+.clear-icon{
+  position: absolute;
+  margin-top: 1px;
+  margin-right: 2px;
+  top: 0px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  color: gray;
 }

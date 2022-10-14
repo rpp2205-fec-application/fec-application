@@ -17,16 +17,6 @@ class QuantitySelector extends React.Component {
     this.props.selectQuantity(event.target.value);
   }
 
-  // Updating the state if there's any changes between the current state and the new props, happen after the props is passed with new value
-  // static getDerivedStateFromProps(props, state) {
-  //   // If the quantity in the props is different from the current state quantity, update the quantity state
-  //   if (props.selectedQuantity !== state.quantity) {
-  //     return {
-  //       quantity: props.selectedQuantity
-  //     }
-  //   }
-  //   return null;
-  // }
   //Getting the new style list after the new product is passed to props
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.selectedQuantity !== this.props.selectedQuantity) {
@@ -45,7 +35,7 @@ class QuantitySelector extends React.Component {
             </select>
           : <select className='selector qty-selector' value={this.state.quantity} onChange={this.handleChange.bind(this)}>
               {generateQuantityArray(this.props.quantityOfSelectedSize).map(qty => (
-                <option key={qty} value={qty}>{qty}</option>
+                <option key={qty} value={qty} role='qty'>{qty}</option>
               ))}
             </select>
         }

@@ -18,6 +18,14 @@ app.get('/products', async (req, res) => {
   res.status(200).json(products.data);
 })
 
+// product
+app.get('/products/:product_id', (req, res) => {
+  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
+  return axios.get(url, headers)
+          .then(result => {
+            res.status(200).json(result.data)})
+});
+
 // product styles
 app.get('/products/:product_id/styles', async (req, res) => {
   let url = `${root}/products/${req.params.product_id}/styles`;
@@ -42,6 +50,7 @@ app.post('/reviews/:product_id', (req, res) => {
     })
 })
 
+
 // update review helpful
 app.put('/review/:review_id/helpful', (req, res) => {
   let url = `${root}/reviews/${req.params.review_id}/helpful`;
@@ -57,6 +66,7 @@ app.put('/review/:review_id/report', (req, res) => {
       res.sendStatus(204);
     })
 })
+
 // add product reviews
 app.post('/review/:product_id', (req, res) => {
   let url = `${root}/reviews/?product_id=${req.params.product_id}`;
@@ -69,6 +79,7 @@ app.post('/review/:product_id', (req, res) => {
       console.log('add review err: ', err);
     })
 })
+
 // product reviews meta
 app.get('/reviews/meta/:product_id', (req, res) => {
   let url = `${root}/reviews/meta?product_id=${req.params.product_id}`;
@@ -78,6 +89,7 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     })
 })
 
+
 // product
 app.get('/products/:product_id', (req, res) => {
   let url = `${root}/products/${req.params.product_id}`;
@@ -85,6 +97,7 @@ app.get('/products/:product_id', (req, res) => {
           .then(result => {
             res.status(200).json(result.data)})
 });
+
 
 // related products
 app.get('/products/:product_id/related', async (req, res) => {
