@@ -86,7 +86,9 @@ class App extends React.Component {
   }
 
   addReview(review) {
-    axios.post(`./add${this.state.product.id}`, {review});
+    console.log('review in addReview app: ', review);
+    review.recommend = review.recommend === "yes";
+    return axios.post('/addReview', {review});
   }
 
   handleScrollToReviews(event) {

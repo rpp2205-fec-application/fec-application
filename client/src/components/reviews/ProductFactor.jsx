@@ -7,10 +7,8 @@ const ProductFactor = (props) => {
     ["Comfort", ["Uncomfortable", "Slightly uncomfortable", "Ok", "Comfortable", "Perfect"]],
     ["Quality", ["Poor", "Below average", "What I expected", "Pretty great", "Perfect"]],
     ["Length", ["Runs short", "Runs slightly short", "Perfect", "Runs slightly long", "Runs long"]],
-    ["Fit", ["RUns tight", "Runs slightly tight", "Perfect", "Runs slightly loose", "Runs loose"]]
+    ["Fit", ["Runs tight", "Runs slightly tight", "Perfect", "Runs slightly loose", "Runs loose"]]
   ]
-  // const [newFactors, setFactors] = useState({size:0, width:0, comfort:0, quality:0, length: 0, fit: 0});
-  // let newFactors = {size:0, width:0, comfort:0, quality:0, length: 0, fit: 0}
 
   return (
     <ul>
@@ -21,7 +19,6 @@ const ProductFactor = (props) => {
             <FactorEntry explain={factor} getFactor={props.getFactor} />
           </li>
         )
-
       })}
     </ul>
   )

@@ -8,7 +8,7 @@ const AddReview = (props) => {
     rating:0,
     summary: '',
     body: '',
-    recommend: true,
+    recommend: '',
     name: '',
     email: '',
     photos: [],
@@ -17,7 +17,8 @@ const AddReview = (props) => {
 
   const [uploadShow, setUploadShow] = useState(false);
   const showOrHide = props.show ? "modal trans-bg display-block" : "modal trans-bg display-none";
-  const handleUpload = () => {
+  const handleUpload = (e) => {
+    e.preventDefault();
     setUploadShow(!uploadShow);
   }
   const handleRadio = (e) => {
@@ -31,19 +32,49 @@ const AddReview = (props) => {
   const getRating = (newRating) => {
     setRev({...newRev, rating: newRating});
   }
-  const [newFactors, setFactors] = useState({"Size":0, "Width":0, "Comfort":0, "Quality":0, "Length": 0, "Fit"
+  const [newFactors, setFactors] = useState({"240595":0, "240596":0, "240584":0, "240585":0, "240583": 0, "240582"
   : 0});
   const getFactor = (newFactor) => {
-    let property = newFactor.name;
-    console.log('property: ', newFactor.name);
+    const factorMap = {"Size": "240595", "Width": "240596", "Comfort":"240597", "Quality": "240598", "Fit": "240587", "Length": "240588"}
+    let property = factorMap[newFactor.name];
     newFactors[property] = newFactor.value;
-    setFactors({...newFactors, [newFactor.name]: newFactor.value})
-    //console.log("newC preperty: ", newFactors.property, newFactors[property]);
-    console.log("newC: ", newFactors);
+    setFactors({...newFactors, [property]: newFactor.value})
     setRev({...newRev, characteristics: newFactors});
   }
 
-  //console.log("newC: ", newFactors);
+  const handleSubmit = (newReview)=> {
+    console.log("handle submit: ", newReview);
+    if (newReview.rating === 0) {
+      alert('Failed! Please select a rating!')
+    } else if (!newReview.recommend.length) {
+      alert('Failed! Please select "Yes" or "No"!')
+    } else if (Object.values(newReview.characteristics).indexOf(0) >= 0) {
+      alert('Failed! Please finish the characteristics part!')
+    } else if (!newReview.body.length) {
+      alert('Failed! Please type some review!')
+    } else if (newReview.body.length < 50){
+      alert('Failed! Review must longer than 50 characters!');
+    } else if (!newReview.name.length) {
+      alert('Failed! Must have username!');
+    } else if (!newReview.email.length) {
+      alert('Failed! Must have email address!')
+    } else if (newReview.email.indexOf('@') === -1) {
+      alert('Failed! Invalid Email address!')
+    } else {
+      return props.addReview(newReview)
+      .then(() => {
+        alert('Submit successfully!');
+        props.handleClick()
+      });
+    }
+    // return props.addReview(newReview)
+    //   .then(() => {
+    //     alert('Submit successfully!');
+    //     props.handleClick()
+    //   });
+
+  }
+
   console.log("newREviews: ", newRev);
   return (
     <div className={showOrHide}>
@@ -51,39 +82,59 @@ const AddReview = (props) => {
         <span className="close" onClick={props.handleClick}>
           &times;
         </span>
-        <form onSubmit={() => {props.handleClick}}>
+        <form >
           <div className="rev-title">Write Your Review</div>
           <div className="rev-subTitle">About the {props.product.name}</div>
           <div>
             <label>How would you rate this?
               <StarRating getRating={getRating}/>
             </label>
-
           </div>
           <div>Recommend?
-            <label><input type="radio" value="yes" onChange={(e) => {handleRadio(e)}} checked={newRev.recommend} />Yes</label>
-            <label><input type="radio" value="no" onChange={(e) => {handleRadio(e)}} checked={!newRev.recommend} />No</label>
+            <label><input type="radio" value="yes" onChange={(e) => {setRev({...newRev, recommend: e.target.value})}} checked={newRev.recommend === "yes"} />Yes</label>
+            <label><input type="radio" value="no" onChange={(e) => {setRev({...newRev, recommend: e.target.value})}} checked={newRev.recommend === "no"} />No</label>
           </div>
           <div>
             <label>Characteristics:</label>
             <ProductFactor getFactor={getFactor} rev={newRev}/>
           </div>
           <div>
-            <label>Review Summary: <input type="text" placeholder="No more than 60 char" /></label>
+            <label>
+              Review Summary:
+              <input
+                className="input-sum"
+                type="text"
+                placeholder="Example: Best purchase ever!"
+                value={newRev.summary}
+                onChange={(e) => setRev({...newRev, summary: e.target.value})}/></label>
           </div>
           <div>
-            <label>Review Body: <input type="text" placeholder="no more then 1000 chars"></input></label>
+            <label>Review Body:
+              <textarea
+                className="input-body"
+                placeholder="“Why did you like the product or not?"
+                value={newRev.body}
+                onChange={(e) => setRev({...newRev, body: e.target.value})}
+              /><br/>
+              <span className="small_font">{newRev.body.length >= 50 ? "Minimum reached" : `Minimum required characters left: ${50 - newRev.body.length}` }</span>
+            </label>
           </div>
           <div>
             <UploadPics show={uploadShow} handleClicked={handleUpload}/>
             <button onClick={handleUpload}>Upload your photos</button>
           </div>
           <div>
-            <label>Nick Name:  <input type="text" placeholder="Type nick name"/></label>
-            <label>Your Email:  <input type="email" placeholder="xxx@gmail.com"/></label>
+            <label>Nick Name:  <input type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} /></label>
+            <label>
+              Your Email:
+              <input type="email" placeholder="“Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
+              <div className="xs_font">For authentication reasons, you will not be emailed</div></label>
           </div>
           <div>
-            <input className="center-btn" type="submit" value="Submit"/>
+            <input className="center-btn" type="submit" onClick={(e) => {
+          e.preventDefault();
+          handleSubmit(newRev);
+          }} value="Submit"/>
           </div>
         </form>
       </div>

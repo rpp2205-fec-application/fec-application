@@ -297,6 +297,21 @@ form div{
   margin: 5px;
 }
 
+.factor{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-sum{
+  width: 70%;
+  height: fit-content;
+}
+.input-body{
+  width: 70%;
+  min-height: 80px;
+  max-height: fit-content;
+}
 //-----------------> StarRating <----------------
 .invisi-btn {
   background-color: transparent;
@@ -313,8 +328,4 @@ form div{
   color:lightgray;
 }
 //------------> prudctFactor <--------------
-.factor{
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-}
+

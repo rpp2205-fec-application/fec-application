@@ -43,7 +43,7 @@ app.get('/qa/questions/:product_id', async (req, res) => {
 // product reviews
 app.post('/reviews/:product_id', (req, res) => {
   let sort = req.body;
-  let url = `${root}/reviews/?product_id=${req.params.product_id}&count=20&sort=${req.body.sort}`;
+  let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=20`;
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);
@@ -68,10 +68,12 @@ app.put('/reviews/:review_id/report', (req, res) => {
 })
 
 // add product reviews
-app.post('/review/:product_id', (req, res) => {
-  let url = `${root}/reviews/?product_id=${req.params.product_id}`;
-  const newRev = req.body;
-  return axios.post(url, headers, newRev)
+app.post('/addReview', (req, res) => {
+  let url = `${root}/reviews`;
+
+  console.log('new Review in server: ', req.body.review);
+
+  return axios.post(url, req.body.review, headers)
     .then(() => {
       res.status(201).json('added!');
     })
