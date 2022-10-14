@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import UploadPics from './UploadPics.jsx';
 import StarRating from './StarRating.jsx';
+import ProductFactor from './ProductFactor.jsx';
 const AddReview = (props) => {
   const [newRev, setRev] = useState({
     product_id: props.product.id,
@@ -26,12 +27,24 @@ const AddReview = (props) => {
     } else {
       setRev({...newRev, recommend: false})
     }
-
   }
   const getRating = (newRating) => {
-    console.log("newRating: ", newRating);
     setRev({...newRev, rating: newRating});
   }
+  const [newFactors, setFactors] = useState({"Size":0, "Width":0, "Comfort":0, "Quality":0, "Length": 0, "Fit"
+  : 0});
+  const getFactor = (newFactor) => {
+    let property = newFactor.name;
+    console.log('property: ', newFactor.name);
+    newFactors[property] = newFactor.value;
+    setFactors({...newFactors, [newFactor.name]: newFactor.value})
+    //console.log("newC preperty: ", newFactors.property, newFactors[property]);
+    console.log("newC: ", newFactors);
+    setRev({...newRev, characteristics: newFactors});
+  }
+
+  //console.log("newC: ", newFactors);
+  console.log("newREviews: ", newRev);
   return (
     <div className={showOrHide}>
       <div className="rev-modal_content">
@@ -39,10 +52,10 @@ const AddReview = (props) => {
           &times;
         </span>
         <form onSubmit={() => {props.handleClick}}>
-          <div className="title">Write Your Review</div>
-          <div className="subTitle">About the {props.product.name}</div>
+          <div className="rev-title">Write Your Review</div>
+          <div className="rev-subTitle">About the {props.product.name}</div>
           <div>
-            <label>show rating star
+            <label>How would you rate this?
               <StarRating getRating={getRating}/>
             </label>
 
@@ -52,7 +65,8 @@ const AddReview = (props) => {
             <label><input type="radio" value="no" onChange={(e) => {handleRadio(e)}} checked={!newRev.recommend} />No</label>
           </div>
           <div>
-            <label>Characteristics</label>
+            <label>Characteristics:</label>
+            <ProductFactor getFactor={getFactor} rev={newRev}/>
           </div>
           <div>
             <label>Review Summary: <input type="text" placeholder="No more than 60 char" /></label>
@@ -69,12 +83,10 @@ const AddReview = (props) => {
             <label>Your Email:  <input type="email" placeholder="xxx@gmail.com"/></label>
           </div>
           <div>
-            <input className="btn" type="submit" value="Submit"/>
+            <input className="center-btn" type="submit" value="Submit"/>
           </div>
         </form>
       </div>
-
-
     </div>
   )
 }
