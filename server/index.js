@@ -54,7 +54,7 @@ app.post('/reviews/:product_id', (req, res) => {
 // update review helpful
 app.put('/review/:review_id/helpful', (req, res) => {
   let url = `${root}/reviews/${req.params.review_id}/helpful`;
-  return axios.put(url, {helpfulness:1}, headers)
+  return axios.put(url,{}, headers)
    .then(() => {
     res.status(200).json('just updated helpful');
    })
