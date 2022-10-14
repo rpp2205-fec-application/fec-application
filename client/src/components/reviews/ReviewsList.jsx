@@ -53,7 +53,7 @@ const ReviewsList = (props) => {
         </select>
         </div>
         <ul className="revs-list">
-          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id} />)}
+          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
         </ul>
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {

@@ -11,6 +11,13 @@
   font-weight: 300;
 }
 
+.l_font {
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-weight: 400;
+  color: white;
+}
 .xxl_font {
   display: inline;
   font-size: 55px;
@@ -23,7 +30,11 @@
   cursor: pointer;
 }
 
-//----------------
+//------------------> ReviewsList<-------------------------
+.revs-right {
+  width:65%;
+  padding-left: 20px;
+}
 .revs {
   display: flex;
   justify-content: baseline;
@@ -31,24 +42,9 @@
 .revs-rating {
   width:35%;
 }
-.revs-right {
-  width:65%;
-  padding-left: 20px;
-}
 
-.breakdown {
-  margin: 20px 0 20px 0;
-}
 
-.progress{
-  display: inline-flex;
-  justify-content: baseline;
-  font: darkgray;
-}
 
-.rat-comfort {
-  margin-top:20px;
-}
 
 ul {
   list-style-type: none;
@@ -63,29 +59,28 @@ ul {
   width:40px;
 }
 
-.date {
-  display: inline;
-  width: 100px;
-  margin-top: 0;
-  margin-left: 300px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
+//`----------------> breakdown <-----------
+.breakdown {
+  margin: 20px 0 20px 0;
 }
 
-
-.review {
-  margin-top:15px;
-}
-
-
-//`---------------->rating breakdown <-----------
 .stars {
   display:inline;
   vertical-align:top;
-
 }
+
 .rat-stars {
   margin-top: 10px;
+}
+
+.progress{
+  display: inline-flex;
+  justify-content: baseline;
+  // font: darkgray;
+}
+
+.rat-comfort {
+  margin-top:20px;
 }
 .rat-progress {
   --percent: calc(var(--stars) * 100%);
@@ -100,16 +95,54 @@ ul {
   width: 200px;
   background-color: lightblue;
 }
+.pod-progress {
+  display: inline-block;
+  height:6px;
+  width: 180px
+}
+.pod-long {
+  background: repeating-linear-gradient(90deg, lightgray, lightgray 60px, white 60px, white 65px);
+}
+.pod-short {
+  background: repeating-linear-gradient(90deg, lightgray, lightgray 40px, white 40px, white 45px);
+}
+.point-tria {
+  position: absolute;
+  margin-top: 10px;
+  transform: rotate(180deg);
+}
 //-------------->reviewslist & reviewEntry <--------------------
+
+.review {
+  margin-top:15px;
+}
 .rev-header{
   display: inline;
 }
+
+.date {
+  display: inline;
+  width: 100px;
+  margin-top: 0;
+  margin-left: 300px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+
 .rev-summary {
   margin-top:15px;
   font-family: 'Poppins', sans-serif;;
   font-weight: 500;
   font-size: 14px;
 }
+
+.rev-gray {
+  background-color: gray;
+  color: transparent;
+  content: none;
+}
+
 .more-summary {
   font-family: 'Poppins', sans-serif;;
   font-weight: 300;
