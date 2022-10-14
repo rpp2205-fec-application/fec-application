@@ -2,17 +2,25 @@ import React from 'react';
 
 import Thumbnails from './Thumbnails.jsx';
 import DefaultView from './DefaultView.jsx';
+import ExpandedView from './ExpandedView.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedPhotoIndex: 0
+      selectedPhotoIndex: 0,
+      expandedViewOn: false
     }
   }
 
   thumbnailClick(selectedPhotoIndex) {
     this.setState({selectedPhotoIndex})
+  }
+
+  toggleExpandedView() {
+    this.setState(prevState => ({
+      expandedViewOn: !prevState.expandedViewOn
+    }))
   }
 
   //Getting the new style list after the new product is passed to props
@@ -33,9 +41,12 @@ class ImageGallery extends React.Component {
       photos.push(photo.url)
     })
     return (
-      <div className='gallery-flex'>
-        <Thumbnails thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} />
-        <DefaultView photos={photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} photoChange={this.thumbnailClick.bind(this)} />
+      <div className='image-gallery-container'>
+        {this.state.expandedViewOn && <ExpandedView expandedViewOn={this.state.expandedViewOn} thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} toggleExpandedView={this.toggleExpandedView.bind(this)} />}
+        <div className='gallery-flex'>
+          <Thumbnails thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} />
+          <DefaultView photos={photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} photoChange={this.thumbnailClick.bind(this)} toggleExpandedView={this.toggleExpandedView.bind(this)} />
+        </div>
       </div>
     )
   }

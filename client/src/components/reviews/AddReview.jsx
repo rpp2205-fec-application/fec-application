@@ -40,7 +40,7 @@ const AddReview = (props) => {
         <div>
           <label>show rating star</label>
         </div>
-        <div>Recommond?
+        <div>Recommend?
           <label><input type="radio" value="yes" onChange={(e) => {handleRadio(e)}} checked={newRev.recommend} />Yes</label>
           <label><input type="radio" value="no" onChange={(e) => {handleRadio(e)}} checked={!newRev.recommend} />No</label>
         </div>

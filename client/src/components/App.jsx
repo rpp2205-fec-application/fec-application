@@ -20,7 +20,7 @@ class App extends React.Component {
       reviewsMeta: {},
       reviews:[],
       addReview: false,
-      keyword:''
+      keyword:'',
     }
     this.reviewsRef = React.createRef();
   }
@@ -98,6 +98,8 @@ class App extends React.Component {
       keyword: e.target.value
     })
   }
+
+
   render() {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
       return (
