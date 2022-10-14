@@ -11,6 +11,13 @@
   font-weight: 300;
 }
 
+.l_font {
+  font-size: 25px;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-weight: 400;
+  color: white;
+}
 .xxl_font {
   display: inline;
   font-size: 55px;
@@ -101,6 +108,11 @@ ul {
   background-color: lightblue;
 }
 //-------------->reviewslist & reviewEntry <--------------------
+.rev-gray {
+  background-color: gray;
+  color: transparent;
+  content: none;
+}
 .rev-header{
   display: inline;
 }

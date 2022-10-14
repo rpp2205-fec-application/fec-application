@@ -2,22 +2,32 @@ import React, { useState } from 'react';
 import { format, parseJSON } from 'date-fns';
 import Star from '../Star/Star.jsx';
 import {roundNearQtr} from '../../helpers.js'
+import axios from 'axios';
 const ReviewEntry = (props) => {
   const [helpful, setHelp] = useState(props.review.helpfulness);
   const [clicked, setClick] = useState(false);
   const [showMore, setShowMore] = useState(true);
   const [showBig, setBig] = useState({show: false, url: ''});
   const showOrhide = !showBig.show ? "modal trans-bg display-none" : "modal trans-bg dispaly-block";
-  // {format(parseJSON(props.review.date), "MMMM/dd/yyyy")
+  const [showReview, setShowReview] = useState(true);
+  const grayOrNot = !showReview ? "rev-gray" : "rev";
+  const sendToServer = (review_id) => {
+    return axios.put(`/review/${review_id}/helpful`)
+      .then(() => {setClick(true)})
+  }
+  const sendReport = (review_id) => {
+    return axios.put(`/review/${review_id}/report`)
 
+  }
   return (
     <li>
-      <div className="rev" role="reviews">
+      <div className={grayOrNot} role="reviews">
         <div className="rev-header">
-          <Star rating={roundNearQtr(props.review.rating)} />
+           {showReview && <Star rating={roundNearQtr(props.review.rating)} />}
           <div className="date xs_font">{props.review.reviewer_name}, {format(parseJSON(props.review.date), "MMMM/dd/yyyy")}</div>
         </div>
         {/* render review's body*/}
+        {!showReview && <div className="l_font">This review won't show again</div>}
         <div className="rev-body">
           {/* {props.review.summary.length <= 60 ?  <div className="rev-summary">{props.review.summary}</div>
            :  <div className="rev-summary">{props.review.summary.slice(0, 60)}<a className="more-summary">{props.review.summary.slice(60)}</a></div>
@@ -26,11 +36,12 @@ const ReviewEntry = (props) => {
           {props.review.body.length <= 250 ? <div className="review small_font">{props.review.body}</div>
           : (<div className="review small_font">
               {props.review.body.slice(0, 250)}
-              {showMore ? null : <a className="more-summary">{props.review.body.slice(250)}</a>}
+              {(showMore || !showReview)? null : <a className="more-summary">{props.review.body.slice(250)}</a>}
               <br/>
               <button className="sm-btn" onClick={() => { setShowMore(!showMore) }}>{showMore ? "SHOW MORE" : "FOLD BACK" }</button>
             </div>)
           }
+
           {props.review.recommend && <div className="rev-recommend small_font">&#10003; I recommend this product</div>}
           {props.review.response &&
           (<div className="rep-Meg">
@@ -38,7 +49,7 @@ const ReviewEntry = (props) => {
             <div className="rep-body small_font">{props.review.response}</div>
           </div>)
           }
-          {!props.review.photos.length ? null :
+          {(!props.review.photos.length || !showReview) ? null :
            (<div>
               <div className={showOrhide} >
                 <div className="modal-img" style={{"--url": showBig.url}}>
@@ -55,25 +66,27 @@ const ReviewEntry = (props) => {
                 )
               }
            </div>)
-
           }
-
         </div>
         <div className="rev-footer xs_font">
           <div>Helpful?
             <a className="underline rev-helpful" onClick={() => {
               if (!clicked) {
                 setHelp(helpful + 1);
-                setClick(true);
+                sendToServer(props.review.review_id);
               } else {
-                setHelp(props.review.helpfulness);
-                setClick(false);
+                alert('You already clicked!');
+                // setHelp(props.review.helpfulness);
+                // sendToServer(props.review.review_id);
               }}}>
               Yes
             </a>
             <span className="rev-helpdata">({helpful})</span>
             |
-            <a className="underline rev-helpful"> Report </a>
+            <a className="underline rev-helpful" onClick={() => {
+              sendReport(props.review.review_id);
+              setShowReview(false);
+            }}> Report </a>
           </div>
           <hr/>
         </div>

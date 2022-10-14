@@ -40,7 +40,7 @@ class App extends React.Component {
       .then(res => {
         return this.setState({
           products: res.data,
-          product: res.data[14]
+          product: res.data[19]
         }, () => {
           console.log('Products: ', this.state.products)
           console.log('Product: ', this.state.product)
@@ -107,10 +107,7 @@ class App extends React.Component {
               <a className="search">
                 <input type="text" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
-
               </a>
-
-
             </div>
 
           </div>

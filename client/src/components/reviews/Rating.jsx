@@ -44,7 +44,6 @@ const Rating = (props) => {
               </div>
             </div>
         )}
-        Object.keys(reviewsMeta.ratings).reverse()
       </div>
     </div>
   )
