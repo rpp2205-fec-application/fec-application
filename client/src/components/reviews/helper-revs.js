@@ -10,14 +10,18 @@ export const reviewsSort = (reviews, key) => {
 }
 
 export const calculateSize = (obj, key1, key2) => {
+  let size;
+  let marginVal;
   if (!obj[key1] && !obj[key2]) {
-    return null;
+    size = null;
+  }else if (!obj[key1]) {
+    size = Math.round(parseInt(obj[key2].value));
+  }else if (!obj[key2]) {
+    size = Math.round(parseInt(obj[key1].value));
+  } else size = Math.round((parseInt(obj[key1].value) + parseInt(obj[key2].value)) / 2);
+  if (!size) {
+    return 0;
   }
-  if (!obj[key1]) {
-    return Math.round(parseInt(obj[key2].value));
-  }
-  if (!obj[key2]) {
-    return Math.round(parseInt(obj[key1].value));
-  }
-  return Math.round((parseInt(obj[key1].value) + parseInt(obj[key2].value)) / 2);
+  return (size-1) * 3.5;
 }
+

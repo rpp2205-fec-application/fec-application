@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { calculateSize } from './helper-revs';
+import {IconContext} from 'react-icons';
+import { IoTriangle } from "react-icons/io5"
 const Product = (props) => {
   const [chars, setChars] = useState(props.chars);
 
@@ -7,22 +9,27 @@ const Product = (props) => {
     <div className="breakdown">
       <div className="rat-size">
         <div>Size</div>
-        {calculateSize(props.chars, "Fit", "Length")}
-        <div className="pod-progress"></div><br/>
+        <IconContext.Provider value={{className: "point-tria", style: {marginLeft: calculateSize(props.chars, "Fit", "Length") + '%'}}}>
+          <IoTriangle />
+        </IconContext.Provider>
+
+        <div className="pod-progress pod-long"></div>
+        <br/>
         <div className="progress xs_font">
 
-          <div style={{marginRight: "20px"}}>Too small</div>
-          <div style={{marginRight: "20px"}}>Perfect</div>
+          <div style={{marginRight: "27px", marginLeft:"5px"}}>Too small</div>
+          <div style={{marginRight: "25px"}}>Perfect</div>
           <div>Too large</div>
         </div>
       </div>
       <div className="rat-comfort">
         <div>Comfort</div>
-        {calculateSize(props.chars, "Comfort", "Quality")}
-        <div className="pod-progress"></div><br/>
+        <IconContext.Provider value={{className: "point-tria", style: {marginLeft: calculateSize(props.chars, "Comfort", "Quality") + '%'}}}>
+          <IoTriangle />
+        </IconContext.Provider>
+        <div className="pod-progress pod-short"></div><br/>
         <div className="progress xs_font">
-
-          <div style={{marginRight: "100px"}}>poor</div>
+          <div style={{marginRight: "120px", marginLeft:"5px"}}>poor</div>
           <div>perfect</div>
         </div>
       </div>
