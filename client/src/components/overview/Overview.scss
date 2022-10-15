@@ -95,6 +95,7 @@ p {
 }
 
 .gallery-flex {
+  width: 100%;
   display: flex;
   gap: 2%;
 }
@@ -115,7 +116,6 @@ p {
   background-position: center;
   height: 100%;
   flex-grow: 1;
-  cursor: zoom-in;
 }
 
 .thumbnails-flex {
@@ -157,6 +157,9 @@ p {
   cursor: pointer;
 }
 
+.magnify-cursor {
+  cursor: zoom-in;
+}
 
 
 
@@ -175,12 +178,17 @@ p {
   width: 100%;
   padding: 0 5%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 30px;
 }
 
 .simple-thumbnails-flex {
   width: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 10px;
 }
@@ -226,6 +234,14 @@ p {
   font-size: 24px;
   cursor: pointer;
   color: #ffffff;
+}
+
+.plus-cursor {
+  cursor: url('./cursors/plus.cur'),pointer;
+}
+
+.minus-cursor {
+  cursor: url('./cursors/minus.cur'),pointer;
 }
 
 
