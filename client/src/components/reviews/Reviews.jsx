@@ -31,7 +31,7 @@ const Reviews = (props) => {
   }
   return  (
     <div ref={props.scrollToReviews} className="widget">
-      <p id="title">RATINGS &#38; REVIEWS</p>
+      <p className="title">RATINGS &#38; REVIEWS</p>
       <div className="revs">
         <div className="revs-rating">
           <Rating rating={props.rating} reviews={props.reviews} reviewsMeta={props.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
