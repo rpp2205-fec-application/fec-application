@@ -88,6 +88,9 @@ class App extends React.Component {
   addReview(review) {
     console.log('review in addReview app: ', review);
     review.recommend = review.recommend === "yes";
+    Object.values(review.characteristics).forEach(value => {return parseInt(value);})
+
+    console.log('After review  app: ', review);
     return axios.post('/addReview', {review});
   }
 
@@ -117,7 +120,7 @@ class App extends React.Component {
 
           </div>
           <div className='container'>
-            <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)}/>
+            <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics}/>
             <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} />
             <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
             <Outfit product={this.state.product}/>
