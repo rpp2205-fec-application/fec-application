@@ -41,7 +41,7 @@ const ReviewEntry = (props) => {
               {props.review.body.slice(0, 250)}
               {(showMore || !showReview)? null : <a className="more-summary">{props.review.body.slice(250)}</a>}
               <br/>
-              <button className="sm-btn" onClick={() => { setShowMore(!showMore) }}>{showMore ? "SHOW MORE" : "FOLD BACK" }</button>
+             {showReview && <button className="sm-btn" onClick={() => { setShowMore(!showMore) }}>{showMore ? "SHOW MORE" : "FOLD BACK" }</button>}
             </div>)
           }
 

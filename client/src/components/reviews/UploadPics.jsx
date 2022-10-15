@@ -2,34 +2,21 @@ import React, {useState} from 'react';
 
 const UploadPics = (props) => {
   const showOrHideUpload = props.show ? "sub-modal display-block" : "sub-modal display-none";
-  const [files, setFiles] = useState(null);
-  const onFileChange = (e) => {
-    setFiles(e.target.files[0]);
-    props.handleClicked();
-  }
-  const fileUpload = () => {
-    const formData = new FormData();
-    formData.append(
-      "myPics",
-      files,
-      files.name
-    );
-    console.log('files data: ', formData);
-  }
-  const filesData = () => {
-    if (files) {
-      return (
-        <div>
-          {JSON.stringify(files)}
-        </div>
-      )
+
+  const [imageFiles, setImages] = useState([]);
+  const handleDelete = (index)=>{
+    if (imageFiles.length === 1) {
+      setImages([]);
     } else {
-      return (
-        <div>
-          <h3>Choose before Pressing the Upload button</h3>
-        </div>
-      )
+      setImages(imageFiles.splice(index, 1));
     }
+  }
+  const handleSubmit = (files) => {
+    props.handleUpload(files);
+    props.toggleUpload();
+  }
+  const handleChange = (e) => {
+
   }
   return (
     <div className={showOrHideUpload}>
@@ -38,10 +25,23 @@ const UploadPics = (props) => {
       </span>
       <div>
         <div>Upload Your Pictures</div>
-        <input type="file" onChange={onFileChange} />
-        <button onClick={fileUpload}> Upload!</button>
-
+        {imageFiles.length < 5 &&
+          <input type="file" name="myImage" onChange={(e) => {setImages(imageFiles.concat(URL.createObjectURL(e.target.files[0])))}} />
+        }
       </div>
+      {!imageFiles.length ? null :
+        imageFiles.map((image, index) => {
+          return (
+            <div key={index}>
+              <img className="thumbnail" src={image}/>
+              <button onClick={(e)=>{
+                e.preventDefault();;
+                handleDelete(index)
+                }}>Remove</button>
+            </div>
+          )
+        })}
+      <span className="sm-btn" syle={{marginLeft: "45%"}}onClick={() => handleSubmit(imageFiles)}>Upload!</span>
     </div>
   )
 }
