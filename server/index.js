@@ -9,35 +9,44 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 const headers = {headers: {authorization: process.env.TOKEN}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
+
 // Routes //
 
-// products
+// get all products
 app.get('/products', async (req, res) => {
   let url = `${root}/products?count=20`;
   const products = await axios.get(url, headers);
   res.status(200).json(products.data);
 })
 
-// product
+// get product by id
 app.get('/products/:product_id', (req, res) => {
-  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
+  let url = `${root}/products/${req.params.product_id}`;
   return axios.get(url, headers)
           .then(result => {
             res.status(200).json(result.data)})
 });
 
-// product styles
+// get product styles
 app.get('/products/:product_id/styles', async (req, res) => {
   let url = `${root}/products/${req.params.product_id}/styles`;
   const styles = await axios.get(url, headers);
   res.status(200).json(styles.data);
 })
 
-// product questions
+// get product questions
 app.get('/qa/questions/:product_id', async (req, res) => {
   let url = `${root}/qa/questions/?product_id=${req.params.product_id}`;
   const questions = await axios.get(url, headers)
   res.status(200).json(questions.data);
+})
+
+// post a new question
+app.post('/qa/questions', async (req, res) => {
+  let url = `${root}/qa/questions`;
+  console.log('THIS HEREEEEEEEEE, ', req.body);
+  const response = await axios.post(url, req.body, headers);
+  console.log(response);
 })
 
 // product reviews
@@ -49,7 +58,6 @@ app.post('/reviews/:product_id', (req, res) => {
       res.status(200).json(results.data);
     })
 })
-
 
 // update review helpful
 app.put('/review/:review_id/helpful', (req, res) => {
