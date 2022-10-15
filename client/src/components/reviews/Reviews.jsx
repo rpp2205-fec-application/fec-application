@@ -34,10 +34,10 @@ const Reviews = (props) => {
       <p className="title">RATINGS &#38; REVIEWS</p>
       <div className="revs">
         <div className="revs-rating">
-          <Rating rating={props.rating} reviews={props.reviews} reviewsMeta={props.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
-          <Product chars={props.reviewsMeta.characteristics}/>
+          <Rating rating={props.state.rating} reviews={props.state.reviews} reviewsMeta={props.state.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
+          <Product chars={props.state.reviewsMeta.characteristics}/>
         </div>
-        <ReviewsList reviews={props.reviews} newList={newList} getReviews={props.getReviews} id={props.product.id} handleClick={props.handleClick} />
+        <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} />
 
       </div>
     </div>
