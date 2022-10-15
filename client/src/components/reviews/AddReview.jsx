@@ -28,15 +28,12 @@ const AddReview = (props) => {
   const [newFactors, setFactors] = useState({});
   let originMap = getCharMap(props.chars);
   const [factorMap, setMap] = useState({map: originMap});
-  console.log('origin Map: ', factorMap);
+
   const getFactor = (newFactor) => {
     if (factorMap.map[newFactor.name] === undefined) {
-      console.log('undefined', newFactor.name);
       let name = newFactor.name
       let array = Object.values(factorMap.map);
       let lastId = typeof array[array.length - 1] === "string" ? parseInt(array[array.length-1]) : array[array.length-1];
-      //let value = (parseInt(array[array.length-1]) || array[array.length-1] )+ 1;
-      console.log('add one: ' , name, lastId + 1);
       factorMap.map[name] = lastId + 1;
       setMap({map: factorMap.map});
     }
@@ -45,7 +42,6 @@ const AddReview = (props) => {
     console.log('preperty: ', property);
     console.log('newFactor value: ', newFactor.value);
     setFactors({...newFactors, [property]: newFactor.value})
-   // setRev({...newRev, characteristics: newFactors});
   }
 
   useEffect(() => {
@@ -80,35 +76,8 @@ const AddReview = (props) => {
         props.handleClick()
       });
     }
-
-    // if (newReview.rating === 0) {
-    //   alert('Failed! Please select a rating!')
-    // } else if (!newReview.recommend.length) {
-    //   alert('Failed! Please select "Yes" or "No"!')
-    // } else if (Object.values(newReview.characteristics).indexOf(0) >= 0) {
-    //   alert('Failed! Please finish the characteristics part!')
-    // } else if (!newReview.body.length) {
-    //   alert('Failed! Please type some review!')
-    // } else if (newReview.body.length < 50){
-    //   alert('Failed! Review must longer than 50 characters!');
-    // } else if (!newReview.name.length) {
-    //   alert('Failed! Must have username!');
-    // } else if (!newReview.email.length) {
-    //   alert('Failed! Must have email address!')
-    // } else if (newReview.email.indexOf('@') === -1) {
-    //   alert('Failed! Invalid Email address!')
-    // } else {
-    //   return props.addReview(newReview)
-    //   .then(() => {
-    //     alert('Submit successfully!');
-    //     props.handleClick()
-    //   });
-    // }
-
-
   }
 
-  console.log("newREviews: ", newRev);
   return (
     <div className={showOrHide}>
       <div className="rev-modal_content">

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { calculateSize } from './helper-revs';
 import {IconContext} from 'react-icons';
 import { IoTriangle } from "react-icons/io5"
+
+
 const Product = (props) => {
   const [chars, setChars] = useState(props.chars);
 

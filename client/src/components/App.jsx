@@ -88,9 +88,6 @@ class App extends React.Component {
   addReview(review) {
     console.log('review in addReview app: ', review);
     review.recommend = review.recommend === "yes";
-    Object.values(review.characteristics).forEach(value => {return parseInt(value);})
-
-    console.log('After review  app: ', review);
     return axios.post('/addReview', {review});
   }
 
