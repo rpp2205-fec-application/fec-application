@@ -14,7 +14,7 @@ const Product = (props) => {
           return (
             <div key={props.chars[fact].id} >
               <div className="small_font">{fact}</div>
-              <IconContext.Provider value={{className: "point-tria", style: {marginLeft: (Math.round(parseFloat(props.chars[fact].value)-1) * 4) + '%'}}}>
+              <IconContext.Provider value={{className: "point-tria", style: {marginLeft: (Math.round(parseFloat(props.chars[fact].value)-1) * 42)}}}>
                 <IoTriangle />
               </IconContext.Provider>
               {(fact === "Size" || fact === "Length" || fact === "Fit" || fact === "Width") ?
