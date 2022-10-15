@@ -42,8 +42,8 @@ app.get('/qa/questions/:product_id', async (req, res) => {
 
 // product reviews
 app.post('/reviews/:product_id', (req, res) => {
-  let sort = req.body;
-  let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=40`;
+  console.log('reviews sort and count: ', req.body);
+  let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=${req.body.count}`;
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);

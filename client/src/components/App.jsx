@@ -8,7 +8,7 @@ import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
 import Star from './Star/Star.jsx';
 import AddReview from './reviews/AddReview.jsx';
-import {calculateRating} from '../helpers.js'
+import {calculateRating, reviewsCount} from '../helpers.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class App extends React.Component {
       rating: 0,
       reviewsMeta: {},
       reviews:[],
+      reviewsLength:0,
       addReview: false,
       keyword:'',
     }
@@ -31,7 +32,8 @@ class App extends React.Component {
       return this.getReviewsMeta();
     })
     .then(() => {
-      this.getReviews('relevant');
+      console.log('[[YYYY reviesMeta: ', this.state.reviewsMeta)
+      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
     })
   }
 
@@ -55,13 +57,14 @@ class App extends React.Component {
         console.log('Review Meta: ', res.data)
         return this.setState({
           reviewsMeta: res.data,
-          rating: calculateRating(res.data.ratings)
+          rating: calculateRating(res.data.ratings),
+          reviewsLength: reviewsCount(res.data.ratings)
         });
       })
   }
 
-  getReviews(sort) {
-    axios.post(`/reviews/${this.state.product.id}`, {sort})
+  getReviews({count, sort}) {
+    axios.post(`/reviews/${this.state.product.id}`, {count, sort})
     .then((res) => {
       //console.log('Reviews: ', res.data.results)
       this.setState({
@@ -73,7 +76,7 @@ class App extends React.Component {
   selectProduct(product) {
     this.setState({product}, () => {
       this.getReviewsMeta();
-      this.getReviews('relevant');
+      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
     })
 
   }
@@ -122,7 +125,7 @@ class App extends React.Component {
             <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
             <Outfit product={this.state.product}/>
             <QA product={this.state.product}/>
-            <Reviews getReviews={this.getReviews.bind(this)} reviews={this.state.reviews} product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
+            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
           </div>
         </div>
 

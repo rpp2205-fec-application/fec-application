@@ -34,3 +34,10 @@ export const getTotalQuantity = (skuObj) => {
   }
   return quantityList.reduce((a, b) => a+b, 0)
 }
+
+export const reviewsCount = (metaObj) => {
+   let array = Object.values(metaObj);
+   return array.reduce((acc, rating) => {
+    return acc = acc += parseInt(rating);
+   }, 0)
+}

@@ -23,3 +23,11 @@ export const findLast = (map) => {
 }
 
 
+export const convertReview = (longStr) => {
+  if (longtStr.length > 123) {
+    for(let i = 123; i < longStr.length; i+123) {
+      longStr.slice(0,i) + "/n" + longStr(i);
+    }
+  }
+  return longStr;
+}
