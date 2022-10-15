@@ -42,7 +42,17 @@ class ImageGallery extends React.Component {
     })
     return (
       <div className='image-gallery-container'>
-        {this.state.expandedViewOn && <ExpandedView expandedViewOn={this.state.expandedViewOn} thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} toggleExpandedView={this.toggleExpandedView.bind(this)} />}
+        {this.state.expandedViewOn &&
+          <ExpandedView
+            expandedViewOn={this.state.expandedViewOn}
+            thumbnails={thumbnails}
+            photos={photos}
+            selectedStyle={this.props.selectedStyle}
+            selectedPhotoIndex={this.state.selectedPhotoIndex}
+            thumbnailClick={this.thumbnailClick.bind(this)}
+            photoChange={this.thumbnailClick.bind(this)}
+            toggleExpandedView={this.toggleExpandedView.bind(this)} />
+        }
         <div className='gallery-flex'>
           <Thumbnails thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} />
           <DefaultView photos={photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} photoChange={this.thumbnailClick.bind(this)} toggleExpandedView={this.toggleExpandedView.bind(this)} />
