@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FaSistrix } from "react-icons/fa";
 import Overview from './overview/Overview.jsx';
 import RelatedItems from './relatedItems/RelatedItems.jsx';
 import Outfit from './relatedItems/Outfit.jsx';
@@ -19,7 +19,8 @@ class App extends React.Component {
       rating: 0,
       reviewsMeta: {},
       reviews:[],
-      addReview: false
+      addReview: false,
+      keyword:'',
     }
     this.reviewsRef = React.createRef();
   }
@@ -39,7 +40,8 @@ class App extends React.Component {
       .then(res => {
         return this.setState({
           products: res.data,
-          product: res.data[0]
+          product: res.data[1]
+
         }, () => {
           console.log('Products: ', this.state.products)
           console.log('Product: ', this.state.product)
@@ -91,17 +93,37 @@ class App extends React.Component {
     window.scrollTo(0, this.reviewsRef.current.offsetTop);
   }
 
+  handleSearchChange(e){
+    this.setState({
+      keyword: e.target.value
+    })
+  }
+
+
   render() {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
       return (
-        <div className='container'>
-          <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)}/>
-          <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} />
-          <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
-          <Outfit product={this.state.product}/>
-          <QA product={this.state.product}/>
-          <Reviews getReviews={this.getReviews.bind(this)} reviews={this.state.reviews} product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
+        <div>
+          <div className="header">
+            <div className="header-content">
+              <a className="logo">Logo</a>
+              <a className="search">
+                <input type="text" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
+                <FaSistrix />
+              </a>
+            </div>
+
+          </div>
+          <div className='container'>
+            <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)}/>
+            <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} />
+            <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
+            <Outfit product={this.state.product}/>
+            <QA product={this.state.product}/>
+            <Reviews getReviews={this.getReviews.bind(this)} reviews={this.state.reviews} product={this.state.product} rating={this.state.rating} reviewsMeta={this.state.reviewsMeta} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
+          </div>
         </div>
+
       )
 
     } else {

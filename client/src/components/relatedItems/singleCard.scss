@@ -7,29 +7,54 @@
 
 .card{
   height: 320px;
-  width: 280px;
+  width: 250px;
+  position: relative;
+  margin-left: 50px;
+  margin-right: 10px;
+  border-style: solid;
+}
+.addCard{
+  height: 320px;
+  width: 250px;
   display: inline-block;
-  margin-left: 30px;
-  margin-right: 20px;
+  margin-left: 50px;
+  margin-right: 10px;
   border-style: solid;
   position: relative;
+}
+#addIcon{
+  width: 250px;
+  height: 220px;
+  border-bottom: solid;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+#addProductIcon{
+  width: 50%;
+  height: 50%;
+  border: solid gray;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .star-icon{
   position: absolute;
   margin-top: 1px;
-  margin-left: 2px;
-  top: 5px;
-  right: 5px;
+  margin-right: 2px;
+  top: 0px;
+  right: 0px;
   width: 24px;
   height: 24px;
   color: gray;
 }
 
 .card-image{
-  width: 100%;
+  width: 245px;
   height: 220px;
-  position: relative;
+  z-index: -1;
 }
 .cardbody{
   padding-left: 10px;
@@ -54,3 +79,17 @@
   margin-top: 0px;
 }
 
+#addCardContent{
+  text-align: center;
+}
+
+.clear-icon{
+  position: absolute;
+  margin-top: 1px;
+  margin-right: 2px;
+  top: 0px;
+  right: 0px;
+  width: 24px;
+  height: 24px;
+  color: gray;
+}

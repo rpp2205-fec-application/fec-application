@@ -11,15 +11,23 @@ const ReviewsList = (props) => {
       copy: props.reviews.slice(),
       renderList: []
     });
-
-    if (reviews.origin !== props.reviews) {
-      console.log('different reviews!');
+    const handleReviewsChange = (reviewsList) => {
       setReviews({
-        origin: props.reviews,
-        copy:props.reviews.slice(),
+        origin: reviewsList,
+        copy: reviewsList.slice(),
         renderList:[]
       })
     }
+    if (!props.newList.length) {
+      if (reviews.origin !== props.reviews) {
+        handleReviewsChange(props.reviews);
+      }
+    } else {
+      if (reviews.origin !== props.newList) {
+        handleReviewsChange(props.newList);
+      }
+    }
+    //console.log("render list: ", reviews.renderList);
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
@@ -29,13 +37,12 @@ const ReviewsList = (props) => {
       setSelect("relevance");
       setId(props.id);
     }
-    // console.log('props reviews:', props.reviews);
-    // console.log('reviewslist review2: ', reviews.copy);
+
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
 
     return (
       <div className="revs-right">
-        <div className="rev-sum">{props.reviews.length} reviews, sorted by
+        <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
           props.getReviews(e.target.value);
@@ -46,7 +53,7 @@ const ReviewsList = (props) => {
         </select>
         </div>
         <ul className="revs-list">
-          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id} />)}
+          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
         </ul>
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {

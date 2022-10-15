@@ -6,6 +6,7 @@ body {
 
 .container {
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
 }
 .widget {
@@ -20,9 +21,49 @@ body {
   padding: 11px 20px 10px 20px;
   border: solid #000000 1px;
   margin: 20px;
+  cursor: pointer;
 }
 
 .btn:hover {
   background: #a2a8ab;
   text-decoration: none;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  // margin: 0 50px;
+  height: 60px;
+}
+.header-content{
+  position: absolute;
+  width: 80%;
+  margin-top: 25px;
+  margin-left: 60px;
+}
+
+.logo{
+  color:white;
+  display: inline;
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size:x-large;
+  text-decoration: underline;
+}
+
+.search{
+  position: absolute;
+  display: inline;
+  margin-left:80%;
+}
+
+.search input{
+  background-color: transparent;
+  border-top:0px;
+  border-left:0px;
+  border-right:0px;
+  border-bottom: 3px solid white;
+  color:white;
 }

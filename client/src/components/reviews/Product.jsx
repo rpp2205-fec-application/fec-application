@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { calculateSize } from './helper-revs';
+import {IconContext} from 'react-icons';
+import { IoTriangle } from "react-icons/io5"
+const Product = (props) => {
+  const [chars, setChars] = useState(props.chars);
 
-class Product extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state={
+  return (
+    <div className="breakdown">
+      <div className="rat-size">
+        <div>Size</div>
+        <IconContext.Provider value={{className: "point-tria", style: {marginLeft: calculateSize(props.chars, "Fit", "Length") + '%'}}}>
+          <IoTriangle />
+        </IconContext.Provider>
 
-    }
-  }
+        <div className="pod-progress pod-long"></div>
+        <br/>
+        <div className="progress xs_font">
 
-  render() {
-    return (
-      <div className="breakdown">
-        <div className="rat-size">
-          <div>Size</div>
-          <div className="progress small_font">
-            <div>Too small</div>
-            <div>Perfect</div>
-            <div>Too large</div>
-          </div>
-        </div>
-        <div className="rat-comfort">
-          <div>Comfort</div>
-          <div className="progress small_font">
-            <div>poor</div>
-            <div>perfect</div>
-          </div>
+          <div style={{marginRight: "27px", marginLeft:"5px"}}>Too small</div>
+          <div style={{marginRight: "25px"}}>Perfect</div>
+          <div>Too large</div>
         </div>
       </div>
-    )
-  }
+      <div className="rat-comfort">
+        <div>Comfort</div>
+        <IconContext.Provider value={{className: "point-tria", style: {marginLeft: calculateSize(props.chars, "Comfort", "Quality") + '%'}}}>
+          <IoTriangle />
+        </IconContext.Provider>
+        <div className="pod-progress pod-short"></div><br/>
+        <div className="progress xs_font">
+          <div style={{marginRight: "120px", marginLeft:"5px"}}>poor</div>
+          <div>perfect</div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Product;

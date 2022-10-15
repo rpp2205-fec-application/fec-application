@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SingleCard from './SingleCard.jsx';
-import Slider from './Slider.jsx';
+import SingleCard from './RelatedItemCard.jsx';
+import RelatedItemSlider from './RelatedItemSlider.jsx';
 import axios from 'axios';
 
 class RelatedItems extends React.Component {
@@ -31,7 +31,7 @@ class RelatedItems extends React.Component {
       <div className='widget'>
         <h4>Related Products</h4>
         <button onClick={this.selectProduct.bind(this)}>Test switch product</button>
-        <Slider products={this.state.items} />
+        <RelatedItemSlider products={this.state.items} />
         </div>
         
     )

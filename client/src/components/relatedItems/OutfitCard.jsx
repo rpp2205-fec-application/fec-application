@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React from 'react';
-import {MdOutlineStarOutline} from 'react-icons/md';
+import {MdClear} from 'react-icons/md';
 import './singleCard.scss';
 import Star from '../Star/Star.jsx';
-import Modal from './Modal.jsx';
 import {calculateRating, roundNearQtr} from '../../helpers.js';
 
-class SingleCard extends React.Component {
+class OutfitCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -15,10 +14,7 @@ class SingleCard extends React.Component {
       reviewsMeta: [],
       rating: 0,
       photo:'',
-      show: false
     }
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
   }
 
   componentDidMount() {
@@ -57,14 +53,9 @@ class SingleCard extends React.Component {
           })
       }
 
-      showModal = () => {
-        this.setState({show: true});
-      }
-
-      hideModal = () => {
-        this.setState({show: false});
-      }
-
+  delete() {
+    
+  }
 
 
 
@@ -74,8 +65,7 @@ class SingleCard extends React.Component {
             <a>
             <img className='card-image' src={this.state.photo} />
             </a>
-            <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
-            <Modal show={this.state.show} hideModal={this.hideModal}/>
+            <MdClear className='clear-icon' onClick={this.showModal}/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>
@@ -90,4 +80,4 @@ class SingleCard extends React.Component {
 
 }
 
-export default SingleCard;
+export default OutfitCard;

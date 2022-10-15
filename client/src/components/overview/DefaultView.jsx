@@ -28,8 +28,8 @@ class DefaultView extends React.Component {
         <HiArrowNarrowLeft className={this.props.selectedPhotoIndex !== 0 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.previous.bind(this)} />
         {/* <FontAwesomeIcon icon={faArrowLeft} className={this.props.selectedPhotoIndex !== 0 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.previous.bind(this)} /> */}
         {currentPhoto !== null
-          ? <div className='big-picture'style={{backgroundImage:`url(${currentPhoto})`}} ></div>
-          : <div className='big-picture no-thumbnail' ></div>
+          ? <div className='big-picture'style={{backgroundImage:`url(${currentPhoto})`}} onClick={this.props.toggleExpandedView} ></div>
+          : <div className='big-picture no-thumbnail' onClick={this.props.toggleExpandedView} ></div>
         }
         <HiArrowNarrowRight className={this.props.selectedPhotoIndex !== this.props.photos.length - 1 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.next.bind(this)} />
         {/* <FontAwesomeIcon icon={faArrowRight} className={this.props.selectedPhotoIndex !== this.props.photos.length - 1 ? 'arrow-icon' : 'arrow-icon hidden'} onClick={this.next.bind(this)} /> */}

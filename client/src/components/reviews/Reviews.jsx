@@ -1,89 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./reviews.scss";
 import ReviewsList from './ReviewsList.jsx';
 import Rating from './Rating.jsx';
 import Product from './Product.jsx';
+import {reviewsSort}from './helper-revs.js';
 
 const Reviews = (props) => {
-
+  const [newList, setList] = useState([]);
+  const initToggle = {5: false, 4: false, 3: false, 2: false, 1: false};
+  const [toggle, setToggle] = useState(initToggle);
+  // let newRev = [];
+  const handleStarClick = (reviews, num) => {
+    if (toggle[num] === false) {
+      let newRev = newList.concat(reviewsSort(reviews, num))
+        setList(newRev);
+    } else if (toggle[num]===true){
+      let deleteRev = newList.filter((item) => {
+        if (item.rating !== parseInt(num)) {
+          return item;
+        }
+      });
+      setList(deleteRev);
+    }
+    setToggle({...toggle, [num]:!toggle[num]});
+  }
+  const clearFilter =  () => {
+    setToggle(initToggle);
+    setList([]);
+  }
   return  (
     <div ref={props.scrollToReviews} className="widget">
       <p id="title">RATINGS &#38; REVIEWS</p>
       <div className="revs">
         <div className="revs-rating">
-          {/* <Rating rating={this.props.rating} reviews={this.state.reviews} reviewsMeta={this.props.reviewsMeta}/> */}
-          <Rating rating={props.rating} reviewsMeta={props.reviewsMeta}/>
-          <Product reviewsMeta={props.reviewsMeta}/>
+          <Rating rating={props.rating} reviews={props.reviews} reviewsMeta={props.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
+          <Product chars={props.reviewsMeta.characteristics}/>
         </div>
-       <ReviewsList reviews={props.reviews} getReviews={props.getReviews} id={props.product.id} handleClick={props.handleClick}/>
-      </div>
+        <ReviewsList reviews={props.reviews} newList={newList} getReviews={props.getReviews} id={props.product.id} handleClick={props.handleClick} />
 
+      </div>
     </div>
   )
 
 }
 
-
-
-// class Reviews extends React.Component {
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       product: {},
-//       reviews: [],
-//     }
-//   }
-
-
-//   componentDidMount() {
-//     // axios.get(`/reviews/${this.props.product.id}`)
-//     //   .then((res) => {
-//     //     console.log('Reviews: ', res.data.results)
-//     //     this.setState({
-//     //       reviews: res.data.results
-//     //     });
-//     //   })
-//     this.getReviews(this.props.product.id, 'relevant');
-//   }
-//   componentDidUpdate(prev, state) {
-//     if (prev.product.id !== this.state.product.id) {
-//       // console.log('prev: ', prev.product.id);
-//       // console.log('state: ', this.state.product.id);
-//       this.componentDidMount();
-//     }
-//   }
-//   // getReviews(id, sort) {
-//   //   axios.post(`/reviews/${id}`, {sort})
-//   //   .then((res) => {
-//   //     // console.log('Reviews: ', res.data.results)
-//   //     this.setState({
-//   //       product: this.props.product,
-//   //       reviews: res.data.results
-//   //     });
-//   //   })
-
-//   // }
-
-//   render() {
-//     return  (
-//       <div ref={this.props.scrollToReviews} className="widget">
-//         <hr/>
-//         <h2>Below is RATINGS &#38; REVIEWS</h2>
-//         <p id="title">RATINGS &#38; REVIEWS</p>
-//         <div className="revs">
-//           <div className="revs-rating">
-//             {/* <Rating rating={this.props.rating} reviews={this.state.reviews} reviewsMeta={this.props.reviewsMeta}/> */}
-//             <Rating rating={this.props.rating} reviewsMeta={this.props.reviewsMeta}/>
-//             <Product reviewsMeta={this.props.reviewsMeta}/>
-//           </div>
-
-//          <ReviewsList reviews={this.state.reviews} id={this.props.product.id} getReviews={this.getReviews.bind(this)}/>
-//         </div>
-
-//       </div>
-//     )
-//   }
-// }
 
 export default Reviews;

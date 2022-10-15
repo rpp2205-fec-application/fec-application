@@ -12,8 +12,9 @@ const AddReview = (props) => {
     photos: [],
     characteristics: {}
   })
+
   const [uploadShow, setUploadShow] = useState(false);
-  const showOrHide = props.show ? "modal display-block" : "modal display-none";
+  const showOrHide = props.show ? "modal trans-bg display-block" : "modal trans-bg display-none";
   const handleUpload = () => {
     setUploadShow(!uploadShow);
   }
@@ -29,7 +30,7 @@ const AddReview = (props) => {
 
   return (
     <div className={showOrHide}>
-      <div className="modal_content">
+      <div className="rev-modal_content">
         <span className="close" onClick={props.handleClick}>
           &times;
         </span>
@@ -39,7 +40,7 @@ const AddReview = (props) => {
         <div>
           <label>show rating star</label>
         </div>
-        <div>Recommond?
+        <div>Recommend?
           <label><input type="radio" value="yes" onChange={(e) => {handleRadio(e)}} checked={newRev.recommend} />Yes</label>
           <label><input type="radio" value="no" onChange={(e) => {handleRadio(e)}} checked={!newRev.recommend} />No</label>
         </div>
