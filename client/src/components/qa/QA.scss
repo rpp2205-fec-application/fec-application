@@ -9,19 +9,35 @@
 
 .searchBar {
   width: 100%;
-  height: 65px;
-  border-width: 1px;
-  padding-left: 20px
+  height: 50px;
+  padding-left: 20px;
+  border-color: transparent;
+  margin: auto;
+  font-size: larger;
+  color: #393838;
+}
+.searchBar:focus {
+  outline: none;
+}
+.searchBar::-webkit-search-cancel-button {
+  display: none;
+}
+.mag {
+  margin: auto;
 }
 
 ::placeholder {
   color: #393838;
   font-weight: bold;
-  font-size: larger;
+  font-size: medium;
 }
 
 .searchSection {
-  height: 80px;
+  display: grid;
+  grid-template-columns: 95% auto;
+  height: 60px;
+  border: 2px solid #393838;
+  margin-bottom: 20px;
 }
 
 .question-section {
