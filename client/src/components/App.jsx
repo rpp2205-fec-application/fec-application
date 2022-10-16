@@ -32,7 +32,6 @@ class App extends React.Component {
       return this.getReviewsMeta();
     })
     .then(() => {
-      console.log('[[YYYY reviesMeta: ', this.state.reviewsMeta)
       this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
     })
   }
@@ -89,7 +88,6 @@ class App extends React.Component {
   }
 
   addReview(review) {
-    console.log('review in addReview app: ', review);
     review.recommend = review.recommend === "yes";
     return axios.post('/addReview', {review});
   }
