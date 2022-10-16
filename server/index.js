@@ -9,35 +9,47 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 const headers = {headers: {authorization: process.env.TOKEN, "Content-Type": "application/json"}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
+
 // Routes //
 
-// products
+// get all products
 app.get('/products', async (req, res) => {
   let url = `${root}/products?count=20`;
   const products = await axios.get(url, headers);
   res.status(200).json(products.data);
 })
 
-// product
+// get product by id
 app.get('/products/:product_id', (req, res) => {
-  let url = `http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${req.params.product_id}`;
+  let url = `${root}/products/${req.params.product_id}`;
   return axios.get(url, headers)
           .then(result => {
             res.status(200).json(result.data)})
 });
 
-// product styles
+// get product styles
 app.get('/products/:product_id/styles', async (req, res) => {
   let url = `${root}/products/${req.params.product_id}/styles`;
   const styles = await axios.get(url, headers);
   res.status(200).json(styles.data);
 })
 
-// product questions
+// get product questions
 app.get('/qa/questions/:product_id', async (req, res) => {
   let url = `${root}/qa/questions/?product_id=${req.params.product_id}`;
   const questions = await axios.get(url, headers)
   res.status(200).json(questions.data);
+})
+
+// post a new question
+app.post('/qa/questions', (req, res) => {
+  let url = `${root}/qa/questions`;
+  axios.post(url, req.body, headers)
+  .then((response) => {
+    console.log('Success Creating Question');
+    res.status(201).json(response.data)
+  })
+  .catch((err) => { console.error(err) })
 })
 
 // product reviews
@@ -49,7 +61,6 @@ app.post('/reviews/:product_id', (req, res) => {
       res.status(200).json(results.data);
     })
 })
-
 
 // update review helpful & report
 app.put('/reviews/:review_id/helpful', (req, res) => {
@@ -70,7 +81,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 // add product reviews
 app.post('/addReview', (req, res) => {
   let url = `${root}/reviews`;
-  const {review} = req.body
+  const {review} = req.body;
   console.log('new Review in server: ', review);
   //let newObj = {};
   for (let key in review.characteristics) {

@@ -28,8 +28,13 @@ class QA extends React.Component {
     return (
       axios.get(`/qa/questions/${this.props.product.id}`)
       .then((response) => {
+        let qs = response.data.results;
+        qs.sort((q1, q2) => q1.question_helpfulness < q2.question_helpfulness? 1: q1.question_helpfulness > q2.question_helpfulness? -1 : 0)
         console.log('Questions: ', response.data.results);
-        this.setState({allQuestions: response.data.results})
+        this.setState({allQuestions: qs})
+      })
+      .catch(err => {
+        console.error(err);
       })
     )
   }
@@ -47,7 +52,13 @@ class QA extends React.Component {
   }
 
   handleCollapse () {
-    this.setState({ shownQuestions: this.state.allQuestions.slice(0, 2), loadMore: true});
+    this.setState({ shownQuestions: this.state.allQuestions.slice(0, 2), loadMore: true, collapse: false});
+  }
+
+  handleAddQuestion (questionData) {
+    axios.post(`/qa/questions`, questionData)
+    .then(response => { console.log('Success posting new question: ', questionData, 'response: ', response) })
+    .catch(err => { console.error(err) })
   }
 
   render() {
@@ -56,7 +67,7 @@ class QA extends React.Component {
         <h2 className="title"> QUESTIONS & ANSWERS </h2>
         <QuestionBar questions={this.state.questions}/>
         <QAList questions={this.state.shownQuestions}/>
-        <Add loadMore={this.state.loadMore} collapse={this.state.loadMore} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
+        <Add product={this.props.product} handleAddQuestion={this.handleAddQuestion.bind(this)} loadMore={this.state.loadMore} collapse={this.state.collapse} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
       </div>
     )
   }
