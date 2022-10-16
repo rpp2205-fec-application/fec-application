@@ -108,14 +108,14 @@ class App extends React.Component {
       return (
         <div>
           <div className="header">
-            <div className="header-content">
-              <a className="logo">Logo</a>
+            {/* <div className="header-content">
+
+            </div> */}
+            <a className="logo">Logo</a>
               <a className="search">
                 <input type="text" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
               </a>
-            </div>
-
           </div>
           <div className='container'>
             <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics}/>

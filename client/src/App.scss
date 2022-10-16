@@ -31,18 +31,20 @@ body {
 
 .header{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: gray;
+  padding: 0 5%;
+  width: 100%;
   // margin: 0 50px;
   height: 60px;
 }
-.header-content{
-  position: absolute;
-  width: 80%;
-  margin-top: 25px;
-  margin-left: 60px;
-}
+// .header-content{
+//   // position: absolute;
+//   width: 80%;
+//   margin-top: 25px;
+//   margin-left: 60px;
+// }
 
 .logo{
   color:white;
@@ -54,9 +56,10 @@ body {
 }
 
 .search{
-  position: absolute;
-  display: inline;
-  margin-left:80%;
+  // position: absolute;
+  display: flex;
+  flex-wrap: nowrap;
+  // margin-left:80%;
 }
 
 .search input{
