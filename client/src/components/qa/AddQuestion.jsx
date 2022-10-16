@@ -38,11 +38,11 @@ import './modal.scss';
         </span>
         <div className="title"> Ask Your Question </div>
         <div className="subTitle"> About the {props.product.name} </div>
-        <div> Your Question <input type="text" placeholder="your question here" onChange={questionChange}/> </div>
-        <div> Nick Name <input type="text" placeholder="Example: jackson11!" onChange={nameChange}/> </div>
-        <div> For privacy reasons, do not use your full name or email address </div>
-        <div> Your Email <input type="email" placeholder="xxx@gmail.com" onChange={emailChange}/> </div>
-        <div> For authentication reasons, you will not be emailed </div>
+        <div className="add-q-entry add-entry"> Your Question <input className="modal-entry" type="text" placeholder="your question here" onChange={questionChange}/> </div>
+        <div className="add-q-entry add-entry"> Nick Name <input className="modal-entry" type="text" placeholder="Example: jackson11!" onChange={nameChange}/> </div>
+        <div className="add-q-entry"> For privacy reasons, do not use your full name or email address </div>
+        <div className="add-q-entry add-entry"> Your Email <input className="modal-entry" type="email" placeholder="xxx@gmail.com" onChange={emailChange}/> </div>
+        <div className="add-q-entry"> For authentication reasons, you will not be emailed </div>
         <input className="btn" type="submit" value="Submit" onClick={submit}/>
       </div>
     </div>
