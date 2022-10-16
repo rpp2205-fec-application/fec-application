@@ -18,10 +18,13 @@ const AddReview = (props) => {
 
   const [uploadShow, setUploadShow] = useState(false);
   const showOrHide = props.show ? "modal trans-bg display-block" : "modal trans-bg display-none";
-  const handleUpload = (e) => {
-    e.preventDefault();
+  const toggleUpload= () => {
     setUploadShow(!uploadShow);
   }
+  const handleUpload = (files =>{
+    console.log('<<<<<files pending!: ', files);
+    setRev({...newRev, photos: files});
+  })
   const getRating = (newRating) => {
     setRev({...newRev, rating: newRating});
   }
@@ -38,15 +41,13 @@ const AddReview = (props) => {
       setMap({map: factorMap.map});
     }
     let property = factorMap.map[newFactor.name];
-    console.log('~~after Map: ', factorMap.map);
-    console.log('preperty: ', property);
-    console.log('newFactor value: ', newFactor.value);
     setFactors({...newFactors, [property]: newFactor.value})
   }
 
   useEffect(() => {
     setRev({...newRev, characteristics: newFactors});
   }, [newFactors])
+
   const handleSubmit = (newReview)=> {
     console.log("handle submit: ", newReview);
     let stopSubmit = false;
@@ -77,7 +78,7 @@ const AddReview = (props) => {
       });
     }
   }
-
+  console.log('New review in prosessing: ', newRev);
   return (
     <div className={showOrHide}>
       <div className="rev-modal_content">
@@ -122,8 +123,11 @@ const AddReview = (props) => {
             </label>
           </div>
           <div>
-            <UploadPics show={uploadShow} handleClicked={handleUpload}/>
-            <button onClick={handleUpload}>Upload your photos</button>
+            <UploadPics show={uploadShow} toggleUpload={toggleUpload} handleUpload={handleUpload} />
+            <button onClick={(e) => {
+              e.preventDefault();
+              setUploadShow(!uploadShow);
+              }}>Upload your photos</button>
           </div>
           <div>
             <label>Nick Name:  <input type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} /></label>

@@ -32,7 +32,6 @@ class App extends React.Component {
       return this.getReviewsMeta();
     })
     .then(() => {
-      console.log('[[YYYY reviesMeta: ', this.state.reviewsMeta)
       this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
     })
   }
@@ -89,7 +88,6 @@ class App extends React.Component {
   }
 
   addReview(review) {
-    console.log('review in addReview app: ', review);
     review.recommend = review.recommend === "yes";
     return axios.post('/addReview', {review});
   }
@@ -110,14 +108,14 @@ class App extends React.Component {
       return (
         <div>
           <div className="header">
-            <div className="header-content">
-              <a className="logo">Logo</a>
+            {/* <div className="header-content">
+
+            </div> */}
+            <a className="logo">Logo</a>
               <a className="search">
                 <input type="text" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
               </a>
-            </div>
-
           </div>
           <div className='container'>
             <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics}/>
