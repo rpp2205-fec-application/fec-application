@@ -45,7 +45,7 @@ const ReviewsList = (props) => {
         <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
-          props.getReviews(e.target.value);
+          props.getReviews({count: props.length, sort: e.target.value});
           }}>
           <option value="relevance">relevance</option>
           <option value="newest">newest</option>

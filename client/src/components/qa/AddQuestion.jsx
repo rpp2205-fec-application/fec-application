@@ -26,7 +26,6 @@ import './modal.scss';
   }
 
   const submit = () => {
-    console.log('hello:', props.product);
     props.closeModal();
     props.handleAddQuestion({ body, name, email, product_id: props.product.id });
   }

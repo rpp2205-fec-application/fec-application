@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-const headers = {headers: {authorization: process.env.TOKEN}};
+const headers = {headers: {authorization: process.env.TOKEN, "Content-Type": "application/json"}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
 
 // Routes //
@@ -42,32 +42,35 @@ app.get('/qa/questions/:product_id', async (req, res) => {
 })
 
 // post a new question
-app.post('/qa/questions', async (req, res) => {
+app.post('/qa/questions', (req, res) => {
   let url = `${root}/qa/questions`;
-  console.log('THIS HEREEEEEEEEE, ', req.body);
-  const response = await axios.post(url, req.body, headers);
-  console.log(response);
+  axios.post(url, req.body, headers)
+  .then((response) => {
+    console.log('Success Creating Question');
+    res.status(201).json(response.data)
+  })
+  .catch((err) => { console.error(err) })
 })
 
 // product reviews
 app.post('/reviews/:product_id', (req, res) => {
-  let sort = req.body;
-  let url = `${root}/reviews/?product_id=${req.params.product_id}&count=20&sort=${req.body.sort}`;
+  console.log('reviews sort and count: ', req.body);
+  let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=${req.body.count}`;
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);
     })
 })
 
-// update review helpful
-app.put('/review/:review_id/helpful', (req, res) => {
+// update review helpful & report
+app.put('/reviews/:review_id/helpful', (req, res) => {
   let url = `${root}/reviews/${req.params.review_id}/helpful`;
   return axios.put(url,{}, headers)
    .then(() => {
     res.status(200).json('just updated helpful');
    })
 })
-app.put('/review/:review_id/report', (req, res) => {
+app.put('/reviews/:review_id/report', (req, res) => {
   let url =`${root}/reviews/${req.params.review_id}/report`;
   return axios.put(url, {}, headers)
     .then(() => {
@@ -76,10 +79,17 @@ app.put('/review/:review_id/report', (req, res) => {
 })
 
 // add product reviews
-app.post('/review/:product_id', (req, res) => {
-  let url = `${root}/reviews/?product_id=${req.params.product_id}`;
-  const newRev = req.body;
-  return axios.post(url, headers, newRev)
+app.post('/addReview', (req, res) => {
+  let url = `${root}/reviews`;
+  const {review} = req.body;
+  console.log('new Review in server: ', review);
+  //let newObj = {};
+  for (let key in review.characteristics) {
+    review.characteristics[key] = parseInt(review.characteristics[key]);
+  }
+  //reviews.characteristics =newObj;
+  console.log("after: ", review);
+  return axios.post(url, req.body.review, headers)
     .then(() => {
       res.status(201).json('added!');
     })

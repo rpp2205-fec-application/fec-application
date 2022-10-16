@@ -30,6 +30,9 @@
   cursor: pointer;
 }
 
+.bold-text {
+  font-weight: bold;
+}
 //------------------> ReviewsList<-------------------------
 .revs-right {
   width:65%;
@@ -115,6 +118,7 @@ ul {
 
 .review {
   margin-top:15px;
+  word-wrap: break-word;
 }
 .rev-header{
   display: inline;
@@ -261,7 +265,7 @@ select {
   color: cyan;
   cursor:pointer;
 }
-.title {
+.rev-title {
   text-align: center;
   font-size: 30px;
   font-family: 'Poppins', sans-serif;
@@ -269,17 +273,60 @@ select {
   color: black;
 }
 
-.subTitle {
+.rev-subTitle {
   text-align: center;
   font-size: 18px;
   font-family:  'Lato', sans-serif;
   font-weight: 400;
 }
 
+.center-btn {
+  background-color: white;
+  font-family: Arial;
+  color: #000000;
+  font-size: 15px;
+  padding: 11px 30px 10px 30px;
+  border: solid #000000 1px;
+  margin: 2% 0% 2% 45%;
+  cursor: pointer;
+}
 form{
   padding: 10px 30px 10px 30px;
 }
 
 form div{
-  margin: 20px;
+  margin: 5px;
 }
+
+.factor{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-sum{
+  width: 70%;
+  height: fit-content;
+}
+.input-body{
+  width: 70%;
+  min-height: 80px;
+  max-height: fit-content;
+}
+//-----------------> StarRating <----------------
+.invisi-btn {
+  background-color: transparent;
+  border:none;
+  outline:none;
+  cursor: pointer;
+}
+
+.on {
+  color: gold;
+}
+
+.off {
+  color:lightgray;
+}
+//------------> prudctFactor <--------------
+

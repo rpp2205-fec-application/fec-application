@@ -57,12 +57,8 @@ class QA extends React.Component {
 
   handleAddQuestion (questionData) {
     axios.post(`/qa/questions`, questionData)
-    .then(response => {
-      conosole.log('Success posting new question: ', questionData, 'response: ', response);
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    .then(response => { console.log('Success posting new question: ', questionData, 'response: ', response) })
+    .catch(err => { console.error(err) })
   }
 
   render() {
