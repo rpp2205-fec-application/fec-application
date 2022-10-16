@@ -26,7 +26,7 @@ class NormalZoom extends React.Component {
         <HiArrowNarrowLeft className={this.props.selectedPhotoIndex !== 0 ? 'arrow-icon-white' : 'arrow-icon-white hidden'} onClick={this.previous.bind(this)} />
         {currentPhoto !== null
           ? <div className='big-picture plus-cursor'style={{backgroundImage:`url(${currentPhoto})`}} onClick={this.props.toggleZoom} ></div>
-          : <div className='big-picture plus-cursor no-thumbnail' onClick={this.props.toggleZoom} ></div>
+          : <div className='big-picture plus-cursor no-thumbnail' ></div>
         }
         <HiArrowNarrowRight className={this.props.selectedPhotoIndex !== this.props.photos.length - 1 ? 'arrow-icon-white' : 'arrow-icon-white hidden'} onClick={this.next.bind(this)} />
       </div>
