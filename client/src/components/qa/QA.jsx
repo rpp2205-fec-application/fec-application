@@ -64,7 +64,7 @@ class QA extends React.Component {
   render() {
     return (
       <div className="widget">
-        <h2 className="title"> QUESTIONS & ANSWERS </h2>
+        <div className="title-qa"> QUESTIONS & ANSWERS </div>
         <QuestionBar questions={this.state.questions}/>
         <QAList questions={this.state.shownQuestions}/>
         <Add product={this.props.product} handleAddQuestion={this.handleAddQuestion.bind(this)} loadMore={this.state.loadMore} collapse={this.state.collapse} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
