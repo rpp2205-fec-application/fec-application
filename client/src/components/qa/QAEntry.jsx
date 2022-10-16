@@ -22,6 +22,9 @@ class QAEntry extends React.Component {
     for (let key in this.props.qa.answers) {
       ans.push(this.props.qa.answers[key])
     }
+    ans.sort((a1, a2) => a1.helpfulness < a2.helpfulness ? 1 : a1.helpfulness > a2.helpfulness ? -1 : 0 )
+    ans.sort((a1, a2) => a1.answerer_name !== "Seller" && a2.answerer_name === "Seller" ? 1 : a1.answerer_name === "Seller" && a2.answerer_name !== "Seller" ? -1 : 0 )
+
     let i = -1;
     ans = ans.map(a => {
       i++;
