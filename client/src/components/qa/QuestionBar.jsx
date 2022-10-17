@@ -4,13 +4,10 @@ import { FaSistrix } from "react-icons/fa";
 class QuestionBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: ""
-    }
   }
 
   handleChange (e) {
-    this.setState({ query: e.target.value });
+    this.props.filterQuestions(e.target.value)
   }
 
   render() {

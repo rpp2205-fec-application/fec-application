@@ -61,11 +61,19 @@ class QA extends React.Component {
     .catch(err => { console.error(err) })
   }
 
+  filterQuestions (query) {
+    if (query.length <= 3) {
+      this.setState({
+        shownQuestions: this.state.allQuestions.filter(q => q.question_body.startsWith(query))
+      })
+    }
+  }
+
   render() {
     return (
       <div className="widget">
         <div className="title-qa"> QUESTIONS & ANSWERS </div>
-        <QuestionBar questions={this.state.questions}/>
+        <QuestionBar questions={this.state.questions} filterQuestions={this.filterQuestions.bind(this)}/>
         <QAList questions={this.state.shownQuestions}/>
         <Add product={this.props.product} handleAddQuestion={this.handleAddQuestion.bind(this)} loadMore={this.state.loadMore} collapse={this.state.collapse} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
       </div>
