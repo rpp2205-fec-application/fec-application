@@ -9,6 +9,7 @@ class StyleCircle extends React.Component {
   }
 
   select() {
+    this.props.selectSizeMessageOff();
     this.props.selectStyle(this.props.style);
     this.props.changeStyle(
       {

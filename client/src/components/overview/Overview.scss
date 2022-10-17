@@ -75,13 +75,44 @@ p {
   font-weight: 600;
 }
 
-.hidden {
-  visibility: hidden;
-}
-
 .subheading {
   color: rgb(107, 108, 109);
 }
+
+.error-message {
+  font-size: 14px;
+  color: red;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+
+// ========================================================================================
+// Cursors ================================================================================
+// ========================================================================================
+
+.plus-cursor {
+  cursor: url('./cursors/plus.cur'),pointer;
+}
+
+.minus-cursor {
+  cursor: url('./cursors/minus.cur'),pointer;
+}
+
+.magnify-cursor {
+  cursor: zoom-in;
+}
+
+.pointer-cursor {
+  cursor: pointer;
+}
+
 
 
 
@@ -156,9 +187,7 @@ p {
   cursor: pointer;
 }
 
-.magnify-cursor {
-  cursor: zoom-in;
-}
+
 
 
 
@@ -235,14 +264,6 @@ p {
   color: #ffffff;
 }
 
-.plus-cursor {
-  cursor: url('./cursors/plus.cur'),pointer;
-}
-
-.minus-cursor {
-  cursor: url('./cursors/minus.cur'),pointer;
-}
-
 .max-zoom-container {
   position: relative;
   overflow: hidden;
@@ -280,7 +301,6 @@ p {
   justify-content: center;
   align-items: flex-start;
   gap: 30px;
-  height: 600px;
 }
 
 .price-style {

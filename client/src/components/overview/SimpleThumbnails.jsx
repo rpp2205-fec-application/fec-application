@@ -60,13 +60,13 @@ class SimpleThumbnails extends React.Component {
     }
     return (
       <div className='simple-thumbnails-flex'>
-        <FaChevronUp className={(this.state.currentIndex !== 0 && this.props.thumbnails.length > 7) ? 'chevron-icon-white' : 'chevron-icon-white hidden'} onClick={this.previous.bind(this)} />
-        {/* <FontAwesomeIcon icon={faChevronUp} className={(this.state.currentIndex !== 0 && this.props.thumbnails.length > 7) ? 'chevron-icon' : 'chevron-icon hidden'} onClick={this.previous.bind(this)} /> */}
+        <FaChevronUp className={(this.state.currentIndex !== 0 && this.props.thumbnails.length > 7) ? 'chevron-icon-white' : 'chevron-icon-white invisible'} onClick={this.previous.bind(this)} />
+        {/* <FontAwesomeIcon icon={faChevronUp} className={(this.state.currentIndex !== 0 && this.props.thumbnails.length > 7) ? 'chevron-icon' : 'chevron-icon invisible'} onClick={this.previous.bind(this)} /> */}
         {visibleThumbnails.map((thumbnail, index) => (
           <div key={index} data-key={thumbnail[0]} className={this.props.selectedPhotoIndex !== thumbnail[0] ? 'simple-thumbnail' : 'selected-simple-thumbnail'} onClick={this.thumbnailClick.bind(this)} ></div>
         ))}
-        <FaChevronDown className={(this.state.currentIndex + 7 < this.props.thumbnails.length) ? 'chevron-icon-white' : 'chevron-icon-white hidden'} onClick={this.next.bind(this)} />
-        {/* <FontAwesomeIcon icon={faChevronDown} className={(this.state.currentIndex + 7 < this.props.thumbnails.length) ? 'chevron-icon' : 'chevron-icon hidden'} onClick={this.next.bind(this)} /> */}
+        <FaChevronDown className={(this.state.currentIndex + 7 < this.props.thumbnails.length) ? 'chevron-icon-white' : 'chevron-icon-white invisible'} onClick={this.next.bind(this)} />
+        {/* <FontAwesomeIcon icon={faChevronDown} className={(this.state.currentIndex + 7 < this.props.thumbnails.length) ? 'chevron-icon' : 'chevron-icon invisible'} onClick={this.next.bind(this)} /> */}
       </div>
     )
   }

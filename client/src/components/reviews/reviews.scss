@@ -227,6 +227,7 @@ select {
 //-----------------> AddReview <------------------
 .trans-bg {
   background-color: rgba(0, 0, 0, 0.85);
+  z-index: 6000;
 }
 
 .rev-modal_content{
@@ -322,11 +323,11 @@ form div{
 }
 
 .on {
-  color: gold;
+  color: rgb(233, 184, 23);
 }
 
 .off {
-  color:lightgray;
+  color:rgb(138, 136, 132);
 }
 //------------> prudctFactor <--------------
 

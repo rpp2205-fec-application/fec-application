@@ -23,6 +23,7 @@ class App extends React.Component {
       addReview: false,
       keyword:'',
     }
+    this.topRef = React.createRef();
     this.reviewsRef = React.createRef();
   }
 
@@ -41,7 +42,7 @@ class App extends React.Component {
       .then(res => {
         return this.setState({
           products: res.data,
-          product: res.data[1]
+          product: res.data[0]
 
         }, () => {
           console.log('Products: ', this.state.products)
@@ -96,9 +97,19 @@ class App extends React.Component {
     window.scrollTo(0, this.reviewsRef.current.offsetTop);
   }
 
+  handleScrollToTop(event) {
+    window.scrollTo(0, this.topRef.current.offsetTop);
+  }
+
   handleSearchChange(e){
     this.setState({
       keyword: e.target.value
+    })
+  }
+
+  backToDefaultProduct() {
+    this.setState({
+      product: this.state.products[0]
     })
   }
 
@@ -107,11 +118,11 @@ class App extends React.Component {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
       return (
         <div>
-          <div className="header">
+          <div className="header" ref={this.topRef}>
             {/* <div className="header-content">
 
             </div> */}
-            <a className="logo">Logo</a>
+            <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>Logo</a>
               <a className="search">
                 <input type="text" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
@@ -120,7 +131,7 @@ class App extends React.Component {
           <div className='container'>
             <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics}/>
             <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} />
-            <RelatedItems product={this.state.product} product2={this.state.products[4]} selectProduct={this.selectProduct.bind(this)}/>
+            <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} />
             <Outfit product={this.state.product}/>
             <QA product={this.state.product}/>
             <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
