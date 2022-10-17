@@ -30,10 +30,9 @@ class RelatedItems extends React.Component {
     return (
       <div className='widget'>
         <h4>Related Products</h4>
-        <button onClick={this.selectProduct.bind(this)}>Test switch product</button>
-        <RelatedItemSlider products={this.state.items} />
+        <RelatedItemSlider products={this.state.items} selectProduct={this.props.selectProduct} handleScrollToTop={this.props.handleScrollToTop} />
         </div>
-        
+
     )
   }
 }
