@@ -21,14 +21,14 @@ class StylesSection extends React.Component {
     })
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.selectedStyle.style_id !== state.selectedStyleId && props.selectedStyle.name !== state.selectedStyleName) {
-      return {
-        selectedStyleId: props.selectedStyle.style_id,
-        selectedStyleName: props.selectedStyle.name
-      }
+  //Getting the new style list after the new product is passed to props
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.selectedStyle.style_id !== this.state.selectedStyleId && this.props.selectedStyle.name !== this.state.selectedStyleName) {
+      this.setState({
+        selectedStyleId: this.props.selectedStyle.style_id,
+        selectedStyleName: this.props.selectedStyle.name
+      })
     }
-    return null;
   }
 
   render() {
@@ -47,7 +47,8 @@ class StylesSection extends React.Component {
               style={style}
               selectStyle={this.props.selectStyle}
               changeStyle={this.changeStyle.bind(this)}
-              selected={this.state.selectedStyleId === style.style_id ? true : false} />
+              selected={this.state.selectedStyleId === style.style_id ? true : false}
+              selectSizeMessageOff={this.props.selectSizeMessageOff} />
           ))}
         </div>
       </div>

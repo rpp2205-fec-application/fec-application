@@ -43,9 +43,9 @@ class RelatedItemCard extends React.Component {
             photo: response.data.results[0].photos[0].thumbnail_url
           })
          }
-        
+
       })
-  
+
       axios.get(`/reviews/meta/${this.props.product}`)
           .then((res) => {
             console.log('Review Meta///: ', res.data)
@@ -65,26 +65,30 @@ class RelatedItemCard extends React.Component {
         this.setState({show: false});
       }
 
-
+      selectProduct() {
+        // When a product card is selected, update the product state in Overview.jsx, and scroll back to top
+        this.props.selectProduct(this.state.product);
+        this.props.handleScrollToTop();
+      }
 
 
   render() {
     return (
-        <div className="card" >
+        <div className="card pointer-cursor" >
             <a>
-            <img className='card-image' src={this.state.photo} />
+            <img className='card-image' src={this.state.photo} onClick={this.selectProduct.bind(this)} />
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
             <Modal show={this.state.show} hideModal={this.hideModal}/>
-            <div className='cardbody'>
+            <div className='cardbody' onClick={this.selectProduct.bind(this)}>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>
             <p className='price'>${this.state.product.default_price}</p>
             <Star rating={roundNearQtr(this.state.rating)} />
             </div>
-            
+
         </div>
-     
+
 
     )
   }

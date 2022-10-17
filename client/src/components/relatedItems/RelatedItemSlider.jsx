@@ -13,17 +13,17 @@ const RelatedItemSlider = (props) => {
     slider.scrollLeft +=  50;
   }
   return (
-   
+
     <div id="main-slider-container">
       <MdChevronLeft size={38} className="slider-icon-left" onClick={slideLeft} />
       <div id='slider'>
-      
+
         {props.products.map((item, index) => {
           return (
-                  <RelatedItemCard product={item} key={index}/>
+                  <RelatedItemCard product={item} key={index} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
               )
            })}
-        
+
       </div>
       <MdChevronRight size={38} className="slider-icon-right" onClick={slideRight} />
     </div>
