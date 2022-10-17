@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './modal.scss';
 
- const AddQuestion = (props) => {
+ const AddAnswer = (props) => {
 
   const [body, setQuestion] = useState('');
   const [name, setName] = useState('');
@@ -21,7 +21,7 @@ import './modal.scss';
 
   const submit = () => {
     props.closeModal();
-    props.handleAddQuestion({ body, name, email, product_id: props.product.id });
+    props.handleAddAnswer();
   }
 
   return (
@@ -30,9 +30,9 @@ import './modal.scss';
         <span className="close" onClick={props.closeModal}>
           &times;
         </span>
-        <div className="title"> Ask Your Question </div>
-        <div className="subTitle"> About the:  {props.product.name} </div>
-        <div className="add-q-entry add-entry"> Your Question <input className="modal-entry" type="text" placeholder="your question here" onChange={questionChange}/> </div>
+        <div className="title"> Submit Your Answer </div>
+        <div className="subTitle"> {props.product.name}: {props.question.question_body} </div>
+        <div className="add-q-entry add-entry"> Your Answer <input className="modal-entry" type="text" placeholder="your question here" onChange={questionChange}/> </div>
         <div className="add-q-entry add-entry"> Nick Name <input className="modal-entry" type="text" placeholder="Example: jackson11!" onChange={nameChange}/> </div>
         <div className="add-q-entry"> For privacy reasons, do not use your full name or email address </div>
         <div className="add-q-entry add-entry"> Your Email <input className="modal-entry" type="email" placeholder="xxx@gmail.com" onChange={emailChange}/> </div>
@@ -43,4 +43,4 @@ import './modal.scss';
   )
 };
 
-export default AddQuestion;
+export default AddAnswer;

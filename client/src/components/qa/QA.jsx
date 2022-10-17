@@ -62,10 +62,12 @@ class QA extends React.Component {
   }
 
   filterQuestions (query) {
-    if (query.length <= 3) {
+    if (query.length >= 3) {
       this.setState({
         shownQuestions: this.state.allQuestions.filter(q => q.question_body.startsWith(query))
       })
+    } else {
+      this.setQuestions();
     }
   }
 
@@ -74,7 +76,7 @@ class QA extends React.Component {
       <div className="widget">
         <div className="title-qa"> QUESTIONS & ANSWERS </div>
         <QuestionBar questions={this.state.questions} filterQuestions={this.filterQuestions.bind(this)}/>
-        <QAList questions={this.state.shownQuestions}/>
+        <QAList product={this.props.product} questions={this.state.shownQuestions}/>
         <Add product={this.props.product} handleAddQuestion={this.handleAddQuestion.bind(this)} loadMore={this.state.loadMore} collapse={this.state.collapse} handleMoreQuestions={this.handleMoreQuestions.bind(this)} handleCollapse={this.handleCollapse.bind(this)}/>
       </div>
     )
