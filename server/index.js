@@ -54,7 +54,7 @@ app.post('/qa/questions', (req, res) => {
 
 // product reviews
 app.post('/reviews/:product_id', (req, res) => {
-  console.log('reviews sort and count: ', req.body);
+  //console.log('reviews sort and count: ', req.body);
   let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=${req.body.count}`;
   return axios.get(url, headers)
     .then((results) => {

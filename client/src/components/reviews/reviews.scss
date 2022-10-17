@@ -37,6 +37,7 @@
 .revs-right {
   width:65%;
   padding-left: 20px;
+  overflow: hidden;
 }
 .revs {
   display: flex;
@@ -46,9 +47,17 @@
   width:35%;
 }
 
+.revs-list {
+  min-height: 200px;
+  max-height: 700px;
 
-
-
+}
+.display-scroll {
+  overflow-y: scroll;
+}
+display-no-scroll {
+  overflow-y:hide;
+}
 ul {
   list-style-type: none;
   padding: 0;

@@ -1,4 +1,4 @@
-import React, {useState, useEffact} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import ReviewEntry from './ReviewEntry.jsx';
 
 
@@ -23,6 +23,7 @@ const ReviewsList = (props) => {
         handleReviewsChange(props.reviews);
       }
     } else {
+
       if (reviews.origin !== props.newList) {
         handleReviewsChange(props.newList);
       }
@@ -39,7 +40,7 @@ const ReviewsList = (props) => {
     }
 
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
-
+    const scrollOrNot = reviews.renderList.length >= 4 ? "revs-list display-scroll" : "revs-list display-no-scroll";
     return (
       <div className="revs-right">
         <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
@@ -52,9 +53,13 @@ const ReviewsList = (props) => {
           <option value="helpful">helpful</option>
         </select>
         </div>
-        <ul className="revs-list">
-          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
-        </ul>
+        <div className = {scrollOrNot}>
+          <ul className="revs-list-main">
+            {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
+            <ScroolToBotton />
+          </ul>
+        </div>
+
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {
             if (reviews.copy.length >= 2) {
@@ -73,4 +78,9 @@ const ReviewsList = (props) => {
   }
 }
 
+const ScroolToBotton = () => {
+  const elementRef = useRef();
+  useEffect(() => elementRef.current.scrollIntoView());
+  return <div ref={elementRef} />
+}
 export default ReviewsList;

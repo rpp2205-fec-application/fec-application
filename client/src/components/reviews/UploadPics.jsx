@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
+import { imageToBinary } from './helper-revs.js';
 
 const UploadPics = (props) => {
   const showOrHideUpload = props.show ? "sub-modal display-block" : "sub-modal display-none";
 
   const [imageFiles, setImages] = useState([]);
+  const [urlFiles, setURL] = useState([]);
+  // useEffect(() => {
+  //   setURL(urlFiles.concat())
+  // }, [imageFIles])
   const handleDelete = (index)=>{
     if (imageFiles.length === 1) {
       setImages([]);
@@ -27,6 +32,7 @@ const UploadPics = (props) => {
         <div>Upload Your Pictures</div>
         {imageFiles.length < 5 &&
           <input type="file" name="myImage" onChange={(e) => {setImages(imageFiles.concat(URL.createObjectURL(e.target.files[0])))}} />
+          // <input type="file" name="myImage" onChange={(e) => {imageToBinary(e.target.files[0])}} />
         }
       </div>
       {!imageFiles.length ? null :
