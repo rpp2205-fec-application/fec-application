@@ -27,21 +27,28 @@ class OutfitCard extends React.Component {
       })
       axios.get(`/products/${this.props.product}/styles`)
       .then(response => {
-         console.log('styles///', response.data);
-         console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
-         if(response.data.results[0].photos[0].thumbnail_url === null) {
+        //  console.log('styles///', response.data);
+        //  console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
+         var selectedStyle = response.data.results[0];
+         for (var style of response.data.results) {
+            if (style['default?']) {
+              selectedStyle = style;
+              break;
+            }
+          }
+         if(selectedStyle.photos[0].thumbnail_url === null) {
           this.setState({
             photo: 'https://www.qiteplanguage.org/assets/img/noimage2.png'
           })
          } else {
           this.setState({
             productStyle: response.data,
-            photo: response.data.results[0].photos[0].thumbnail_url
+            photo: selectedStyle.photos[0].thumbnail_url
           })
          }
-        
+
       })
-  
+
       axios.get(`/reviews/meta/${this.props.product}`)
           .then((res) => {
             console.log('Review Meta///: ', res.data)
@@ -54,7 +61,7 @@ class OutfitCard extends React.Component {
       }
 
   delete() {
-    
+
   }
 
 
@@ -73,7 +80,7 @@ class OutfitCard extends React.Component {
             <Star rating={roundNearQtr(this.state.rating)} />
             </div>
         </div>
-     
+
 
     )
   }

@@ -26,7 +26,7 @@ class Overview extends React.Component {
       selectedSizeId: 'SELECT SIZE',
       quantityOfSelectedSize: 0,
       selectedQuantity: '-',
-      favorite: false,
+      favorite: this.props.outfit.includes(this.props.product.id),
       selectSizeMessage: false
     }
   }
@@ -76,6 +76,12 @@ class Overview extends React.Component {
   }
 
   toggleOutfit() {
+    const productId = this.props.product.id
+    if (this.props.outfit.includes(productId)) {
+      this.props.removeFromOutfit(productId)
+    } else {
+      this.props.addToOutfit(productId);
+    }
     this.setState(prevState => ({
       favorite: !prevState.favorite
     }))
@@ -120,6 +126,14 @@ class Overview extends React.Component {
     if (prevProps.product.id !== this.props.product.id) {
       this.selectSizeMessageOff();  //Turn off the select size message in case the message was on in previous product props
       this.getStyles();
+      this.setState({
+        favorite: this.props.outfit.includes(this.props.product.id),
+      })
+    }
+    if (JSON.stringify(prevProps.outfit) !==  JSON.stringify(this.props.outfit)) {
+      this.setState({
+        favorite: this.props.outfit.includes(this.props.product.id),
+      })
     }
   }
 
