@@ -29,15 +29,17 @@ const ReviewsList = (props) => {
       }
     }
     console.log('render list: ', reviews);
-        // console.log("render list: ", reviews.renderList);
+
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
+    const [clicked, setClicked] = useState(false);
     //console.log('id: ', props.id, id);
     if (id !== props.id) {
       console.log('different product');
       setSelect("relevance");
       setId(props.id);
+      setClicked(false);
     }
 
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
@@ -57,12 +59,13 @@ const ReviewsList = (props) => {
         <div className = {scrollOrNot}>
           <ul className="revs-list-main">
             {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
-            <ScroolToBotton />
+            {clicked && <ScroolToBotton />}
           </ul>
         </div>
 
         <div className="revs-footer">
           {isEnd ? null : <button onClick={() => {
+            setClicked(true);
             if (reviews.copy.length >= 2) {
               let add = reviews.copy.splice(0, 2)
               setReviews({...reviews, renderList: reviews.renderList.concat(add)});
