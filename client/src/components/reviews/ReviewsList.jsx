@@ -28,7 +28,8 @@ const ReviewsList = (props) => {
         handleReviewsChange(props.newList);
       }
     }
-    //console.log("render list: ", reviews.renderList);
+    console.log('render list: ', reviews);
+        // console.log("render list: ", reviews.renderList);
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
@@ -66,7 +67,7 @@ const ReviewsList = (props) => {
               let add = reviews.copy.splice(0, 2)
               setReviews({...reviews, renderList: reviews.renderList.concat(add)});
             } else if (reviews.copy.length === 1) {
-              setReviews({...reviews, renderList: reviews.renderList.concat(reviews.copy)});
+              setReviews({...reviews, renderList: reviews.renderList.concat(reviews.copy.splice(0,1))});
             } else if (!reviews.copy.length) {
               setIsEnd(true);
             }
