@@ -22,7 +22,7 @@ const AddReview = (props) => {
     setUploadShow(!uploadShow);
   }
   const handleUpload = (files =>{
-    console.log('<<<<<files pending!: ', files);
+    //console.log('<<<<<files pending!: ', files);
     setRev({...newRev, photos: files});
   })
   const getRating = (newRating) => {

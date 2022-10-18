@@ -23,11 +23,11 @@ export const findLast = (map) => {
 }
 
 
-export const convertReview = (longStr) => {
-  if (longtStr.length > 123) {
-    for(let i = 123; i < longStr.length; i+123) {
-      longStr.slice(0,i) + "/n" + longStr(i);
-    }
+export const imageToBinary = (inputFile) => {
+  let reader = new FileReader();
+  reader.onloaded = function() {
+    console.log("output: ", reader.result);
+
+    reader.readAsDataURL(inputFile);
   }
-  return longStr;
 }
