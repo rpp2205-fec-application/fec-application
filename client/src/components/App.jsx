@@ -110,6 +110,9 @@ class App extends React.Component {
   backToDefaultProduct() {
     this.setState({
       product: this.state.products[0]
+    }, async () => {
+      await this.getReviewsMeta();
+      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
     })
   }
 

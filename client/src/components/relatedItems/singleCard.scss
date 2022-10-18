@@ -11,8 +11,11 @@
   position: relative;
   margin-left: 50px;
   margin-right: 10px;
-  border-style: solid;
+  // border-style: solid;
+  border: 1px solid rgb(195, 197, 195);
+  border-radius: 10px;
 }
+
 .addCard{
   height: 320px;
   width: 250px;
@@ -44,11 +47,15 @@
   position: absolute;
   margin-top: 1px;
   margin-right: 2px;
-  top: 0px;
-  right: 0px;
+  top: 10px;
+  right: 10px;
   width: 24px;
   height: 24px;
   color: gray;
+}
+
+.star-icon:hover {
+  color: rgb(233, 184, 23)
 }
 
 .card-image{
@@ -56,10 +63,11 @@
   height: 220px;
   z-index: -1;
   object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 .cardbody{
   padding-left: 10px;
-  margin:0%
+  margin:0%;
 }
 .price{
   color:#bdbebe;
