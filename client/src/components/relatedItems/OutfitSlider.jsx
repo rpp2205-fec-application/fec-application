@@ -25,6 +25,10 @@ const OutfitSlider = (props) => {
     console.log('items////', items);
   }
 
+  const deleteProduct = () => {
+    setItems([]);
+  }
+
   return (
     <div id="main-slider-container" >
       <MdChevronLeft size={38} className="outfit-slider-icon-left" onClick={outfitSlideLeft} />
@@ -32,7 +36,7 @@ const OutfitSlider = (props) => {
         <AddCard add={addProduct}/>
         {items.map((item, index) => {
           return (
-            <OutfitCard product={item} key={index} />
+            <OutfitCard product={item} key={index} delete={deleteProduct} />
           )
         })} 
       </div>
