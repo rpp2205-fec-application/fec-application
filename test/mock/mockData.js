@@ -99,7 +99,7 @@ var mockData = {
         ]
       },
       {
-        "answer_id": 8,
+        "answer_id": 4,
         "body": "What a great question!",
         "date": "2018-01-04T00:00:00.000Z",
         "answerer_name": "metslover",
@@ -107,7 +107,7 @@ var mockData = {
         "photos": [],
       },
       {
-        "answer_id": 5,
+        "answer_id": 3,
         "body": "Something pretty durable but I can't be sure",
         "date": "2018-01-04T00:00:00.000Z",
         "answerer_name": "metslover",
