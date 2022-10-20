@@ -49,6 +49,7 @@ const ReviewsList = (props) => {
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
           props.getReviews({count: props.length, sort: e.target.value});
+          props.clear();
           }}>
           <option value="relevance">relevance</option>
           <option value="newest">newest</option>

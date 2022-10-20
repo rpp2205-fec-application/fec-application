@@ -26,6 +26,7 @@ const Reviews = (props) => {
     }
     setToggle({...toggle, [num]:!toggle[num]});
   }
+
   const clearFilter =  () => {
     setToggle(initToggle);
     setList([]);
@@ -54,10 +55,8 @@ const Reviews = (props) => {
         </div>
         <div className="revs-right">
           <SearchBar reviews={props.state.reviews} keyWords={keyWords} handleSearch={handleSearch}/>
-          <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} />
+          <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
         </div>
-
-
       </div>
     </div>
   )
