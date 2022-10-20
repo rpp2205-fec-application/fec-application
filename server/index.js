@@ -3,13 +3,13 @@ const path = require('path');
 const axios = require('axios');
 const express = require('express');
 const app = express();
-
+var FormData = require('form-data');
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 const headers = {headers: {authorization: process.env.TOKEN, "Content-Type": "application/json"}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
-
+const imagebb_headers = {headers: { "content-type": "multipart/form-data"}};
 // Routes //
 
 // get all products
@@ -95,6 +95,19 @@ app.post('/addReview', (req, res) => {
     })
     .catch((err) => {
       console.log('add review err: ', err);
+    })
+})
+
+// upload pics to imgbb.com image hosting
+app.post('/upload', (req, res) => {
+  let url = `https://api.imgbb.com/1/upload`;
+  //const {image} = req.body;
+ //console.log("image: ", image);
+  let body = new FormData();
+  body.append("image", req.body.image);
+  axios.post(`${url}?key=${process.env.IMGBB}`, body)
+    .then((result) => {
+      console.log(result);
     })
 })
 

@@ -1,3 +1,5 @@
+
+
 export const reviewsSort = (reviews, key) => {
   let reviewsMap = {};
   reviews.forEach(review => {
@@ -23,11 +25,21 @@ export const findLast = (map) => {
 }
 
 
-export const imageToBinary = (inputFile) => {
+export const imageToBinary =  (inputFile, cb) => {
+  //console.log('files!: ', inputFile);
   let reader = new FileReader();
-  reader.onloaded = function() {
-    console.log("output: ", reader.result);
-
-    reader.readAsDataURL(inputFile);
+  reader.onloadend = function() {
+    //console.log("output: ", reader.result.split(',')[1]);
+    cb(reader.result.split(',')[1]);
   }
+  reader.readAsDataURL(inputFile);
+}
+
+export const searchReviews = (reviewsArr, keyWords) => {
+  // console.log('reviewsArr, ', typeof reviewsArr, reviewsArr);
+  return reviewsArr.filter((review) => {
+    if (review.body.indexOf(keyWords) >= 0|| review.summary.indexOf(keyWords)>=0) {
+      return review;
+    }
+  })
 }

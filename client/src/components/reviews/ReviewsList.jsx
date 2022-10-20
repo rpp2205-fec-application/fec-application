@@ -28,7 +28,6 @@ const ReviewsList = (props) => {
         handleReviewsChange(props.newList);
       }
     }
-    console.log('render list: ', reviews);
 
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
@@ -45,7 +44,7 @@ const ReviewsList = (props) => {
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
     const scrollOrNot = reviews.renderList.length >= 4 ? "revs-list display-scroll" : "revs-list display-no-scroll";
     return (
-      <div className="revs-right">
+      <div className="revs-right-list">
         <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);

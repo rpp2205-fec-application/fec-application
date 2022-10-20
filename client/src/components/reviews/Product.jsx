@@ -35,7 +35,6 @@ const Product = (props) => {
                       <div>perfect</div>
                     </div>
                   </div>
-
               }
             </div>
           )
@@ -46,28 +45,3 @@ const Product = (props) => {
 }
 
 export default Product;
-
-
-
-{/* <div>Size</div>
-<IconContext.Provider value={{className: "point-tria", style: {marginLeft: calculateSize(props.chars, "Fit", "Length") + '%'}}}>
-  <IoTriangle />
-</IconContext.Provider>
-<div className="pod-progress pod-long"></div>
-<br/>
-<div className="progress xs_font">
-  <div style={{marginRight: "27px", marginLeft:"5px"}}>Too small</div>
-  <div style={{marginRight: "25px"}}>Perfect</div>
-  <div>Too large</div>
-</div>
-</div>
-<div className="rat-comfort">
-<div>Comfort</div>
-<IconContext.Provider value={{className: "point-tria", style: {marginLeft: calculateSize(props.chars, "Comfort", "Quality") + '%'}}}>
-  <IoTriangle />
-</IconContext.Provider>
-<div className="pod-progress pod-short"></div><br/>
-<div className="progress xs_font">
-  <div style={{marginRight: "120px", marginLeft:"5px"}}>poor</div>
-  <div>perfect</div>
-</div> */}
