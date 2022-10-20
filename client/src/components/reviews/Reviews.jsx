@@ -47,7 +47,6 @@ const Reviews = (props) => {
   return  (
     <div ref={props.scrollToReviews} className="widget">
       <p className="small_font">RATINGS &#38; REVIEWS</p>
-
       <div className="revs">
         <div className="revs-left">
           <Rating rating={props.state.rating} reviews={props.state.reviews} reviewsMeta={props.state.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
