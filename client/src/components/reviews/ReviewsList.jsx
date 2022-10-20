@@ -18,22 +18,19 @@ const ReviewsList = (props) => {
         renderList:[]
       })
     }
-    if (!props.newList.length) {
-      if (reviews.origin !== props.reviews) {
-        handleReviewsChange(props.reviews);
-      }
-    } else {
-
-      if (reviews.origin !== props.newList) {
-        handleReviewsChange(props.newList);
-      }
+    if (!props.newList.length && reviews.origin !== props.reviews) {
+      handleReviewsChange(props.reviews);
+      return;
+    }
+    if (props.newList.length && reviews.origin !== props.newList) {
+      handleReviewsChange(props.newList);
     }
 
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
     const [clicked, setClicked] = useState(false);
-    //console.log('id: ', props.id, id);
+
     if (id !== props.id) {
       console.log('different product');
       setSelect("relevance");

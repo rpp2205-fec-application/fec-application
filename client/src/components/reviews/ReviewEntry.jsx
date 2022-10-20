@@ -59,11 +59,11 @@ const ReviewEntry = (props) => {
                   <span className="close" onClick={() => setBig({show: !showBig.show, url:''})}>
                     &times;
                   </span>
-                  <img className="bigImg" src={showBig.url} />
+                  <img className="bigImg" alt="revies-img" src={showBig.url} />
                 </div>
               </div>
               {props.review.photos.map(photo =>
-                <img key={photo.id} className="thumbnail rev-photo" src={photo.url} onClick={(e) => {
+                <img key={photo.id} className="rev-photo" alt="reviws-img" src={photo.url} onClick={(e) => {
                   setBig({show: !showBig.show, url: e.target.src});
                   }}/>
                 )
@@ -79,8 +79,6 @@ const ReviewEntry = (props) => {
                 sendToServer(props.review.review_id);
               } else {
                 alert('You already clicked!');
-                // setHelp(props.review.helpfulness);
-                // sendToServer(props.review.review_id);
               }}}>
               Yes
             </a>

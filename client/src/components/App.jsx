@@ -27,6 +27,7 @@ class App extends React.Component {
     }
     this.topRef = React.createRef();
     this.reviewsRef = React.createRef();
+
   }
 
   componentDidMount() {
@@ -152,12 +153,10 @@ class App extends React.Component {
       return (
         <div>
           <div className="header" ref={this.topRef}>
-            {/* <div className="header-content">
 
-            </div> */}
             <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>Logo</a>
               <a className="search">
-                <input type="text" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
+                <input type="text" aira-label="Search" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
               </a>
           </div>

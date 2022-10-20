@@ -57,7 +57,7 @@ const UploadPics = (props) => {
         images.map((image, index) => {
           return (
             <div key={index}>
-              <img className="thumbnail" src={image}/>
+              <img className="thumbnail" alt="previewImage" src={image}/>
               <button onClick={(e)=>{
                 e.preventDefault();;
                 handleDelete(index)

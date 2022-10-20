@@ -87,8 +87,8 @@ class RelatedItemCard extends React.Component {
     })
   }
  }
-    
-      
+
+
 
   showModal = () => {
     this.setState({show: true});
@@ -104,12 +104,12 @@ class RelatedItemCard extends React.Component {
         this.props.handleScrollToTop(e);
       }
 
-    
+
   render() {
     return (
         <div className="card pointer-cursor" >
             <a>
-            <img className='card-image' src={this.state.photo} onClick={this.selectProduct.bind(this)} />
+            <img className='card-image' alt="ralatedImage" src={this.state.photo} onClick={this.selectProduct.bind(this)} />
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
             <Modal show={this.state.show} hideModal={this.hideModal}/>
