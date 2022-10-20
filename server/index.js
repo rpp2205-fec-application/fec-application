@@ -4,7 +4,7 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const Promise = require("bluebird");
-const cloudinary = require("./cloudinary");
+const cloudinary = require("cloudinary").v2;
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
 app.use(express.static(path.join(__dirname, '../client/dist')));
