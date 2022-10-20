@@ -4,10 +4,11 @@ import {MdAdd} from 'react-icons/md';
 
 const AddCard = (props) => {
   
+
   return (
     <div className='addCard'>
       <div id="addIcon" >
-      <MdAdd id='addProductIcon' onClick={props.add}/>
+      <MdAdd id='addProductIcon' onClick={()=> {props.addItem(props.id)}}/>
       </div>
        
        <div className='cardContent'>
