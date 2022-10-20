@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import './Slider.scss';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 import  AddCard  from "./AddCard.jsx";
@@ -22,18 +22,10 @@ const OutfitSlider = (props) => {
     slider.scrollLeft +=  50;
   }
 
-  const addProduct = () => {
-    if(items.includes(props.outfit)) {
-       alert('Product Already Added to Outfit')
-    } else {
-      setItems([...items, props.product.id]);
-    console.log('items////', items);
-  }
-}
+const refContainer = useRef(items);
+refContainer.current = useEffect(() => {setItems(props.outfit)});
+console.log('refContainer????????', refContainer)
 
-  const deleteProduct = () => {
-    setItems([]);
-  }
 
   return (
     <div id="main-slider-container" >
