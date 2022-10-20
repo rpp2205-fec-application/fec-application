@@ -26,6 +26,7 @@ const Reviews = (props) => {
     }
     setToggle({...toggle, [num]:!toggle[num]});
   }
+
   const clearFilter =  () => {
     setToggle(initToggle);
     setList([]);
@@ -46,7 +47,6 @@ const Reviews = (props) => {
   return  (
     <div ref={props.scrollToReviews} className="widget">
       <p className="small_font">RATINGS &#38; REVIEWS</p>
-
       <div className="revs">
         <div className="revs-left">
           <Rating rating={props.state.rating} reviews={props.state.reviews} reviewsMeta={props.state.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
@@ -54,10 +54,8 @@ const Reviews = (props) => {
         </div>
         <div className="revs-right">
           <SearchBar reviews={props.state.reviews} keyWords={keyWords} handleSearch={handleSearch}/>
-          <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} />
+          <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
         </div>
-
-
       </div>
     </div>
   )

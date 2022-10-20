@@ -19,7 +19,7 @@ const SearchBar = (props) => {
       className="rev-search"
       type="text"
       onChange={(e) => props.handleSearch(e.target.value)} value={props.keyWords}/>
-      <IconContext.Provider value={{className: "search-icon"}} >
+      <IconContext.Provider value={{style: {marginTop: "1px"}}} >
         <FaSistrix/>
       </IconContext.Provider>
 
