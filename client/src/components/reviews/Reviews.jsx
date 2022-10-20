@@ -5,7 +5,8 @@ import ReviewsList from './ReviewsList.jsx';
 import Rating from './Rating.jsx';
 import Product from './Product.jsx';
 import {reviewsSort}from './helper-revs.js';
-
+import SearchBar from './SearchBar.jsx';
+import { searchReviews } from './helper-revs.js';
 const Reviews = (props) => {
   const [newList, setList] = useState([]);
   const initToggle = {5: false, 4: false, 3: false, 2: false, 1: false};
@@ -29,15 +30,33 @@ const Reviews = (props) => {
     setToggle(initToggle);
     setList([]);
   }
+
+  const [keyWords, setKeyWords] = useState('');
+  const handleSearch = (word) => {
+    setKeyWords(word);
+  }
+  useEffect(() => {
+    if (keyWords.length >= 3) {
+      setList(searchReviews(props.state.reviews, keyWords));
+    } else if (!keyWords.length || keyWords.length < 3) {
+      setList([]);
+    }
+  },[keyWords])
+
   return  (
     <div ref={props.scrollToReviews} className="widget">
       <p className="small_font">RATINGS &#38; REVIEWS</p>
+
       <div className="revs">
-        <div className="revs-rating">
+        <div className="revs-left">
           <Rating rating={props.state.rating} reviews={props.state.reviews} reviewsMeta={props.state.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
           <Product chars={props.state.reviewsMeta.characteristics}/>
         </div>
-        <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} />
+        <div className="revs-right">
+          <SearchBar reviews={props.state.reviews} keyWords={keyWords} handleSearch={handleSearch}/>
+          <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} />
+        </div>
+
 
       </div>
     </div>
