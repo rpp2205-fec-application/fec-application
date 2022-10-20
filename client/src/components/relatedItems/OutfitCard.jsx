@@ -91,7 +91,7 @@ getReview() {
     return (
         <div className="card" >
             <a>
-            <img className='card-image' src={this.state.photo} />
+            <img className='card-image' alt="outfitImage" src={this.state.photo} />
             </a>
             <MdClear className='clear-icon' onClick={() => {this.props.deleteItem(this.props.product)}}/>
             <div className='cardbody'>

@@ -2,14 +2,17 @@ require('dotenv').config();
 const path = require('path');
 const axios = require('axios');
 const express = require('express');
-const app = express();
+const compression = require('compression');
 const Promise = require("bluebird");
-const cloudinary = require("./cloudinary");
+const cloudinary = require("cloudinary").v2;
+
+const app = express();
+app.use(compression());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-const headers = {headers: {authorization: process.env.TOKEN, "Content-Type": "application/json"}};
+const headers = {headers: {authorization: process.env.TOKEN}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
 
 // Routes //

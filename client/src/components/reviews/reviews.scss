@@ -220,6 +220,9 @@ select {
 }
 
 .rev-photo {
+  width: 10%;
+  height: 10%;
+  cursor: pointer;
   margin: 2px;
   border:1px solid black;
 }
@@ -240,6 +243,8 @@ select {
   left:50%;
   transform: translate(-50%,-50%);
 }
+
+
 //-----------------> AddReview <------------------
 .trans-bg {
   background-color: rgba(0, 0, 0, 0.85);

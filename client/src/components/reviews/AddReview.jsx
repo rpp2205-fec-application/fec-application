@@ -77,7 +77,7 @@ const AddReview = (props) => {
       });
     }
   }
-  console.log('New review in prosessing: ', newRev);
+  //console.log('New review in prosessing: ', newRev);
   return (
     <div className={showOrHide}>
       <div className="rev-modal_content">

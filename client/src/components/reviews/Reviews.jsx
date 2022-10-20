@@ -11,7 +11,7 @@ const Reviews = (props) => {
   const [newList, setList] = useState([]);
   const initToggle = {5: false, 4: false, 3: false, 2: false, 1: false};
   const [toggle, setToggle] = useState(initToggle);
-  // let newRev = [];
+  //handle 5 rating star been clicked
   const handleStarClick = (reviews, num) => {
     if (toggle[num] === false) {
       let newRev = newList.concat(reviewsSort(reviews, num))
@@ -26,16 +26,17 @@ const Reviews = (props) => {
     }
     setToggle({...toggle, [num]:!toggle[num]});
   }
-
+  // clear all the filter
   const clearFilter =  () => {
     setToggle(initToggle);
     setList([]);
   }
-
+  // handle the search input change
   const [keyWords, setKeyWords] = useState('');
   const handleSearch = (word) => {
     setKeyWords(word);
   }
+  // if input more than 3 charactors show the filtered reviews
   useEffect(() => {
     if (keyWords.length >= 3) {
       setList(searchReviews(props.state.reviews, keyWords));
