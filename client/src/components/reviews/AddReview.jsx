@@ -21,9 +21,8 @@ const AddReview = (props) => {
   const toggleUpload= () => {
     setUploadShow(!uploadShow);
   }
-  const handleUpload = (files =>{
-    //console.log('<<<<<files pending!: ', files);
-    setRev({...newRev, photos: files});
+  const handleUpload = (urls =>{
+    setRev({...newRev, photos: urls});
   })
   const getRating = (newRating) => {
     setRev({...newRev, rating: newRating});
