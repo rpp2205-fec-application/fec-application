@@ -60,10 +60,6 @@ class OutfitCard extends React.Component {
           })
       }
 
-  delete() {
-
-  }
-
 
 
   render() {
@@ -72,7 +68,7 @@ class OutfitCard extends React.Component {
             <a>
             <img className='card-image' src={this.state.photo} />
             </a>
-            <MdClear className='clear-icon' onClick={this.props.delete}/>
+            <MdClear className='clear-icon' onClick={this.props.deleteItem}/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>

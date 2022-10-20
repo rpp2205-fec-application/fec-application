@@ -9,6 +9,7 @@ import axios from 'axios';
 import Star from './Star/Star.jsx';
 import AddReview from './reviews/AddReview.jsx';
 import {calculateRating, reviewsCount} from '../helpers.js'
+import OutfitCard from './relatedItems/OutfitCard.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -131,8 +132,12 @@ class App extends React.Component {
 
   addToOutfit(productId) {
     var outfit = [...this.state.outfit];
+    if (outfit.includes(productId)) {
+      alert('Product Already Added To Outfit!')
+    } else {
     outfit.push(productId);
     this.setState({outfit}, () => {console.log('Current Outfit after adding: ', this.state.outfit)});
+    }
   }
 
   removeFromOutfit(productId) {
