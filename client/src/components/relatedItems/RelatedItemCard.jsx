@@ -101,7 +101,7 @@ class RelatedItemCard extends React.Component {
   selectProduct() {
         // When a product card is selected, update the product state in Overview.jsx, and scroll back to top
         this.props.selectProduct(this.state.product);
-        this.props.handleScrollToTop(e);
+        this.props.handleScrollToTop();
       }
 
     
