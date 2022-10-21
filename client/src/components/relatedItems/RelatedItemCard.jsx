@@ -98,7 +98,7 @@ class RelatedItemCard extends React.Component {
    this.setState({show: false});
   }
 
-  selectProduct() {
+  selectProduct(e) {
         // When a product card is selected, update the product state in Overview.jsx, and scroll back to top
         this.props.selectProduct(this.state.product);
         this.props.handleScrollToTop(e);
@@ -113,7 +113,7 @@ class RelatedItemCard extends React.Component {
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
             <Modal show={this.state.show} hideModal={this.hideModal}/>
-            <div className='cardbody' onClick={this.selectProduct.bind(this)}>
+            <div className='cardbody' onClick={(e) => {this.selectProduct(e)}}>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>
             <p className='price'>${this.state.product.default_price}</p>

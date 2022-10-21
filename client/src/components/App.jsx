@@ -92,6 +92,7 @@ class App extends React.Component {
   }
 
   addReview(review) {
+    console.log('start adding new Reviews: ', review);
     review.recommend = review.recommend === "yes";
     return axios.post('/addReview', {review});
   }

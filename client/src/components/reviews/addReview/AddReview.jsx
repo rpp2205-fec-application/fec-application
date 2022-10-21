@@ -15,7 +15,9 @@ const AddReview = (props) => {
     photos: [],
     characteristics: {}
   })
-
+  if (newRev.product_id !== props.product.id) {
+    setRev({...newRev, product_id: props.product.id})
+  }
   const [uploadShow, setUploadShow] = useState(false);
   const showOrHide = props.show ? "modal trans-bg display-block" : "modal trans-bg display-none";
   const toggleUpload= () => {
