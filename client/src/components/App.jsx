@@ -7,7 +7,7 @@ import QA from './qa/QA.jsx';
 import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
 import Star from './Star/Star.jsx';
-import AddReview from './reviews/AddReview.jsx';
+import AddReview from './reviews/addReview/AddReview.jsx';
 import {calculateRating, reviewsCount} from '../helpers.js'
 import OutfitCard from './relatedItems/OutfitCard.jsx';
 

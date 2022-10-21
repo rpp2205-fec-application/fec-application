@@ -15,7 +15,7 @@ const ProductFactor = (props) => {
       {explainTexts.map((factor, index) => {
         return (
           <li key={index}>
-           <div className="small_font bold-text factor">{factor[0]}: </div>
+           <div className="small_font bold-text factor factor-name">{factor[0]}: </div>
             <FactorEntry explain={factor} getFactor={props.getFactor} />
           </li>
         )

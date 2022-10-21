@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { imageToBinary } from './helper-revs.js';
 import axios from 'axios';
 
 const UploadPics = (props) => {
@@ -7,9 +6,7 @@ const UploadPics = (props) => {
 
   const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
-  // useEffect(() => {
-  //   setURL(urlFiles.concat())
-  // }, [imageFIles])
+
   const handleDelete = (index)=>{
     if (images.length === 1) {
       setImages([]);

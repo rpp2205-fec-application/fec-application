@@ -325,7 +325,12 @@ form div{
   flex-direction: row;
   align-items: center;
 }
-
+.factor-contain {
+  min-width:101px;
+}
+.factor-name {
+  min-width: 10%;
+}
 .input-sum{
   width: 70%;
   height: fit-content;

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import UploadPics from './UploadPics.jsx';
 import StarRating from './StarRating.jsx';
 import ProductFactor from './ProductFactor.jsx';
-import { getCharMap } from './helper-revs.js';
+import { getCharMap } from '../helper-revs.js';
 const AddReview = (props) => {
   const [newRev, setRev] = useState({
     product_id: props.product.id,
@@ -114,7 +114,7 @@ const AddReview = (props) => {
             <label>Review Body:
               <textarea
                 className="input-body"
-                placeholder="“Why did you like the product or not?"
+                placeholder="Why did you like the product or not?"
                 value={newRev.body}
                 onChange={(e) => setRev({...newRev, body: e.target.value})}
               /><br/>
@@ -132,7 +132,7 @@ const AddReview = (props) => {
             <label>Nick Name:  <input type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} /></label>
             <label>
               Your Email:
-              <input type="email" placeholder="“Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
+              <input type="email" placeholder="Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
               <div className="xs_font">For authentication reasons, you will not be emailed</div></label>
           </div>
           <div>
