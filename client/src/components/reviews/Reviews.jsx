@@ -60,7 +60,6 @@ const Reviews = (props) => {
       </div>
     </div>
   )
-
 }
 
 

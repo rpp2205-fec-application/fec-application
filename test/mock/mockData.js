@@ -21,8 +21,8 @@ var mockData = {
   "body": "qwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwertyqwerty",
   "date": "2022-08-27T00:00:00.000Z",
   "reviewer_name": "qwerty",
-  "helpfulness": 0,
-  "photos": []
+  "helpfulness": 1,
+  "photos": ["https://res.cloudinary.com/dskwqzkmr/image/upload/v1666241936/qfwsnkarrvdrqpemqhwy.png"]
 },
 {
   "review_id": 3,
@@ -33,7 +33,7 @@ var mockData = {
   "body": "This is a test. It is only a test. Do not be alarmed. ",
   "date": "2022-08-27T00:00:00.000Z",
   "reviewer_name": "test",
-  "helpfulness": 0,
+  "helpfulness": 2,
   "photos": []
 }],
  "reviewsMeta":{
@@ -79,6 +79,7 @@ var mockData = {
     "created_at": "2022-05-11T19:38:15.373Z",
     "updated_at": "2022-05-11T19:38:15.373Z"
   },
+  "rating": 5,
   "styles": [
     {
         "style_id": 444218,

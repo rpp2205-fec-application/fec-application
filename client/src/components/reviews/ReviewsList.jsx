@@ -37,7 +37,6 @@ const ReviewsList = (props) => {
       setId(props.id);
       setClicked(false);
     }
-
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
     const scrollOrNot = reviews.renderList.length >= 4 ? "revs-list display-scroll" : "revs-list display-no-scroll";
     return (
@@ -84,4 +83,5 @@ const ScroolToBotton = () => {
   useEffect(() => elementRef.current.scrollIntoView());
   return <div ref={elementRef} />
 }
+
 export default ReviewsList;

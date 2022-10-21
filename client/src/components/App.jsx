@@ -7,7 +7,7 @@ import QA from './qa/QA.jsx';
 import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
 import Star from './Star/Star.jsx';
-import AddReview from './reviews/AddReview.jsx';
+import AddReview from './reviews/addReview/AddReview.jsx';
 import {calculateRating, reviewsCount} from '../helpers.js'
 import OutfitCard from './relatedItems/OutfitCard.jsx';
 
@@ -69,7 +69,7 @@ class App extends React.Component {
   getReviews({count, sort}) {
     axios.post(`/reviews/${this.state.product.id}`, {count, sort})
     .then((res) => {
-      //console.log('Reviews: ', res.data.results)
+      console.log('Reviews: ', res.data.results)
       this.setState({
         reviews: res.data.results
       });
@@ -92,6 +92,7 @@ class App extends React.Component {
   }
 
   addReview(review) {
+    console.log('start adding new Reviews: ', review);
     review.recommend = review.recommend === "yes";
     return axios.post('/addReview', {review});
   }
