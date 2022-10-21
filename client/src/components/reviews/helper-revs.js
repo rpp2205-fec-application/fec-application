@@ -19,12 +19,6 @@ export const getCharMap = (charsObj) => {
   return factMap;
 }
 
-export const findLast = (map) => {
-  let array = Objec.values(map);
-  return array[array.length-1];
-}
-
-
 export const searchReviews = (reviewsArr, keyWords) => {
   return reviewsArr.filter((review) => {
     if (review.body.indexOf(keyWords) >= 0|| review.summary.indexOf(keyWords)>=0) {

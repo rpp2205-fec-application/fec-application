@@ -69,7 +69,7 @@ class App extends React.Component {
   getReviews({count, sort}) {
     axios.post(`/reviews/${this.state.product.id}`, {count, sort})
     .then((res) => {
-      //console.log('Reviews: ', res.data.results)
+      console.log('Reviews: ', res.data.results)
       this.setState({
         reviews: res.data.results
       });

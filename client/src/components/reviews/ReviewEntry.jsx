@@ -85,7 +85,6 @@ const ReviewEntry = (props) => {
             <span className="rev-helpdata">({helpful})</span>
             |
             <a className="underline rev-helpful" value="report" onClick={(e) => {
-              console.log('report: ', e.target);
               sendReport(props.review.review_id);
             }}> Report </a>
           </div>
