@@ -54,6 +54,9 @@ class Overview extends React.Component {
           styles: res.data.results,
           selectedStyle,
           salePrice: selectedStyle.sale_price || '',
+          selectedSizeId: 'SELECT SIZE',
+          quantityOfSelectedSize: 0,
+          selectedQuantity: '-'
         })
       })
   }
@@ -93,7 +96,6 @@ class Overview extends React.Component {
     // var event = document.createEvent('MouseEvents');
     // event.initMouseEvent('mousedown', true, true, window);
     // dropdown.dispatchEvent(event);
-
     var elem = document.getElementById('size-selector');
     if (document.createEvent) {
       var e = document.createEvent("MouseEvents");
@@ -112,6 +114,11 @@ class Overview extends React.Component {
     if (this.state.selectedSizeId === 'SELECT SIZE') {
       this.showDropdown();
       this.setState({selectSizeMessage: true})
+    } else {
+      document.getElementById('success-message').style.display='block';
+      setTimeout(() => {
+        document.getElementById('success-message').style.display='none';
+      }, 2000);
     }
   }
 
@@ -145,6 +152,9 @@ class Overview extends React.Component {
       const totalQuantity = getTotalQuantity(this.state.selectedStyle.skus);
       return (
         <div className='overview-container'>
+          <div id={'success-message'} className={'add-to-bag-success-message'}>
+            <strong>Congratulation:</strong> {`${name} is added to the bag!`}
+          </div>
           <div className='overview-flex'>
             <ImageGallery selectedStyle={this.state.selectedStyle} styles={this.state.styles} />
             <div className='product-info'>
