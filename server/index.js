@@ -7,7 +7,7 @@ const Promise = require("bluebird");
 const cloudinary = require("cloudinary").v2;
 
 const app = express();
-app.use(compression());
+//app.use(compression());
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -142,6 +142,16 @@ app.get('/products/:product_id/related', async (req, res) => {
   res.status(200).json(relatedItems.data);
 })
 
+// send interactions detail to API
+app.post('/interactions', (req, res) => {
+  let url = `${root}/interactions`;
+  const {element, widget, time} = req.body;
+  axios.post(url, {element, widget, time}, headers)
+    .then((result) => {
+      console.log('interactions message: ', result.statusText);
+      res.status(result.status).json('just created')
+    })
+})
 
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening at Port: ${PORT}`));
