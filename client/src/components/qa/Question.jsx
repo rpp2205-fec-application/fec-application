@@ -21,7 +21,7 @@ const Question = (props) => {
       <p className="questionBody"> Q: </p>
       <p className="questionBody"> {props.question.question_body} </p>
       <p className="options"> Helpful? &nbsp; <u className={className} onClick={handleHelpful}>Yes</u> ({helpful? props.question.question_helpfulness + 1: props.question.question_helpfulness})</p>
-      <p className="options" onClick={() => setAddAnswer(true)}> Add Answer </p>
+      <p className="options left-border" onClick={() => setAddAnswer(true)}> <u>Add Answer</u></p>
       {addAnswer? <AddAnswer product={props.product} question={props.question} handleAddAnswer={props.handleAddAnswer} closeModal={closeModal}/>: null}
     </div>
   )

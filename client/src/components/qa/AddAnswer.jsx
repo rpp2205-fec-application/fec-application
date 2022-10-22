@@ -33,8 +33,9 @@ import './qa-modal.scss';
           &times;
         </span>
         <div className="title"> Submit Your Answer </div>
-        <div className="subTitle"> {props.product.name}: {props.question.question_body} </div>
-        <div className="add-q-entry add-entry"> Helloooo Your Answer wtf <textarea className="modal-entry" type="text" placeholder="your question here" onChange={questionChange} required/> {questionCharactersRemaining} characters remaining </div>
+        <div className="subTitle add-entry"> {props.product.name}: <span>{props.question.question_body}</span> </div>
+        <div className="add-q-entry add-entry"> Your Answer <textarea className="modal-entry" type="text" rows="5" placeholder="your question here" onChange={questionChange}/> </div>
+        <div className="characters-remaining"> <span className="placeholder">placeholder</span> {questionCharactersRemaining} characters remaining </div>
         <div className="add-q-entry add-entry"> Nick Name <input className="modal-entry" type="text" placeholder="Example: jackson11!" onChange={nameChange} required/> </div>
         <div className="add-q-entry"> For privacy reasons, do not use your full name or email address </div>
         <div className="add-q-entry add-entry"> Your Email <input className="modal-entry" type="email" placeholder="xxx@gmail.com" onChange={emailChange} required/> </div>

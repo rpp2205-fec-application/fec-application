@@ -36,8 +36,8 @@ class Answer extends React.Component {
         <div className="answer">
           <p className="answer-body"> {this.props.answer.body} </p>
           <p className="answer-additional"> by {this.props.answer.answerer_name === "Seller"? <b>{this.props.answer.answerer_name}</b>: this.props.answer.answerer_name}, {date} </p>
-          <p className="answer-additional"> Helpful? &nbsp; <u className={this.state.className} onClick={this.handleYesClick.bind(this)}>Yes</u>  ({this.state.helpfulness}) </p>
-          <p className="answer-additional"> Report </p>
+          <p className="answer-additional left-border"> Helpful? &nbsp; <u className={this.state.className} onClick={this.handleYesClick.bind(this)}>Yes</u>  ({this.state.helpfulness}) </p>
+          <p className="answer-additional left-border"> Report </p>
         </div>
       </div>
     )
