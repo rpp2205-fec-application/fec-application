@@ -1,4 +1,4 @@
-import React, {useState, useEffact} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import ReviewEntry from './ReviewEntry.jsx';
 
 
@@ -18,50 +18,56 @@ const ReviewsList = (props) => {
         renderList:[]
       })
     }
-    if (!props.newList.length) {
-      if (reviews.origin !== props.reviews) {
-        handleReviewsChange(props.reviews);
-      }
-    } else {
-      if (reviews.origin !== props.newList) {
-        handleReviewsChange(props.newList);
-      }
+    if (!props.newList.length && reviews.origin !== props.reviews) {
+      handleReviewsChange(props.reviews);
+      return;
     }
-    //console.log("render list: ", reviews.renderList);
+    if (props.newList.length && reviews.origin !== props.newList) {
+      handleReviewsChange(props.newList);
+    }
+
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
-    //console.log('id: ', props.id, id);
+    const [clicked, setClicked] = useState(false);
+
     if (id !== props.id) {
       console.log('different product');
       setSelect("relevance");
       setId(props.id);
+      setClicked(false);
     }
-
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
-
+    const scrollOrNot = reviews.renderList.length >= 4 ? "revs-list display-scroll" : "revs-list display-no-scroll";
     return (
-      <div className="revs-right">
+      <div className="revs-right-list">
         <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
           props.getReviews({count: props.length, sort: e.target.value});
+          props.clear();
           }}>
           <option value="relevance">relevance</option>
           <option value="newest">newest</option>
           <option value="helpful">helpful</option>
         </select>
         </div>
-        <ul className="revs-list">
-          {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
-        </ul>
+        <div className = {scrollOrNot}>
+          <ul className="revs-list-main">
+            {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
+            {clicked && <ScroolToBotton />}
+          </ul>
+        </div>
+
         <div className="revs-footer">
-          {isEnd ? null : <button onClick={() => {
+          {isEnd ? null : <button onClick={(e) => {
+            props.interaction(e.target.value, 'reviews');
+            setClicked(true);
             if (reviews.copy.length >= 2) {
               let add = reviews.copy.splice(0, 2)
               setReviews({...reviews, renderList: reviews.renderList.concat(add)});
             } else if (reviews.copy.length === 1) {
-              setReviews({...reviews, renderList: reviews.renderList.concat(reviews.copy)});
+              setReviews({...reviews, renderList: reviews.renderList.concat(reviews.copy.splice(0,1))});
             } else if (!reviews.copy.length) {
               setIsEnd(true);
             }
@@ -71,6 +77,12 @@ const ReviewsList = (props) => {
       </div>
     )
   }
+}
+
+const ScroolToBotton = () => {
+  const elementRef = useRef();
+  useEffect(() => elementRef.current.scrollIntoView());
+  return <div ref={elementRef} />
 }
 
 export default ReviewsList;

@@ -92,6 +92,7 @@ const MaxZoomView = (props) => {
             opacity: opacity,
             position: 'absolute',
             width:'250%',
+            height: 'auto'
             // height:'1500px',
             // objectFit:'contain',
           }}

@@ -2,12 +2,17 @@ require('dotenv').config();
 const path = require('path');
 const axios = require('axios');
 const express = require('express');
-const app = express();
+const compression = require('compression');
+const Promise = require("bluebird");
+const cloudinary = require("cloudinary").v2;
 
-app.use(express.json());
+const app = express();
+//app.use(compression());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended: true, limit: '50mb'}));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-const headers = {headers: {authorization: process.env.TOKEN, "Content-Type": "application/json"}};
+const headers = {headers: {authorization: process.env.TOKEN}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
 
 // Routes //
@@ -154,6 +159,19 @@ app.post('/addReview', (req, res) => {
     })
 })
 
+// upload pics to imgbb.com image hosting
+app.post('/upload', (req, res) => {
+  let promises = []
+  req.body.images.forEach((image) => {
+    promises.push(cloudinary.uploader.upload(image))
+  })
+  Promise.all(promises)
+    .then((results) => {
+      res.status(201).json(results);
+    })
+    .catch((err) => console.log('upload error: ', error));
+})
+
 // product reviews meta
 app.get('/reviews/meta/:product_id', (req, res) => {
   let url = `${root}/reviews/meta?product_id=${req.params.product_id}`;
@@ -180,6 +198,16 @@ app.get('/products/:product_id/related', async (req, res) => {
   res.status(200).json(relatedItems.data);
 })
 
+// send interactions detail to API
+app.post('/interactions', (req, res) => {
+  let url = `${root}/interactions`;
+  const {element, widget, time} = req.body;
+  axios.post(url, {element, widget, time}, headers)
+    .then((result) => {
+      console.log('interactions message: ', result.statusText);
+      res.status(result.status).json('just created')
+    })
+})
 
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening at Port: ${PORT}`));

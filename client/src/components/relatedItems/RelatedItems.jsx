@@ -15,11 +15,23 @@ class RelatedItems extends React.Component {
     let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interaction";
     axios.get(`/products/${this.props.product.id}/related`)
     .then((response) => {
-      // console.log('response',  response.data);
+       console.log('response////////////',  response.data);
       this.setState({
         items: response.data
       })
     })
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.product != this.props.product) {
+      let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interaction";
+    axios.get(`/products/${this.props.product.id}/related`)
+    .then((response) => {
+       console.log('response',  response.data);
+      this.setState({
+        items: response.data
+      })
+    })
+    }
   }
 
   selectProduct() {
@@ -27,10 +39,12 @@ class RelatedItems extends React.Component {
   }
 
   render() {
+    console.log('products//////', this.state.items)
+    console.log('product....', this.props.product)
     return (
       <div className='widget'>
         <h4>Related Products</h4>
-        <RelatedItemSlider products={this.state.items} selectProduct={this.props.selectProduct} handleScrollToTop={this.props.handleScrollToTop} />
+        <RelatedItemSlider products={this.state.items} curProduct={this.props.product} selectProduct={this.props.selectProduct} handleScrollToTop={this.props.handleScrollToTop}  />
         </div>
 
     )

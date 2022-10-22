@@ -26,7 +26,7 @@ class Overview extends React.Component {
       selectedSizeId: 'SELECT SIZE',
       quantityOfSelectedSize: 0,
       selectedQuantity: '-',
-      favorite: false,
+      favorite: this.props.outfit.includes(this.props.product.id),
       selectSizeMessage: false
     }
   }
@@ -54,6 +54,9 @@ class Overview extends React.Component {
           styles: res.data.results,
           selectedStyle,
           salePrice: selectedStyle.sale_price || '',
+          selectedSizeId: 'SELECT SIZE',
+          quantityOfSelectedSize: 0,
+          selectedQuantity: '-'
         })
       })
   }
@@ -76,6 +79,12 @@ class Overview extends React.Component {
   }
 
   toggleOutfit() {
+    const productId = this.props.product.id
+    if (this.props.outfit.includes(productId)) {
+      this.props.removeFromOutfit(productId)
+    } else {
+      this.props.addToOutfit(productId);
+    }
     this.setState(prevState => ({
       favorite: !prevState.favorite
     }))
@@ -87,7 +96,6 @@ class Overview extends React.Component {
     // var event = document.createEvent('MouseEvents');
     // event.initMouseEvent('mousedown', true, true, window);
     // dropdown.dispatchEvent(event);
-
     var elem = document.getElementById('size-selector');
     if (document.createEvent) {
       var e = document.createEvent("MouseEvents");
@@ -106,6 +114,11 @@ class Overview extends React.Component {
     if (this.state.selectedSizeId === 'SELECT SIZE') {
       this.showDropdown();
       this.setState({selectSizeMessage: true})
+    } else {
+      document.getElementById('success-message').style.display='block';
+      setTimeout(() => {
+        document.getElementById('success-message').style.display='none';
+      }, 2000);
     }
   }
 
@@ -120,6 +133,14 @@ class Overview extends React.Component {
     if (prevProps.product.id !== this.props.product.id) {
       this.selectSizeMessageOff();  //Turn off the select size message in case the message was on in previous product props
       this.getStyles();
+      this.setState({
+        favorite: this.props.outfit.includes(this.props.product.id),
+      })
+    }
+    if (JSON.stringify(prevProps.outfit) !==  JSON.stringify(this.props.outfit)) {
+      this.setState({
+        favorite: this.props.outfit.includes(this.props.product.id),
+      })
     }
   }
 
@@ -131,6 +152,9 @@ class Overview extends React.Component {
       const totalQuantity = getTotalQuantity(this.state.selectedStyle.skus);
       return (
         <div className='overview-container'>
+          <div id={'success-message'} className={'add-to-bag-success-message'}>
+            <strong>Congratulation:</strong> {`${name} is added to the bag!`}
+          </div>
           <div className='overview-flex'>
             <ImageGallery selectedStyle={this.state.selectedStyle} styles={this.state.styles} />
             <div className='product-info'>

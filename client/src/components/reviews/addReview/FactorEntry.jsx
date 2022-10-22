@@ -12,7 +12,7 @@ const FactorEntry = (props) => {
 
   return (
     <div className="factor">
-      {factor === 0 ? <div className="small_font"> None Selected </div> : <div className="small_font">{props.explain[1][factor-1]}</div>}
+      <div className="small_font factor-contain"> {factor === 0 ? "None Selected" : props.explain[1][factor-1]}</div>
       {props.explain[1].map((string, i) => {
         return (
         <a key={i}>

@@ -1,38 +1,40 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import './Slider.scss';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 import  AddCard  from "./AddCard.jsx";
 import OutfitCard from "./OutfitCard.jsx";
 const OutfitSlider = (props) => {
-  const [items, setItems] = useState(props.curProduct);
+  const [items, setItems] = useState(props.outfit);
+  console.log('items//////', items)
   
   const outfitSlideLeft = () => {
     var slider = document.getElementById('outfitSlider');
     slider.scrollLeft -=  50;
   }
 
+    
+    useEffect(() => {
+      setItems(props.outfit);
+    });
+
   const slideRight = () => {
     var slider = document.getElementById('outfitSlider');
     slider.scrollLeft +=  50;
   }
 
-  const addProduct = () => {
-    if(items.includes(props.product.id)) {
-       alert('Product Already Added to Outfit')
-    } else {
-      setItems([...items, props.product.id]);
-    }
-    console.log('items////', items);
-  }
+const refContainer = useRef(items);
+refContainer.current = useEffect(() => {setItems(props.outfit)});
+console.log('refContainer????????', refContainer)
+
 
   return (
     <div id="main-slider-container" >
       <MdChevronLeft size={38} className="outfit-slider-icon-left" onClick={outfitSlideLeft} />
       <div id='outfitSlider'>
-        <AddCard add={addProduct}/>
+        <AddCard addItem={props.add} id={props.product.id}/>
         {items.map((item, index) => {
           return (
-            <OutfitCard product={item} key={index} />
+            <OutfitCard product={item} key={index} deleteItem={props.delete} />
           )
         })} 
       </div>
