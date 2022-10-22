@@ -16,6 +16,7 @@ class SizeSelector extends React.Component {
     })
     this.props.selectSizeMessageOff();
     this.props.selectSize(event.target.value);
+    this.props.interaction('Size selector', 'Overview')
   }
 
   //Getting the new style list after the new product is passed to props

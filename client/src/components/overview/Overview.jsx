@@ -88,6 +88,7 @@ class Overview extends React.Component {
     this.setState(prevState => ({
       favorite: !prevState.favorite
     }))
+    this.props.interaction('Add to outfit button', 'Overview')
 
   }
 
@@ -120,6 +121,7 @@ class Overview extends React.Component {
         document.getElementById('success-message').style.display='none';
       }, 2000);
     }
+    this.props.interaction('Add to bag button', 'Overview')
   }
 
 
@@ -156,16 +158,16 @@ class Overview extends React.Component {
             <strong>Congratulation:</strong> {`${name} is added to the bag!`}
           </div>
           <div className='overview-flex'>
-            <ImageGallery selectedStyle={this.state.selectedStyle} styles={this.state.styles} />
+            <ImageGallery selectedStyle={this.state.selectedStyle} styles={this.state.styles} interaction={this.props.interaction} />
             <div className='product-info'>
-              <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} />
+              <RatingInfo rating={this.props.rating} handleScrollToReviews={this.props.handleScrollToReviews} interaction={this.props.interaction} />
               <ProductInfo name={name} category={category} originalPrice={default_price} salePrice={this.state.salePrice} />
-              {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} selectSizeMessageOff={this.selectSizeMessageOff.bind(this)} />}
+              {this.state.styles.length !== 0 && <StylesSection styles={this.state.styles} selectedStyle={this.state.selectedStyle} selectStyle={this.selectStyle.bind(this)} selectSizeMessageOff={this.selectSizeMessageOff.bind(this)} interaction={this.props.interaction} />}
               <div className='selectors-buttons-flex'>
                 {this.state.selectSizeMessage && <p className='error-message'>Please select size</p>}
                 <div className='buttons-flex'>
-                  {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)} selectSizeMessageOff={this.selectSizeMessageOff.bind(this)}/>}
-                  {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={totalQuantity === 0 ? 0 : this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} />}
+                  {this.state.styles.length !== 0 && <SizeSelector selectedStyle={this.state.selectedStyle} selectedSizeId={this.state.selectedSizeId} selectSize={this.selectSize.bind(this)} selectSizeMessageOff={this.selectSizeMessageOff.bind(this)} interaction={this.props.interaction}/>}
+                  {this.state.styles.length !== 0 && <QuantitySelector quantityOfSelectedSize={totalQuantity === 0 ? 0 : this.state.quantityOfSelectedSize} selectedQuantity={this.state.selectedQuantity} selectQuantity={this.selectQuantity.bind(this)} interaction={this.props.interaction} />}
                 </div>
                 <div className='buttons-flex'>
                   {/* <button className='primary-button'>ADD TO BAG +</button> */}

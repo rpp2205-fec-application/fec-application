@@ -14,11 +14,13 @@ class DefaultView extends React.Component {
   next() {
     var nextIndex = this.props.selectedPhotoIndex + 1;
     this.props.photoChange(nextIndex);
+    this.props.interaction('Next arrow in big default picture section', 'Overview')
   }
 
   previous() {
     var prevIndex = this.props.selectedPhotoIndex - 1;
     this.props.photoChange(prevIndex);
+    this.props.interaction('Previous arrow in default big picture section', 'Overview')
   }
 
   render() {
