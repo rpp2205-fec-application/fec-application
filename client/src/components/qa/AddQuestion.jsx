@@ -3,12 +3,14 @@ import './qa-modal.scss';
 
  const AddQuestion = (props) => {
 
-  const [body, setQuestion] = useState('');
+  const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [questionCharactersRemaining, setQuestionCharactersRemaining] = useState(1000);
 
   const questionChange = (e) => {
-    setQuestion(e.target.value);
+    setBody(e.target.value);
+    setQuestionCharactersRemaining(1000 - body.length);
   }
 
   const nameChange = (e) => {
@@ -31,8 +33,9 @@ import './qa-modal.scss';
           &times;
         </span>
         <div className="title"> Ask Your Question </div>
-        <div className="subTitle"> About the:  {props.product.name} </div>
-        <div className="add-q-entry add-entry"> Your Question <input className="modal-entry" type="text" placeholder="your question here" onChange={questionChange}/> </div>
+        <div className="subTitle add-entry"> About the:  <span> {props.product.name} </span> </div>
+        <div className="add-q-entry add-entry"> Your Question <textarea className="modal-entry" rows="5" type="text" placeholder="your question here" onChange={questionChange}/> </div>
+        <div className="characters-remaining"> <span className="placeholder">placeholder</span> {questionCharactersRemaining} characters remaining </div>
         <div className="add-q-entry add-entry"> Nick Name <input className="modal-entry" type="text" placeholder="Example: jackson11!" onChange={nameChange}/> </div>
         <div className="add-q-entry"> For privacy reasons, do not use your full name or email address </div>
         <div className="add-q-entry add-entry"> Your Email <input className="modal-entry" type="email" placeholder="xxx@gmail.com" onChange={emailChange}/> </div>
