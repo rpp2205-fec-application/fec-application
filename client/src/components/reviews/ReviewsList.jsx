@@ -60,7 +60,8 @@ const ReviewsList = (props) => {
         </div>
 
         <div className="revs-footer">
-          {isEnd ? null : <button onClick={() => {
+          {isEnd ? null : <button onClick={(e) => {
+            props.interaction(e.target.value, 'reviews');
             setClicked(true);
             if (reviews.copy.length >= 2) {
               let add = reviews.copy.splice(0, 2)

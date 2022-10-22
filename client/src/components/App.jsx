@@ -27,7 +27,7 @@ class App extends React.Component {
     }
     this.topRef = React.createRef();
     this.reviewsRef = React.createRef();
-
+    this.interaction = this.interaction.bind(this);
   }
 
   componentDidMount() {
@@ -148,7 +148,10 @@ class App extends React.Component {
     this.setState({outfit}, () => {console.log('Current Outfit after removing: ', this.state.outfit)});
   }
 
-
+  interaction(element, widget) {
+    let time = new Date();
+    axios.post('/interactions', {element, widget, time})
+  }
   render() {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
       return (
@@ -167,7 +170,7 @@ class App extends React.Component {
             <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} />
             <Outfit product={this.state.product} outfit={this.state.outfit} addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} />
             <QA product={this.state.product}/>
-            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
+            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
           </div>
         </div>
 
