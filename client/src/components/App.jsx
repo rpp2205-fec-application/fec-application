@@ -120,18 +120,7 @@ class App extends React.Component {
     })
   }
 
-  // Add the product id to the outfit list if product hasn't been added yet
-  // Remove the product id from the outfit list if the list already includes the product
-  // toggleOutfit(productId) {
-  //   var outfit = [...this.state.outfit];
-  //   if (outfit.includes(productId)) {
-  //     outfit.splice(outfit.indexOf(productId), 1);
-  //   } else {
-  //     outfit.push(productId);
-  //   }
-  //   this.setState({outfit});
-  // }
-
+  // Add the product id to the outfit list
   addToOutfit(productId) {
     var outfit = [...this.state.outfit];
     if (outfit.includes(productId)) {
@@ -142,6 +131,7 @@ class App extends React.Component {
     }
   }
 
+  // Remove the product id from the outfit list
   removeFromOutfit(productId) {
     var outfit = [...this.state.outfit];
     outfit.splice(outfit.indexOf(productId), 1);
