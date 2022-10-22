@@ -15,6 +15,7 @@ class QuantitySelector extends React.Component {
       quantity: event.target.value
     })
     this.props.selectQuantity(event.target.value);
+    this.props.interaction('Quantity selector', 'Overview')
   }
 
   //Getting the new style list after the new product is passed to props

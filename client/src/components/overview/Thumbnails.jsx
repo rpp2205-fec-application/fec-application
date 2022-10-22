@@ -15,16 +15,19 @@ class Thumbnails extends React.Component {
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex + 1
     }))
+    this.props.interaction('Next arrow in default thumbnail section', 'Overview')
   }
 
   previous() {
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex - 1
     }))
+    this.props.interaction('Previous arrow in default thumbnail section', 'Overview')
   }
 
   thumbnailClick(event) {
     this.props.thumbnailClick(Number(event.target.getAttribute('data-key')))
+    this.props.interaction('Default thumbnail image', 'Overview')
   }
 
   //Set currentIndex back to 0 whenever choosing a new style
