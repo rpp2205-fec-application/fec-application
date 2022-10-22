@@ -50,10 +50,14 @@ class QAEntry extends React.Component {
     this.setState({ shownAnswers: this.state.all.slice(0, 2), collapse: false, loadMore: true});
   }
 
+  handleAddAnswer () {
+    console.log('Helloe');
+  }
+
   render () {
     return (
       <div className="q-a-entry">
-        <Question question={this.props.qa}/>
+        <Question product={this.props.product} question={this.props.qa} handleAddAnswer={this.handleAddAnswer.bind(this)}/>
         {this.state.shownAnswers}
         {this.state.loadMore ? <p className="load-collapse" onClick={this.handleLoadMore.bind(this)}> LOAD MORE </p> : null}
         {this.state.collapse ? <p className="load-collapse" onClick={this.collapseAnswers.bind(this)}> COLLAPSE </p> : null}
