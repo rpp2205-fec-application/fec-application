@@ -114,14 +114,15 @@ const AddReview = (props) => {
           </div>
           <div>
             <label>Review Body:
-              <textarea
+
+            </label>
+            <textarea
                 className="input-body"
                 placeholder="Why did you like the product or not?"
                 value={newRev.body}
                 onChange={(e) => setRev({...newRev, body: e.target.value})}
               /><br/>
               <span className="small_font">{newRev.body.length >= 50 ? "Minimum reached" : `Minimum required characters left: ${50 - newRev.body.length}` }</span>
-            </label>
           </div>
           <div>
             <UploadPics show={uploadShow} toggleUpload={toggleUpload} handleUpload={handleUpload} />
@@ -131,10 +132,13 @@ const AddReview = (props) => {
               }}>Upload your photos</button>
           </div>
           <div>
-            <label>Nick Name:  <input type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} /></label>
+            <label>Nick Name:
+              <input className="addRev-input" type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} />
+            </label>
+            <br/>
             <label>
               Your Email:
-              <input type="email" placeholder="Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
+              <input className="addRev-input" type="email" placeholder="Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
               <div className="xs_font">For authentication reasons, you will not be emailed</div></label>
           </div>
           <div>

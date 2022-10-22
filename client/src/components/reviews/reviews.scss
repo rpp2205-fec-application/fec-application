@@ -306,10 +306,14 @@ select {
   font-weight: 400;
 }
 
+.addRev-input {
+  margin-left: 10px;
+  width:50%;
+}
 .center-btn {
   background-color: white;
   font-family: Arial;
-  color: #000000;
+  color: black;
   font-size: 15px;
   padding: 11px 30px 10px 30px;
   border: solid #000000 1px;

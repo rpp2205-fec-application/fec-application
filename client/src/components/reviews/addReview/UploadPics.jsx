@@ -40,7 +40,7 @@ const UploadPics = (props) => {
 
   return (
     <div className={showOrHideUpload}>
-      <span className="close" onClick={props.handleClicked}>
+      <span className="close" onClick={props.toggleUpload}>
         &times;
       </span>
       <div>
