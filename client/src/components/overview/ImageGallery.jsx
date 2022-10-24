@@ -21,6 +21,7 @@ class ImageGallery extends React.Component {
     this.setState(prevState => ({
       expandedViewOn: !prevState.expandedViewOn
     }))
+    this.props.interaction('Default big picture', 'Overview')
   }
 
   //Getting the new style list after the new product is passed to props
@@ -51,11 +52,12 @@ class ImageGallery extends React.Component {
             selectedPhotoIndex={this.state.selectedPhotoIndex}
             thumbnailClick={this.thumbnailClick.bind(this)}
             photoChange={this.thumbnailClick.bind(this)}
-            toggleExpandedView={this.toggleExpandedView.bind(this)} />
+            toggleExpandedView={this.toggleExpandedView.bind(this)}
+            interaction={this.props.interaction} />
         }
         <div className='gallery-flex'>
-          <Thumbnails thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} />
-          <DefaultView photos={photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} photoChange={this.thumbnailClick.bind(this)} toggleExpandedView={this.toggleExpandedView.bind(this)} />
+          <Thumbnails thumbnails={thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} thumbnailClick={this.thumbnailClick.bind(this)} interaction={this.props.interaction} />
+          <DefaultView photos={photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.state.selectedPhotoIndex} photoChange={this.thumbnailClick.bind(this)} toggleExpandedView={this.toggleExpandedView.bind(this)} interaction={this.props.interaction} />
         </div>
       </div>
     )

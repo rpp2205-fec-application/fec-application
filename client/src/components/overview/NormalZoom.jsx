@@ -12,11 +12,13 @@ class NormalZoom extends React.Component {
   next() {
     var nextIndex = this.props.selectedPhotoIndex + 1;
     this.props.photoChange(nextIndex);
+    this.props.interaction('Next arrow in expanded big picture section', 'Overview')
   }
 
   previous() {
     var prevIndex = this.props.selectedPhotoIndex - 1;
     this.props.photoChange(prevIndex);
+    this.props.interaction('Previous arrow in expanded big picture section', 'Overview')
   }
 
   render() {

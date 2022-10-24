@@ -17,6 +17,7 @@ class StyleCircle extends React.Component {
         name: this.props.style.name
       }
     )
+    this.props.interaction('Style selector', 'Overview')
   }
 
   render() {
