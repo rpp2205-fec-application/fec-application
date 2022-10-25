@@ -34,7 +34,6 @@ class QAEntry extends React.Component {
 
   setAnswers () {
     let ans = this.state.all;
-    console.log(ans);
     ans.sort((a1, a2) => a1.helpfulness < a2.helpfulness ? 1 : a1.helpfulness > a2.helpfulness ? -1 : 0 )
     ans.sort((a1, a2) => a1.answerer_name !== "Seller" && a2.answerer_name === "Seller" ? 1 : a1.answerer_name === "Seller" && a2.answerer_name !== "Seller" ? -1 : 0 )
 

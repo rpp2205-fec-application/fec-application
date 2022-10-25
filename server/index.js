@@ -60,7 +60,6 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 // post a question
 app.post('/qa/questions', (req, res) => {
   let url = `${root}/qa/questions`;
-  console.log('req.body: ', req.body);
   axios.post(url, req.body, headers)
   .then((response) => {
     console.log('Success Creating Question');
@@ -73,10 +72,9 @@ app.post('/qa/questions', (req, res) => {
 // post an answer
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   let url = `${root}/qa/questions/${req.params.question_id}/answers`;
-  const { data } = req.body;
-  axios.post(url, data, headers)
+  axios.post(url, req.body, headers)
   .then((response) => {
-    console.log('Success Creating Question');
+    console.log('Success Creating Answer');
     res.status(201).json(response.data)
   })
   .catch((err) => { console.error(err) })
