@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns';
+import axios from 'axios';
 
 class Answer extends React.Component {
   constructor(props) {
@@ -11,16 +12,15 @@ class Answer extends React.Component {
   }
 
   handleYesClick () {
-    if (this.state.helpfulness === this.props.answer.helpfulness) {
-      this.setState({
-        helpfulness: this.state.helpfulness + 1,
-        className: "helpful"
+    if (this.state.className === "not-helpful") {
+      axios.put(`/qa/answers/${this.props.answer.answer_id}/helpful`)
+      .then((response) => {
+        console.log('Success marking helpful');
+        this.setState({ className: "helpful", helpfulness: this.state.helpfulness + 1 });
       })
+      .catch(err => { console.error(err) })
     } else {
-      this.setState({
-        helpfulness: this.state.helpfulness - 1,
-        className: "not-helpful"
-      })
+      console.log('Already marked!');
     }
   }
 

@@ -90,7 +90,7 @@ app.put('/qa/questions/:question_id/helpful', (req, res) => {
 
 // mark answer helpful
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.answer_id}/helpful`;
+  let url = `${root}/qa/answers/${req.params.answer_id}/helpful`;
   axios.put(url, {}, headers)
   .then((response) => res.status(204).json(response.data))
   .catch((err) => console.error(err))
