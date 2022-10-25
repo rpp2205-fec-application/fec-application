@@ -22,8 +22,19 @@ import './qa-modal.scss';
   }
 
   const submit = () => {
-    props.closeModal();
-    props.handleAddQuestion({ body, name, email, product_id: props.product.id });
+    console.log('here', body.length, name.length, email.length);
+    if (!body.length) {
+      alert("You must enter a question!")
+    } else if (!name.length) {
+      alert("You must enter a nickname!")
+    } else if (!email.length) {
+      alert("You must enter an email!")
+    } else if (!email.includes('@')) {
+      alert("Must use a valid email!")
+    } else {
+      props.closeModal();
+      props.handleAddQuestion({ body, name, email, product_id: props.product.id });
+    }
   }
 
   return (
