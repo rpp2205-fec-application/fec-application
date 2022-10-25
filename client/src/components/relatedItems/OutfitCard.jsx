@@ -30,7 +30,6 @@ class OutfitCard extends React.Component {
 getProduct() {
   return axios.get(`/products/${this.props.product}`)
   .then(response => {
-    // console.log('response///', response.data);
     this.setState({
       product: response.data
     })
@@ -40,8 +39,6 @@ getProduct() {
 getPicture() {
   return axios.get(`/products/${this.props.product}/styles`)
   .then(response => {
-    //  console.log('styles///', response.data);
-    //  console.log('photos///', response.data.results[0].photos[0].thumbnail_url);
      var selectedStyle = response.data.results[0];
      for (var style of response.data.results) {
         if (style['default?']) {

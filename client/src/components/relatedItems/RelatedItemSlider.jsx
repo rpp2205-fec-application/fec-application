@@ -4,48 +4,71 @@ import RelatedItemCard from './RelatedItemCard.jsx';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 
 const RelatedItemSlider = (props) => {
+  const slider = document.getElementById('slider');
+  const [showLeft, setShowLeft] = useState(false);
+  const [showRight, setShowRight] = useState(true);
+
   const slideLeft = () => {
     var slider = document.getElementById('slider');
-    slider.scrollLeft -=  50;
-  }
+    slider.scrollLeft -=  100;
+    console.log('slider///', slider.scrollLeft);
+    setShowRight(true);
+    if(slider.scrollLeft <= 50) {
+      setShowLeft(false);
+    }
+  //   setShowLeft(true);
+  //   console.log('sliderLLL', showLeft);
+   }
 
   const slideRight = () => {
     var slider = document.getElementById('slider');
-    slider.scrollLeft +=  50;
+    slider.scrollLeft +=  150;
+    setShowLeft(true);
+    if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
+      setShowRight(false);
+    }
   }
 
   const uniqeRelatedProducts = (products) => {
-    var arrOfProducts = [];
+    var objOfProducts = {};
     for(var i = 0; i < products.length; i++) {
-      if (products[i] !== props.curProduct.id && !arrOfProducts.includes(products[i])) {
-        arrOfProducts.push(products[i]);
+      if (products[i] !== props.curProduct.id && !objOfProducts[products[i]]) {
+        objOfProducts[products[i]] = i;
       } 
     }
-      return arrOfProducts;
+      return Object.keys(objOfProducts);
   }
+
+  
+
+
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
     setRelatedItems(uniqeRelatedProducts(props.products));
-  }, [props.products])
+  }, [props.products]);
+ 
+
+
+
   
-  console.log('relatedItems......', relatedItems);
   
   return (
    
     <div id="main-slider-container">
-      <MdChevronLeft size={38} className="slider-icon-left" onClick={slideLeft} />
+          {/* <MdChevronLeft size={38} className="slider-icon-left"  onClick={slideLeft} />     */}
+      <MdChevronLeft size={38} className={showLeft ? "slider-icon-left" : "slider-icon-invisible"}  onClick={slideLeft} />  
       <div id='slider'>
 
         { relatedItems.map((item, index) => {
           return (
-                  <RelatedItemCard product={item} key={index} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
+                  <RelatedItemCard product={item} key={index} mainProduct={props.curProduct} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
               )
           
            })}
 
       </div>
-      <MdChevronRight size={38} className="slider-icon-right" onClick={slideRight} />
+      <MdChevronRight size={38} className={showRight ? "slider-icon-right" : "slider-icon-invisible"}  onClick={slideRight} />
     </div>
   )
 }

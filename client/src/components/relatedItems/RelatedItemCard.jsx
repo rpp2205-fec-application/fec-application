@@ -106,13 +106,15 @@ class RelatedItemCard extends React.Component {
 
 
   render() {
+   // console.log('product#######', this.state.product);
+    if (JSON.stringify(this.state.product) !== {} ) {
     return (
         <div className="card pointer-cursor" >
             <a>
             <img className='card-image' alt="ralatedImage" src={this.state.photo} onClick={this.selectProduct.bind(this)} />
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
-            <Modal show={this.state.show} hideModal={this.hideModal}/>
+            <Modal show={this.state.show} hideModal={this.hideModal} curProduct={this.state.product}/>
             <div className='cardbody' onClick={(e) => {this.selectProduct(e)}}>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>
@@ -123,9 +125,11 @@ class RelatedItemCard extends React.Component {
         </div>
 
 
-    )
+    ) 
+  }else{
+    return null;
   }
-
+  }
 }
 
 export default RelatedItemCard;
