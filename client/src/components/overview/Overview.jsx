@@ -154,9 +154,11 @@ class Overview extends React.Component {
       const totalQuantity = getTotalQuantity(this.state.selectedStyle.skus);
       return (
         <div className='overview-container'>
-          <div id={'success-message'} className={'add-to-bag-success-message'}>
-            <strong>Congratulation:</strong> {`${name} is added to the bag!`}
-          </div>
+          {(this.state.selectedSizeId !== 'SELECT SIZE') &&
+            <div id={'success-message'} className={'add-to-bag-success-message'}>
+              <strong>Congratulation:</strong> {`${this.state.selectedQuantity} ${this.state.selectedStyle.name} ${name} (${this.state.selectedStyle.skus[this.state.selectedSizeId].size}) is added to the bag!`}
+            </div>
+          }
           <div className='overview-flex'>
             <ImageGallery selectedStyle={this.state.selectedStyle} styles={this.state.styles} interaction={this.props.interaction} />
             <div className='product-info'>

@@ -327,19 +327,19 @@ p {
 .add-to-bag-success-message {
   display: none;
   position: fixed;
-  width: 70%;
+  width: 80%;
   padding: 15px;
-  top: 20px;
+  top: 40px;
   left:50%;
   right: auto;
   text-align: center;
   transform: translateX(-50%);
-  background-color: white;
-  color: rgb(38, 168, 67);
+  background-color: rgb(57, 186, 109);
+  color: rgb(255, 255, 255);
   z-index: 200;
-  border-radius: 100px;
-  border: 2px solid rgb(38, 168, 67);
-  box-shadow: 0 5px 30px rgba(76, 223, 108, 0.5);
+  border-radius: 3px;
+  // border: 2px solid rgb(38, 168, 67);
+  // box-shadow: 0 5px 30px rgba(76, 223, 108, 0.5);
 }
 
 
