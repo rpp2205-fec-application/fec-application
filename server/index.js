@@ -43,25 +43,28 @@ app.get('/products/:product_id/styles', async (req, res) => {
 
 // get questions
 app.get('/qa/questions/:product_id', (req, res) => {
-  let url = `${root}/qa/questions/?product_id=${req.params.product_id}`;
+  let url = `${root}/qa/questions/?product_id=${req.params.product_id}&count=300`;
   axios.get(url, headers)
   .then((response) => res.status(200).json(response.data))
   .catch((err) => console.error(err))
 })
 
 // get answers
-app.get('/qa/questions/:question_id/answers', async (req, res) => {
-  let url = `${root}/qa/questions/?product_id=${req.params.product_id}`;
-  const questions = await axios.get(url, headers)
-  res.status(200).json(questions.data);
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  let url = `${root}/qa/questions/${req.params.question_id}/answers?count=300`;
+  axios.get(url, headers)
+  .then((response) => res.status(200).json(response.data))
+  .catch((err) => console.error(err))
 })
 
 // post a question
 app.post('/qa/questions', (req, res) => {
   let url = `${root}/qa/questions`;
+  console.log('req.body: ', req.body);
   axios.post(url, req.body, headers)
   .then((response) => {
     console.log('Success Creating Question');
+    console.log('Response', response);
     res.status(201).json(response.data)
   })
   .catch((err) => { console.error(err) })
@@ -70,7 +73,8 @@ app.post('/qa/questions', (req, res) => {
 // post an answer
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   let url = `${root}/qa/questions/${req.params.question_id}/answers`;
-  axios.post(url, req.body, headers)
+  const { data } = req.body;
+  axios.post(url, data, headers)
   .then((response) => {
     console.log('Success Creating Question');
     res.status(201).json(response.data)

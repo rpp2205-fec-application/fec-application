@@ -23,7 +23,7 @@ import './qa-modal.scss';
 
   const submit = () => {
     props.closeModal();
-    props.handleAddAnswer();
+    props.handleAddAnswer({body, name, email, photos: []});
   }
 
   return (
