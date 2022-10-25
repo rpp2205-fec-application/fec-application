@@ -7,7 +7,8 @@ class Answer extends React.Component {
     super(props);
     this.state = {
       helpfulness: this.props.answer.helpfulness,
-      className: "not-helpful"
+      className: "not-helpful",
+      classNameReport: ""
     }
   }
 
@@ -24,6 +25,18 @@ class Answer extends React.Component {
     }
   }
 
+  handleReportClick () {
+    if (this.state.classNameReport === "") {
+      axios.put(`/qa/answers/${this.props.answer.answer_id}/report`)
+      .then((response) => {
+        console.log("Success Reporting");
+        this.setState({ classNameReport: "reported" })
+      })
+    } else {
+      console.log('Already reported!');
+    }
+  }
+
   render () {
 
     var date = new Date(this.props.answer.date).toDateString().slice(4);
@@ -37,7 +50,7 @@ class Answer extends React.Component {
           <p className="answer-body"> {this.props.answer.body} </p>
           <p className="answer-additional"> by {this.props.answer.answerer_name === "Seller"? <b>{this.props.answer.answerer_name}</b>: this.props.answer.answerer_name}, {date} </p>
           <p className="answer-additional left-border"> Helpful? &nbsp; <u className={this.state.className} onClick={this.handleYesClick.bind(this)}>Yes</u>  ({this.state.helpfulness}) </p>
-          <p className="answer-additional left-border"> Report </p>
+          <p className="answer-additional left-border"> <u className={this.state.classNameReport} onClick={this.handleReportClick.bind(this)}>Report</u> </p>
         </div>
       </div>
     )

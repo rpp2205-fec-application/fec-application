@@ -97,16 +97,16 @@ app.put('/qa/answers/:answer_id/helpful', (req, res) => {
 })
 
 // report question
-app.put('/qa/questions/:question_id/report', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
-  axios.put(url, {}, headers)
-  .then((response) => res.status(204).json(response.data))
-  .catch((err) => console.error(err))
-})
+// app.put('/qa/questions/:question_id/report', (req, res) => {
+//   let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
+//   axios.put(url, {}, headers)
+//   .then((response) => res.status(204).json(response.data))
+//   .catch((err) => console.error(err))
+// })
 
 // report answer
 app.put('/qa/answers/:answer_id/report', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.answer_id}/helpful`;
+  let url = `${root}/qa/answers/${req.params.answer_id}/report`;
   axios.put(url, {}, headers)
   .then((response) => res.status(204).json(response.data))
   .catch((err) => console.error(err))
