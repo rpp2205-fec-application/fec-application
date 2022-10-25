@@ -5,7 +5,8 @@ import  AddCard  from "./AddCard.jsx";
 import OutfitCard from "./OutfitCard.jsx";
 
 const OutfitSlider = (props) => {
-  const [items, setItems] = useState([props.outfit]);
+  const [items, setItems] = useState(props.outfit);
+  console.log('items//////', items)
 
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
@@ -22,7 +23,7 @@ const OutfitSlider = (props) => {
     
     useEffect(() => {
       setItems(props.outfit);
-    }, [items]);
+    });
  
 
   const slideRight = () => {
