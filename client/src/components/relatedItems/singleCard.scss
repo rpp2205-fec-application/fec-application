@@ -25,7 +25,7 @@
   position: relative;
   border-radius: 10px;
   border: 2px dashed rgb(195, 197, 195);
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -39,26 +39,32 @@
 }
 
 .addProductIcon {
-  font-size: 100px;
+  font-size: 150px;
   // color: rgb(161, 165, 167);
 }
 
 #addIcon{
   width: 250px;
   height: 220px;
-  border-bottom: 1px solid rgb(195, 197, 195);
+  //border-bottom: 1px solid rgb(195, 197, 195);
   display: flex;
   align-items: center;
   position: relative;
 }
 #addProductIcon{
-  width: 50%;
-  height: 50%;
-  border: solid gray;
-  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+ // border: solid gray;
+  //border-radius: 50%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.cardContent{
+  display: flex;
+  justify-content: center;
+  display: flex;
+  position: relative;
 }
 
 .star-icon{
@@ -114,6 +120,7 @@
 
 #addCardContent{
   text-align: center;
+  
 }
 
 .clear-icon{
