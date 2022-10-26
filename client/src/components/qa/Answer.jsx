@@ -8,11 +8,14 @@ class Answer extends React.Component {
     this.state = {
       helpfulness: this.props.answer.helpfulness,
       className: "not-helpful",
-      classNameReport: ""
+      classNameReport: "",
+      showOrHide: "modal trans-bg display-none",
+      url: ""
     }
   }
 
   handleYesClick () {
+    console.log('clicked!');
     if (this.state.className === "not-helpful") {
       axios.put(`/qa/answers/${this.props.answer.answer_id}/helpful`)
       .then((response) => {
@@ -37,6 +40,15 @@ class Answer extends React.Component {
     }
   }
 
+  hideModal () {
+    this.setState({ showOrHide: "modal trans-bg display-none" });
+  }
+
+  makeLarge (e) {
+    console.log(e.target.src);
+    this.setState({ showOrHide: "modal trans-bg dispaly-block", url: e.target.src });
+  }
+
   render () {
 
     var date = new Date(this.props.answer.date).toDateString().slice(4);
@@ -47,7 +59,21 @@ class Answer extends React.Component {
       <div className="answer-section">
         {this.props.first? <p className="questionBody"> A: </p>: <p className="fake"> a </p>}
         <div className="answer">
-          <p className="answer-body"> {this.props.answer.body} </p>
+
+          <div className={this.state.showOrHide} >
+            <div className="modal-img" style={{"--url": this.state.url}}>
+              <span className="close" onClick={() => this.setState({showOrHide: "modal trans-bg display-none"})}>
+                &times;
+              </span>
+              <img className="qa-photo-large" alt="qa-img" src={this.state.url} />
+            </div>
+          </div>
+
+          <div className="answer-body">
+            {this.props.answer.body} <br></br>
+            {this.props.answer.photos.map(p => (<img key={p.id} src={p.url} alt="qa-img" className="qa-photo" onClick={(e) => this.makeLarge.bind(this)(e)}/>))}
+          </div>
+
           <p className="answer-additional"> by {this.props.answer.answerer_name === "Seller"? <b>{this.props.answer.answerer_name}</b>: this.props.answer.answerer_name}, {date} </p>
           <p className="answer-additional left-border"> Helpful? &nbsp; <u className={this.state.className} onClick={this.handleYesClick.bind(this)}>Yes</u>  ({this.state.helpfulness}) </p>
           <p className="answer-additional left-border"> <u className={this.state.classNameReport} onClick={this.handleReportClick.bind(this)}>Report</u> </p>
