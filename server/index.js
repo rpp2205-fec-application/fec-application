@@ -43,17 +43,18 @@ app.get('/products/:product_id/styles', async (req, res) => {
 
 // get questions
 app.get('/qa/questions/:product_id', (req, res) => {
-  let url = `${root}/qa/questions/?product_id=${req.params.product_id}`;
+  let url = `${root}/qa/questions/?product_id=${req.params.product_id}&count=300`;
   axios.get(url, headers)
   .then((response) => res.status(200).json(response.data))
   .catch((err) => console.error(err))
 })
 
 // get answers
-app.get('/qa/questions/:question_id/answers', async (req, res) => {
-  let url = `${root}/qa/questions/?product_id=${req.params.product_id}`;
-  const questions = await axios.get(url, headers)
-  res.status(200).json(questions.data);
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  let url = `${root}/qa/questions/${req.params.question_id}/answers?count=300`;
+  axios.get(url, headers)
+  .then((response) => res.status(200).json(response.data))
+  .catch((err) => console.error(err))
 })
 
 // post a question
@@ -62,6 +63,7 @@ app.post('/qa/questions', (req, res) => {
   axios.post(url, req.body, headers)
   .then((response) => {
     console.log('Success Creating Question');
+    console.log('Response', response);
     res.status(201).json(response.data)
   })
   .catch((err) => { console.error(err) })
@@ -72,7 +74,7 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
   let url = `${root}/qa/questions/${req.params.question_id}/answers`;
   axios.post(url, req.body, headers)
   .then((response) => {
-    console.log('Success Creating Question');
+    console.log('Success Creating Answer');
     res.status(201).json(response.data)
   })
   .catch((err) => { console.error(err) })
@@ -81,31 +83,31 @@ app.post('/qa/questions/:question_id/answers', (req, res) => {
 // mark question helpful
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
-  axios.put(url, headers)
+  axios.put(url, {}, headers)
   .then((response) => res.status(204).json(response.data))
   .catch((err) => console.error(err))
 })
 
 // mark answer helpful
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.answer_id}/helpful`;
-  axios.put(url, headers)
+  let url = `${root}/qa/answers/${req.params.answer_id}/helpful`;
+  axios.put(url, {}, headers)
   .then((response) => res.status(204).json(response.data))
   .catch((err) => console.error(err))
 })
 
 // report question
-app.put('/qa/questions/:question_id/report', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
-  axios.put(url, headers)
-  .then((response) => res.status(204).json(response.data))
-  .catch((err) => console.error(err))
-})
+// app.put('/qa/questions/:question_id/report', (req, res) => {
+//   let url = `${root}/qa/questions/${req.params.question_id}/helpful`;
+//   axios.put(url, {}, headers)
+//   .then((response) => res.status(204).json(response.data))
+//   .catch((err) => console.error(err))
+// })
 
 // report answer
 app.put('/qa/answers/:answer_id/report', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.answer_id}/helpful`;
-  axios.put(url, headers)
+  let url = `${root}/qa/answers/${req.params.answer_id}/report`;
+  axios.put(url, {}, headers)
   .then((response) => res.status(204).json(response.data))
   .catch((err) => console.error(err))
 })
