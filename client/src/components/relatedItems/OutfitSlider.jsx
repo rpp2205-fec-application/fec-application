@@ -33,7 +33,7 @@ const OutfitSlider = (props) => {
     console.log("outfotSlider/////", slider.scrollLeft);
     console.log("outfotSlider???", slider.clientWidth);
     console.log('outfitslide&&&', slider.scrollWidth);
-    if(slider.scrollLeft <= (slider.scrollWidth - slider.clientWidth)) {
+    if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth -100)) {
       setShowRight(false);
     }
   }
