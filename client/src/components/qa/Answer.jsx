@@ -45,7 +45,6 @@ class Answer extends React.Component {
   }
 
   makeLarge (e) {
-    console.log(e.target.src);
     this.setState({ showOrHide: "modal trans-bg dispaly-block", url: e.target.src });
   }
 
