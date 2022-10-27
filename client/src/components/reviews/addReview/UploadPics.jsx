@@ -40,13 +40,12 @@ const UploadPics = (props) => {
 
   return (
     <div className={showOrHideUpload}>
-      <span className="close" onClick={props.handleClicked}>
+      <span className="close" onClick={props.toggleUpload}>
         &times;
       </span>
       <div>
         <div>Upload Your Pictures</div>
         {images.length < 5 &&
-         //<input type="file" name="myImage" onChange={(e) => {setImages(imageFiles.concat(URL.createObjectURL(e.target.files[0])))}} />
           <input type="file" name="myImage" onChange={(e) => {handleChange(e.target.files[0])}} required accept="image/png, image/jpeg, image/jpg, image/jfjf"/>
         }
       </div>

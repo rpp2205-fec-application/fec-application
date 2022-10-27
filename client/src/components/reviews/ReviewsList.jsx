@@ -74,7 +74,6 @@ const ReviewsList = (props) => {
           }} className="btn more-revs">MORE REVIEWS</button>}
           <button className="btn new-revs"
           onClick={() => {
-
             props.handleClick()
             props.interaction('Add a review', 'reviews');
             }

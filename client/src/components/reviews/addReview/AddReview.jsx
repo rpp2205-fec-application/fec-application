@@ -126,27 +126,33 @@ const AddReview = (props) => {
           <div>
             <UploadPics show={uploadShow} toggleUpload={toggleUpload} handleUpload={handleUpload} />
             <button onClick={(e) => {
+              props.interaction('upload pics', 'reviews');
               e.preventDefault();
               setUploadShow(!uploadShow);
               }}>Upload your photos</button>
           </div>
           <div>
-            <label>Nick Name:  <input type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} /></label>
+            <label>Nick Name:
+              <input className="addRev-input" type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} />
+            </label>
+            <br/>
             <label>
               Your Email:
-              <input type="email" placeholder="Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
+              <input className="addRev-input" type="email" placeholder="Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
               <div className="xs_font">For authentication reasons, you will not be emailed</div></label>
           </div>
           <div>
             <input className="center-btn" type="submit" onClick={(e) => {
-          e.preventDefault();
-          handleSubmit(newRev);
-          }} value="Submit"/>
+              props.interaction('submit', 'reviews');
+              e.preventDefault();
+              handleSubmit(newRev);
+              }} value="Submit"/>
           </div>
         </form>
       </div>
     </div>
   )
 }
+
 
 export default AddReview;
