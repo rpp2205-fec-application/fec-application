@@ -13,6 +13,7 @@ const Reviews = (props) => {
   const [toggle, setToggle] = useState(initToggle);
   //handle 5 rating star been clicked
   const handleStarClick = (reviews, num) => {
+    props.interaction(`${num} Star Rating`, 'reviews');
     if (toggle[num] === false) {
       let newRev = newList.concat(reviewsSort(reviews, num))
         setList(newRev);
@@ -28,6 +29,7 @@ const Reviews = (props) => {
   }
   // clear all the filter
   const clearFilter =  () => {
+    props.interaction('clear filter', 'reviews');
     setToggle(initToggle);
     setList([]);
   }
