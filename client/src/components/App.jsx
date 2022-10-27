@@ -27,7 +27,7 @@ class App extends React.Component {
     }
     this.topRef = React.createRef();
     this.reviewsRef = React.createRef();
-    this.interaction = this.interaction.bind(this);
+
   }
 
   componentDidMount() {
@@ -119,7 +119,18 @@ class App extends React.Component {
     })
   }
 
-  // Add the product id to the outfit list
+  // Add the product id to the outfit list if product hasn't been added yet
+  // Remove the product id from the outfit list if the list already includes the product
+  // toggleOutfit(productId) {
+  //   var outfit = [...this.state.outfit];
+  //   if (outfit.includes(productId)) {
+  //     outfit.splice(outfit.indexOf(productId), 1);
+  //   } else {
+  //     outfit.push(productId);
+  //   }
+  //   this.setState({outfit});
+  // }
+
   addToOutfit(productId) {
     var outfit = [...this.state.outfit];
     if (outfit.includes(productId)) {
@@ -130,36 +141,36 @@ class App extends React.Component {
     }
   }
 
-  // Remove the product id from the outfit list
   removeFromOutfit(productId) {
     var outfit = [...this.state.outfit];
     outfit.splice(outfit.indexOf(productId), 1);
     this.setState({outfit}, () => {console.log('Current Outfit after removing: ', this.state.outfit)});
   }
 
-  interaction(element, widget) {
-    let time = new Date();
-    axios.post('/interactions', {element, widget, time})
-  }
 
   render() {
     if (JSON.stringify(this.state.product) !=='{}' && JSON.stringify(this.state.reviewsMeta) !=='{}') {
       return (
         <div>
           <div className="header" ref={this.topRef}>
-            <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>Logo</a>
+
+
+            <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>ATELIER</a>
+
               <a className="search">
                 <input type="text" aira-label="Search" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
               </a>
           </div>
           <div className='container'>
+
             <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics} interaction={this.interaction}/>
             <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} outfit={this.state.outfit} addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction} />
+
             <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} />
             <Outfit product={this.state.product} outfit={this.state.outfit}  addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} />
             <QA product={this.state.product}/>
-            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
+            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)}/>
           </div>
         </div>
       )

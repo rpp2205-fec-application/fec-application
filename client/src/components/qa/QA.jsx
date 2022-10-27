@@ -24,6 +24,15 @@ class QA extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.product.id !== this.props.product.id) {
+      this.getQuestions()
+      .then(() => {
+        this.setQuestions();
+      })
+    }
+  }
+
   getQuestions () {
     return (
       axios.get(`/qa/questions/${this.props.product.id}`)

@@ -33,7 +33,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: gray;
+  background-color: rgb(64, 62, 62);
   padding: 0 5%;
   width: 100%;
   // margin: 0 50px;
@@ -50,16 +50,17 @@ body {
   color:white;
   display: inline;
   font-family: 'Poppins';
-  font-weight: 600;
-  font-size:x-large;
-  text-decoration: underline;
+  font-weight: 700;
+  font-size: 32px;
 }
 
 .search{
   // position: absolute;
   display: flex;
   flex-wrap: nowrap;
+  gap: 10px;
   // margin-left:80%;
+  color:white;
 }
 
 .search input{
