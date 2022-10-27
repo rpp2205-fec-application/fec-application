@@ -55,7 +55,17 @@ class QAEntry extends React.Component {
   }
 
   handleLoadMore () {
-    this.setState({ shownAnswers: this.state.all, loadMore: false, collapse: true});
+    let endpoint = this.state.shownAnswers.length + 2
+    let isDone = false
+    if (endpoint >= this.state.all.length) {
+      isDone = true;
+    }
+    let nextSet = this.state.all.slice(0, this.state.shownAnswers.length + 2)
+    this.setState({
+      shownAnswers: nextSet,
+      loadMore: !isDone,
+      collapse: isDone
+    });
   }
 
   collapseAnswers () {
@@ -75,8 +85,11 @@ class QAEntry extends React.Component {
   }
 
   render () {
+
+    const scrollOrNot = this.state.shownAnswers.length >= 4? "qa-entry-scroll": "qa-entry"
+
     return (
-      <div className="q-a-entry">
+      <div className={scrollOrNot}>
         <Question product={this.props.product} question={this.props.qa} handleAddAnswer={this.handleAddAnswer.bind(this)}/>
         {this.state.shownAnswers}
         {this.state.loadMore ? <p className="load-collapse" onClick={this.handleLoadMore.bind(this)}> LOAD MORE </p> : null}
