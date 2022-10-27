@@ -54,7 +54,7 @@ const ReviewsList = (props) => {
         </div>
         <div className = {scrollOrNot}>
           <ul className="revs-list-main">
-            {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
+            {reviews.renderList.map(review => <ReviewEntry interaction={props.interaction} review={review} key={review.review_id}/>)}
             {clicked && <ScroolToBotton />}
           </ul>
         </div>
@@ -72,7 +72,13 @@ const ReviewsList = (props) => {
               setIsEnd(true);
             }
           }} className="btn more-revs">MORE REVIEWS</button>}
-          <button className="btn new-revs" onClick={props.handleClick}>ADD A REVIEW +</button>
+          <button className="btn new-revs"
+          onClick={() => {
+
+            props.handleClick()
+            props.interaction('Add a review', 'reviews');
+            }
+          }>ADD A REVIEW +</button>
         </div>
       </div>
     )

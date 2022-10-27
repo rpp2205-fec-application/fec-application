@@ -41,7 +41,14 @@ const ReviewEntry = (props) => {
               {props.review.body.slice(0, 250)}
               {(showMore || !showReview)? null : <a className="more-summary">{props.review.body.slice(250)}</a>}
               <br/>
-             {showReview && <button className="sm-btn" onClick={() => { setShowMore(!showMore) }}>{showMore ? "SHOW MORE" : "FOLD BACK" }</button>}
+             {showReview &&
+              <button
+              className="sm-btn"
+              value={showMore ? "SHOW MORE" : "FOLD BACK" }
+              onClick={(e) => {
+                props.interaction(e.target.value, 'reviews')
+                setShowMore(!showMore)
+              }}>{showMore ? "SHOW MORE" : "FOLD BACK" }</button>}
             </div>)
           }
 
@@ -64,6 +71,7 @@ const ReviewEntry = (props) => {
               </div>
               {props.review.photos.map(photo =>
                 <img key={photo.id} className="rev-photo" alt="reviws-img" src={photo.url} onClick={(e) => {
+                  props.interaction(e.target.className, 'reviews');
                   setBig({show: !showBig.show, url: e.target.src});
                   }}/>
                 )
@@ -73,18 +81,23 @@ const ReviewEntry = (props) => {
         </div>
         <div className="rev-footer xs_font">
           <div>Helpful?
-            <a className="underline rev-helpful" onClick={(e) => {
+            <a className="underline rev-helpful"
+            onClick={(e) => {
+              props.interaction('helpful', 'reviews');
               if (!clicked) {
                 setHelp(helpful + 1);
                 sendToServer(props.review.review_id);
               } else {
                 alert('You already clicked!');
-              }}}>
+              }
+            }
+            }>
               Yes
             </a>
             <span className="rev-helpdata">({helpful})</span>
             |
             <a className="underline rev-helpful" value="report" onClick={(e) => {
+              props.interaction(e.target.value, 'reviews');
               sendReport(props.review.review_id);
             }}> Report </a>
           </div>
