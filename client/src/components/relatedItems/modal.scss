@@ -29,3 +29,16 @@
   z-index: 9000;
 
 }
+
+#comparions td, #comparions th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#comparions th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}

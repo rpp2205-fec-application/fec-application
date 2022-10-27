@@ -27,7 +27,7 @@ const RelatedItemSlider = (props) => {
     console.log('sliderLeft///', slider.scrollWidth)
     console.log('sliderLeft>>>>>', slider.clientWidth)
     console.log('sliderleft', slider.scrollLeft);
-    if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth - 50)) {
+    if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
       setShowRight(false);
     }
   }
