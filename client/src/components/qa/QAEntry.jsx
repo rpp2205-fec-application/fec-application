@@ -85,8 +85,11 @@ class QAEntry extends React.Component {
   }
 
   render () {
+
+    const scrollOrNot = this.state.shownAnswers.length >= 4? "qa-entry-scroll": "qa-entry"
+
     return (
-      <div className="q-a-entry">
+      <div className={scrollOrNot}>
         <Question product={this.props.product} question={this.props.qa} handleAddAnswer={this.handleAddAnswer.bind(this)}/>
         {this.state.shownAnswers}
         {this.state.loadMore ? <p className="load-collapse" onClick={this.handleLoadMore.bind(this)}> LOAD MORE </p> : null}

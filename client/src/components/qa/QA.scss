@@ -154,3 +154,13 @@
   background-color: rgba(0, 0, 0, 0.85);
   z-index: 6000;
 }
+
+.qa-list-section-scroll {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.qa-entry-scroll {
+  max-height: 300px;
+  overflow-y: scroll;
+}
