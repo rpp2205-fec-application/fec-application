@@ -46,7 +46,6 @@ class App extends React.Component {
         return this.setState({
           products: res.data,
           product: res.data[1]
-
         }, () => {
           console.log('Products: ', this.state.products)
           console.log('Product: ', this.state.product)
@@ -148,7 +147,6 @@ class App extends React.Component {
       return (
         <div>
           <div className="header" ref={this.topRef}>
-
             <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>Logo</a>
               <a className="search">
                 <input type="text" aira-label="Search" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
@@ -156,7 +154,7 @@ class App extends React.Component {
               </a>
           </div>
           <div className='container'>
-            <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics} />
+            <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics} interaction={this.interaction}/>
             <Overview product={this.state.product} handleScrollToReviews={this.handleScrollToReviews.bind(this)} rating={this.state.rating} outfit={this.state.outfit} addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction} />
             <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} />
             <Outfit product={this.state.product} outfit={this.state.outfit}  addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} />
@@ -164,15 +162,11 @@ class App extends React.Component {
             <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
           </div>
         </div>
-
       )
-
     } else {
       return null;
     }
   }
-
-
 }
 
 export default App;
