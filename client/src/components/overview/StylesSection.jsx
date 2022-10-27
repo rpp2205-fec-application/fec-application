@@ -48,7 +48,8 @@ class StylesSection extends React.Component {
               selectStyle={this.props.selectStyle}
               changeStyle={this.changeStyle.bind(this)}
               selected={this.state.selectedStyleId === style.style_id ? true : false}
-              selectSizeMessageOff={this.props.selectSizeMessageOff} />
+              selectSizeMessageOff={this.props.selectSizeMessageOff}
+              interaction={this.props.interaction} />
           ))}
         </div>
       </div>

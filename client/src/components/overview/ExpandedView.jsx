@@ -17,6 +17,7 @@ class ExpandedView extends React.Component {
     this.setState(prevState => ({
       zoomOn: !prevState.zoomOn
     }))
+    this.props.interaction('Big picture in expanded view section', 'Overview')
   }
 
   render() {
@@ -30,8 +31,8 @@ class ExpandedView extends React.Component {
           : <div className='expanded-view-container'>
               <TbArrowsMinimize className='close-expanded-view-icon' onClick={this.props.toggleExpandedView}/>
               <div className='gallery-flex'>
-                <SimpleThumbnails thumbnails={this.props.thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.props.selectedPhotoIndex} thumbnailClick={this.props.thumbnailClick} />
-                <NormalZoom photos={this.props.photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.props.selectedPhotoIndex} photoChange={this.props.thumbnailClick} toggleZoom={this.toggleZoom.bind(this)} />
+                <SimpleThumbnails thumbnails={this.props.thumbnails} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.props.selectedPhotoIndex} thumbnailClick={this.props.thumbnailClick} interaction={this.props.interaction} />
+                <NormalZoom photos={this.props.photos} selectedStyle={this.props.selectedStyle} selectedPhotoIndex={this.props.selectedPhotoIndex} photoChange={this.props.thumbnailClick} toggleZoom={this.toggleZoom.bind(this)} interaction={this.props.interaction} />
               </div>
             </div>
           }

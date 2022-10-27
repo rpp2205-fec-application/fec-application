@@ -54,13 +54,14 @@ const ReviewsList = (props) => {
         </div>
         <div className = {scrollOrNot}>
           <ul className="revs-list-main">
-            {reviews.renderList.map(review => <ReviewEntry review={review} key={review.review_id}/>)}
+            {reviews.renderList.map(review => <ReviewEntry interaction={props.interaction} review={review} key={review.review_id}/>)}
             {clicked && <ScroolToBotton />}
           </ul>
         </div>
 
         <div className="revs-footer">
-          {isEnd ? null : <button onClick={() => {
+          {isEnd ? null : <button onClick={(e) => {
+            props.interaction(e.target.value, 'reviews');
             setClicked(true);
             if (reviews.copy.length >= 2) {
               let add = reviews.copy.splice(0, 2)
@@ -71,7 +72,13 @@ const ReviewsList = (props) => {
               setIsEnd(true);
             }
           }} className="btn more-revs">MORE REVIEWS</button>}
-          <button className="btn new-revs" onClick={props.handleClick}>ADD A REVIEW +</button>
+          <button className="btn new-revs"
+          onClick={() => {
+
+            props.handleClick()
+            props.interaction('Add a review', 'reviews');
+            }
+          }>ADD A REVIEW +</button>
         </div>
       </div>
     )

@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import Question from './Question.jsx';
 import Answer from './Answer.jsx';
 
@@ -14,21 +16,31 @@ class QAEntry extends React.Component {
   }
 
   componentDidMount () {
-    this.setAnswers();
+    this.getAnswers()
+    .then(() => {
+      this.setAnswers();
+    })
+  }
+
+  getAnswers () {
+    return (
+      axios.get(`/qa/questions/${this.props.qa.question_id}/answers`)
+      .then((response) => {
+        this.setState( { all: response.data.results } );
+      })
+      .catch(err => { console.error(err) })
+    )
   }
 
   setAnswers () {
-    let ans = [];
-    for (let key in this.props.qa.answers) {
-      ans.push(this.props.qa.answers[key])
-    }
+    let ans = this.state.all;
     ans.sort((a1, a2) => a1.helpfulness < a2.helpfulness ? 1 : a1.helpfulness > a2.helpfulness ? -1 : 0 )
     ans.sort((a1, a2) => a1.answerer_name !== "Seller" && a2.answerer_name === "Seller" ? 1 : a1.answerer_name === "Seller" && a2.answerer_name !== "Seller" ? -1 : 0 )
 
     let i = -1;
     ans = ans.map(a => {
       i++;
-      return (<Answer answer={a} key={a.id} first={!i?true:false}/>)
+      return (<Answer answer={a} key={a.answer_id} first={!i?true:false}/>)
     });
 
     if (ans.length > 2) {
@@ -38,7 +50,7 @@ class QAEntry extends React.Component {
         all: ans
       })
     } else {
-      this.setState({ shownAnswers: ans })
+      this.setState({ shownAnswers: ans, all: ans })
     }
   }
 
@@ -50,8 +62,16 @@ class QAEntry extends React.Component {
     this.setState({ shownAnswers: this.state.all.slice(0, 2), collapse: false, loadMore: true});
   }
 
-  handleAddAnswer () {
-    console.log('Helloe');
+  handleAddAnswer (answerData) {
+    axios.post(`/qa/questions/${this.props.qa.question_id}/answers`, answerData)
+    .then(response => {
+      console.log('Success posting new answer: ', answerData, 'response: ', response);
+      this.getAnswers()
+      .then(() => {
+        this.setAnswers();
+      })
+    })
+    .catch(err => { console.error(err) })
   }
 
   render () {

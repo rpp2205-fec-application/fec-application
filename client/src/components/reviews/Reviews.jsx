@@ -13,6 +13,7 @@ const Reviews = (props) => {
   const [toggle, setToggle] = useState(initToggle);
   //handle 5 rating star been clicked
   const handleStarClick = (reviews, num) => {
+    props.interaction(`${num} Star Rating`, 'reviews');
     if (toggle[num] === false) {
       let newRev = newList.concat(reviewsSort(reviews, num))
         setList(newRev);
@@ -28,6 +29,7 @@ const Reviews = (props) => {
   }
   // clear all the filter
   const clearFilter =  () => {
+    props.interaction('clear filter', 'reviews');
     setToggle(initToggle);
     setList([]);
   }
@@ -50,12 +52,12 @@ const Reviews = (props) => {
       <p className="small_font">RATINGS &#38; REVIEWS</p>
       <div className="revs">
         <div className="revs-left">
-          <Rating rating={props.state.rating} reviews={props.state.reviews} reviewsMeta={props.state.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
+          <Rating interaction={props.interaction} rating={props.state.rating} reviews={props.state.reviews} reviewsMeta={props.state.reviewsMeta} handleStarClick={handleStarClick} toggle={toggle}  clear={clearFilter}/>
           <Product chars={props.state.reviewsMeta.characteristics}/>
         </div>
         <div className="revs-right">
           <SearchBar reviews={props.state.reviews} keyWords={keyWords} handleSearch={handleSearch}/>
-          <ReviewsList length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
+          <ReviewsList interaction={props.interaction} length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
         </div>
       </div>
     </div>
