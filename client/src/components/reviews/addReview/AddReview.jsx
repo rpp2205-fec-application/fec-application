@@ -127,6 +127,7 @@ const AddReview = (props) => {
           <div>
             <UploadPics show={uploadShow} toggleUpload={toggleUpload} handleUpload={handleUpload} />
             <button onClick={(e) => {
+              props.interaction('upload pics', 'reviews');
               e.preventDefault();
               setUploadShow(!uploadShow);
               }}>Upload your photos</button>
@@ -143,14 +144,16 @@ const AddReview = (props) => {
           </div>
           <div>
             <input className="center-btn" type="submit" onClick={(e) => {
-          e.preventDefault();
-          handleSubmit(newRev);
-          }} value="Submit"/>
+              props.interaction('submit', 'reviews');
+              e.preventDefault();
+              handleSubmit(newRev);
+              }} value="Submit"/>
           </div>
         </form>
       </div>
     </div>
   )
 }
+
 
 export default AddReview;

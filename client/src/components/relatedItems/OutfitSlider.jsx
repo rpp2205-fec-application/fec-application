@@ -24,6 +24,7 @@ const OutfitSlider = (props) => {
     useEffect(() => {
       setItems(props.outfit);
     });
+
  
 
   const slideRight = () => {

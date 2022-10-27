@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Star from '../Star/Star.jsx';
 import {calculateRating, roundNearQtr} from '../../helpers.js';
-
+import { recommend } from './helper-revs.js';
 const Rating = (props) => {
   const [rating, setRating] = useState(props.rating);
 
@@ -12,7 +12,7 @@ const Rating = (props) => {
   if (reviewsMeta !== props.reviewsMeta) {
     setMeta(props.reviewsMeta);
   }
-  const recommend = parseInt(reviewsMeta.recommended.true) / (parseInt(reviewsMeta.recommended.true) + parseInt(reviewsMeta.recommended.false));
+  const recData = recommend(reviewsMeta.recommended);
   const totalRating = Object.values(reviewsMeta.ratings).reduce((acc, n) => {
     return acc = acc + parseInt(n);
   }, 0)
@@ -22,13 +22,15 @@ const Rating = (props) => {
     }
     return parseInt(reviewsMeta.ratings[key]) / totalRating;
   }
+  console.log('<<<<MEta: ', props.reviewsMeta.recommended);
+  console.log('<<<<<Recommend: ', recData);
   return (
     <div className="breakdown">
       <div className="rat-header">
         <div className="xxl_font">{rating}</div>
         <div className="stars"><Star rating={roundNearQtr(rating)}/></div>
       </div>
-      <div className="xs_font">{recommend.toFixed(2) * 100}% of reviews recommend this product</div>
+      <div className="xs_font">{recData}% of reviews recommend this product</div>
       {Object.values(props.toggle).indexOf(true) >= 0 && <div className="sm-btn" onClick={props.clear}>REMOVE ALL FILTER</div>}
       <div className="rat-body xs_font">
         {[5,4,3,2,1].map(key =>

@@ -82,7 +82,7 @@ const ReviewEntry = (props) => {
         <div className="rev-footer xs_font">
           <div>Helpful?
             <a className="underline rev-helpful"
-            onClick={(e) => {
+            onClick={() => {
               props.interaction('helpful', 'reviews');
               if (!clicked) {
                 setHelp(helpful + 1);
@@ -96,8 +96,8 @@ const ReviewEntry = (props) => {
             </a>
             <span className="rev-helpdata">({helpful})</span>
             |
-            <a className="underline rev-helpful" value="report" onClick={(e) => {
-              props.interaction(e.target.value, 'reviews');
+            <a className="underline rev-helpful" value="report" onClick={() => {
+              props.interaction('report', 'reviews');
               sendReport(props.review.review_id);
             }}> Report </a>
           </div>
