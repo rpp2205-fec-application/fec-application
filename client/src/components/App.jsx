@@ -149,7 +149,7 @@ class App extends React.Component {
         <div>
           <div className="header" ref={this.topRef}>
 
-            <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>Logo</a>
+            <a className="logo pointer-cursor" onClick={this.backToDefaultProduct.bind(this)}>ATELIER</a>
               <a className="search">
                 <input type="text" aira-label="Search" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
