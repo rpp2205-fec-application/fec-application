@@ -18,7 +18,9 @@ const headers = {headers: {authorization: process.env.TOKEN}};
 const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
 
 // Routes //
-
+app.get('/', (req, res) => {
+  res.stauts(200);
+})
 // get all products
 app.get('/products', async (req, res) => {
   let url = `${root}/products?count=20`;
