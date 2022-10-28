@@ -14,12 +14,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "client/src/index.html", // to import index.html file inside index.js
     }),
-    new BrotliPlugin({
-			asset: '[path].br[query]',
-			test: /\.(js|css|html|svg)$/,
-			threshold: 10240,
-			minRatio: 0.8
-		})
   ],
   module : {
     rules : [
