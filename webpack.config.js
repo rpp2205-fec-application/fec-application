@@ -10,6 +10,11 @@ module.exports = {
     filename: "bundle.js",
     path: DIST_DIR
   },
+  devServer: {
+    historyApiFallback: true,
+    inline: true,
+    port: 3000
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "client/src/index.html", // to import index.html file inside index.js
