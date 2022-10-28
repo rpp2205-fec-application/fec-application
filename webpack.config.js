@@ -8,13 +8,10 @@ module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
     filename: "bundle.js",
-    path: DIST_DIR
+    path: DIST_DIR,
+    sourceMapFilename: "bundle.js.map"
   },
-  devServer: {
-    historyApiFallback: true,
-    inline: true,
-    port: 3000
-  },
+  devtool: "source-map",
   plugins: [
     new HtmlWebpackPlugin({
       template: "client/src/index.html", // to import index.html file inside index.js
