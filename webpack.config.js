@@ -2,7 +2,7 @@ var path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 var SRC_DIR = path.join(__dirname, "./client/src");
 var DIST_DIR = path.join(__dirname, "./client/dist");
-var BrotliPlugin = require('brotli-webpack-plugin');
+
 module.exports = {
   mode: "development",
   entry: `${SRC_DIR}/index.jsx`,
