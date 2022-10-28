@@ -33,7 +33,7 @@ class Question extends React.Component {
     return (
       <div className="question-section">
         <p className="questionBody"> Q: </p>
-        <p className="questionBody"> {this.props.question.question_body} </p>
+        <p className=".l_font"> {this.props.question.question_body} </p>
         <p className="options"> Helpful? &nbsp; <u className={this.state.className} onClick={this.handleHelpful.bind(this)}>Yes</u> ({this.state.helpfulness}) </p>
         <p className="options left-border" onClick={() => this.setState({ addAnswer: true })}> <u>Add Answer</u> </p>
         {this.state.addAnswer? <AddAnswer product={this.props.product} question={this.props.question} handleAddAnswer={this.props.handleAddAnswer} closeModal={this.closeModal.bind(this)}/>: null}
