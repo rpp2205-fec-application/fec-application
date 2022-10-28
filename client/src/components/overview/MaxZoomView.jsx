@@ -69,6 +69,7 @@ const MaxZoomView = (props) => {
           flexGrow: 1,
           width: '100%',
         }}
+        role='max-zoom-picture'
       >
         <Source
           ref={sourceRef}

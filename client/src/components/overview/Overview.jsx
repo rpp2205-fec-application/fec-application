@@ -173,14 +173,14 @@ class Overview extends React.Component {
                 </div>
                 <div className='buttons-flex'>
                   {/* <button className='primary-button'>ADD TO BAG +</button> */}
-                  <div className={totalQuantity===0 ? 'hidden' : 'primary-button'} onClick={this.addToBagClick.bind(this)}>
+                  <div className={totalQuantity===0 ? 'hidden' : 'primary-button'} onClick={this.addToBagClick.bind(this)} data-testid="add-to-bag">
                     <p>ADD TO BAG</p>
                     <FaPlus />
                   </div>
                   <div className='button' onClick={this.toggleOutfit.bind(this)}>
                     {this.state.favorite
                       ? <FaHeart className='button-icon heart-icon' />
-                      : <FaRegStar className='button-icon' />
+                      : <FaRegStar className='button-icon star-favorite-icon' />
                     }
                   </div>
                 </div>
