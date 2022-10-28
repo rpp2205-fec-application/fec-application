@@ -19,7 +19,6 @@ const Product = (props) => {
                   <IoTriangle />
                 </IconContext.Provider>
               }
-
               {(fact === "Size" || fact === "Length" || fact === "Fit" || fact === "Width") ?
                   <div>
                     <div className="pod-progress pod-long"></div>
