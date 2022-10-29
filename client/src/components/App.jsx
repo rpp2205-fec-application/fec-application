@@ -30,25 +30,42 @@ class App extends React.Component {
     this.interaction = this.interaction.bind(this);
   }
 
+  init(id) {
+    this.getProduct(id)
+      .then(()=> {
+        return this.getReviewsMeta();
+      })
+      .then(() => {
+        this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+      })
+
+  }
   componentDidMount() {
-    this.getProducts()
-    .then(()=> {
-      return this.getReviewsMeta();
-    })
-    .then(() => {
-      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
-    })
+    let path = location.pathname;
+    if (path === '/') {
+      this.init(71697);
+    } else {
+      var productId  = path.split('/')[1];
+      this.init(productId);
+    }
+
+    // this.getProduct()
+    //   .then(()=> {
+    //     return this.getReviewsMeta();
+    //   })
+    //   .then(() => {
+    //     this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+    //   })
   }
 
-  getProducts() {
-    return axios.get('/products')
+  getProduct(productId) {
+    return axios.get(`/products/${productId}`)
       .then(res => {
         return this.setState({
-          products: res.data,
-          product: res.data[0]
+          product: res.data
         }, () => {
-          console.log('Products: ', this.state.products)
-          console.log('Product: ', this.state.product)
+          console.log('Product: ', this.state.product);
+          //return this.state.product.id;
         })
       })
   }
@@ -76,10 +93,14 @@ class App extends React.Component {
   }
 
   selectProduct(product) {
-    this.setState({product}, () => {
-      this.getReviewsMeta();
-      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
-    })
+    location.pathname = ('/' + product.id.toString());
+    this.init(product.id);
+    // this.setState({product}, () => {
+    //   console.log('this.state: ', this.state.product);
+    //   this.getReviewsMeta();
+    //   this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+    // })
+    //location.pathname = ('/' + product.id.toString());
 
   }
 
@@ -93,7 +114,7 @@ class App extends React.Component {
   addReview(review) {
     console.log('start adding new Reviews: ', review);
     review.recommend = review.recommend === "yes";
-    return axios.post('/addReview', {review});
+    return axios.post('/addReview', {review})
   }
 
   handleScrollToReviews(event) {
@@ -111,12 +132,14 @@ class App extends React.Component {
   }
 
   backToDefaultProduct() {
-    this.setState({
-      product: this.state.products[0]
-    }, async () => {
-      await this.getReviewsMeta();
-      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
-    })
+    location.pathname = ('/');
+    this.init(71697);
+    // this.setState({
+    //   product: this.state.products[0]
+    // }, async () => {
+    //   await this.getReviewsMeta();
+    //   this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+    // })
   }
 
   // Add the product id to the outfit list if product hasn't been added yet

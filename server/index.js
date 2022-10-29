@@ -214,5 +214,15 @@ app.post('/interactions', (req, res) => {
     })
 })
 
+app.get('/:productId', (req, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, '../client/dist') }, (err) => {
+    if(err) {
+      next(err);
+    } else {
+      console.log('Chang id');
+  }
+  })
+
+})
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening at Port: ${PORT}`));
