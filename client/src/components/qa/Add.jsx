@@ -11,9 +11,9 @@ const Add = (props) => {
 
   return (
     <div className="addSection">
-      {props.loadMore? <button className="add" onClick={props.handleMoreQuestions}> MORE ANSWERED QUESTIONS </button>: null}
-      {props.collapse? <button className="add" onClick={props.handleCollapse}> COLLAPSE </button>: null}
-      <button className="add" onClick={() => setAddQuestion(true)}> ADD A QUESTION + </button>
+      {props.loadMore? <button className="sm-btn" onClick={props.handleMoreQuestions}> MORE ANSWERED QUESTIONS </button>: null}
+      {props.collapse? <button className="sm-btn" onClick={props.handleCollapse}> COLLAPSE </button>: null}
+      <button className="sm-btn" onClick={() => setAddQuestion(true)}> ADD A QUESTION + </button>
       {addQuestion? <AddQuestion product={props.product} handleAddQuestion={props.handleAddQuestion} closeModal={closeModal}/>: null}
     </div>
   )
