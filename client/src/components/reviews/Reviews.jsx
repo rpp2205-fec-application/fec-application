@@ -29,7 +29,7 @@ const Reviews = (props) => {
   }
   // clear all the filter
   const clearFilter =  () => {
-    props.interaction('clear filter', 'reviews');
+
     setToggle(initToggle);
     setList([]);
   }
@@ -39,10 +39,30 @@ const Reviews = (props) => {
     setKeyWords(word);
   }
   // if input more than 3 charactors show the filtered reviews
+ //const [searchList, setSearchList] = useState([]);
   useEffect(() => {
+    // let searchList = newList.slice();
+    // if (newList.length > 0) {
+    //   //searchList = newList;
+    //   if (keyWords.length >= 3) {
+    //     setList(searchReviews(searchList, keyWords));
+    //   } else {
+    //     console.log('length: ', searchList.length)
+    //     setList(searchList);
+    //   }
+
+    // } else {
+    //   if (keyWords.length >= 3) {
+    //     setList(searchReviews(props.state.reviews, keyWords));
+    //   } else {
+    //     setList([]);
+    //   }
+    // }
+
+    clearFilter();
     if (keyWords.length >= 3) {
       setList(searchReviews(props.state.reviews, keyWords));
-    } else if (!keyWords.length || keyWords.length < 3) {
+    } else {
       setList([]);
     }
   },[keyWords])

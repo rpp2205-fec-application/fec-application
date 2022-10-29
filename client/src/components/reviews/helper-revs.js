@@ -28,7 +28,6 @@ export const searchReviews = (reviewsArr, keyWords) => {
 }
 
 export const recommend = (recommendData) => {
-  console.log(recommendData);
   if (recommendData['true'] === undefined) {
     return 0;
   }
@@ -36,6 +35,5 @@ export const recommend = (recommendData) => {
     return 100;
   }
   let temp = parseInt(recommendData['true']) / (parseInt(recommendData['true']) + parseInt(recommendData['false']));
-  console.log('temp: ', temp);
   return Math.round(temp * 100);
 }

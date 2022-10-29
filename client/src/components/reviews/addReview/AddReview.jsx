@@ -52,9 +52,6 @@ const AddReview = (props) => {
   }, [newFactors])
   const [message, setMessage] = useState({message: '', className: ''});
 
-  // useEffect(() => {
-  //   setTimeout(()=>{setMessage({message: '', className: ''});}, 3000);
-  // },[message])
   if (message.message !== '') {
     setTimeout(()=>{setMessage({message: '', className: ''});}, 3000);
   }
@@ -62,7 +59,7 @@ const AddReview = (props) => {
     setMessage({message:'', className: ''});
   }
   const handleSubmit = (newReview)=> {
-    console.log("handle submit: ", newReview);
+    //console.log("handle submit: ", newReview);
     let stopSubmit = false;
     let errMessage = ''
     Object.keys(newReview).forEach((key) => {
