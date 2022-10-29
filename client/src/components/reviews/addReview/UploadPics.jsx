@@ -11,7 +11,8 @@ const UploadPics = (props) => {
     if (images.length === 1) {
       setImages([]);
     } else {
-      setImages(images.splice(index, 1));
+      let newImages = images.filter((value, i) => (i !== index))
+      setImages(newImages);
     }
   }
   const handleSubmit = (e) => {
@@ -55,8 +56,8 @@ const UploadPics = (props) => {
             <div key={index}>
               <img className="thumbnail" alt="previewImage" src={image}/>
               <button onClick={(e)=>{
-                e.preventDefault();;
-                handleDelete(index)
+                e.preventDefault();
+                handleDelete(index);
                 }}>Remove</button>
             </div>
           )
