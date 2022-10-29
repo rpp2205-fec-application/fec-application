@@ -22,8 +22,7 @@ const Rating = (props) => {
     }
     return parseInt(reviewsMeta.ratings[key]) / totalRating;
   }
-  console.log('<<<<MEta: ', props.reviewsMeta.recommended);
-  console.log('<<<<<Recommend: ', recData);
+
   return (
     <div className="breakdown">
       <div className="rat-header">

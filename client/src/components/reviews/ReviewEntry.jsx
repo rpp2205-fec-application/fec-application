@@ -3,6 +3,7 @@ import { format, parseJSON } from 'date-fns';
 import Star from '../Star/Star.jsx';
 import {roundNearQtr} from '../../helpers.js'
 import axios from 'axios';
+
 const ReviewEntry = (props) => {
   const [helpful, setHelp] = useState(props.review.helpfulness);
   const [clicked, setClick] = useState(false);
@@ -32,9 +33,6 @@ const ReviewEntry = (props) => {
         {/* render review's body*/}
         {!showReview && <div className="l_font">This review won't show again</div>}
         <div className="rev-body">
-          {/* {props.review.summary.length <= 60 ?  <div className="rev-summary">{props.review.summary}</div>
-           :  <div className="rev-summary">{props.review.summary.slice(0, 60)}<a className="more-summary">{props.review.summary.slice(60)}</a></div>
-          } */}
           <div className="rev-summary">{props.review.summary}</div>
           {props.review.body.length <= 250 ? <div className="review small_font">{props.review.body}</div>
           : (<div className="review small_font">
