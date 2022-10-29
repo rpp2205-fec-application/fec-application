@@ -39,8 +39,8 @@ class RelatedItems extends React.Component {
   }
 
   render() {
-    console.log('products//////', this.state.items)
-    console.log('product....', this.props.product)
+    // console.log('products//////', this.state.items)
+    // console.log('product....', this.props.product)
     return (
       <div className='widget'>
         <h4>Related Products</h4>
