@@ -120,7 +120,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 // product reviews
 app.post('/reviews/:product_id', (req, res) => {
   // console.log('reviews sort and count: ', req.body);
-  let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=${req.body.count}`;
+  let url = `${root}/reviews/?product_id=${req.params.product_id}&count=${req.body.count}`;
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);

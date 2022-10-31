@@ -36,7 +36,7 @@ class App extends React.Component {
         return this.getReviewsMeta();
       })
       .then(() => {
-        this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+        this.getReviews({count: this.state.reviewsLength});
       })
 
   }
@@ -82,8 +82,8 @@ class App extends React.Component {
       })
   }
 
-  getReviews({count, sort}) {
-    axios.post(`/reviews/${this.state.product.id}`, {count, sort})
+  getReviews({count}) {
+    axios.post(`/reviews/${this.state.product.id}`, {count})
     .then((res) => {
       console.log('Reviews: ', res.data.results)
       this.setState({
@@ -98,7 +98,7 @@ class App extends React.Component {
     // this.setState({product}, () => {
     //   console.log('this.state: ', this.state.product);
     //   this.getReviewsMeta();
-    //   this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+    //   this.getReviews({count: this.state.reviewsLength});
     // })
     //location.pathname = ('/' + product.id.toString());
 
@@ -193,7 +193,7 @@ class App extends React.Component {
             <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} interaction={this.interaction}/>
             <Outfit product={this.state.product} outfit={this.state.outfit}  addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction}/>
             <QA product={this.state.product}/>
-            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
+            <Reviews state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
           </div>
         </div>
       )
