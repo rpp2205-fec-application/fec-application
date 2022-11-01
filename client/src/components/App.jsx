@@ -144,19 +144,29 @@ class App extends React.Component {
   // }
 
   addToOutfit(productId) {
+    //localStorage.clear();
+    console.log(localStorage);
     var outfit = [...this.state.outfit];
-    if (outfit.includes(productId)) {
+    if (outfit.includes(productId) || localStorage[productId]) {
       alert('Product Already Added To Outfit!')
     } else {
     outfit.push(productId);
-    this.setState({outfit}, () => {console.log('Current Outfit after adding: ', this.state.outfit)});
+    this.setState({outfit}, () => {
+      console.log('Current Outfit after adding: ', this.state.outfit);
+      localStorage.setItem(`${this.state.outfit}`, this.state.outfit);
+      console.log(localStorage);
+    });
     }
   }
 
   removeFromOutfit(productId) {
     var outfit = [...this.state.outfit];
     outfit.splice(outfit.indexOf(productId), 1);
-    this.setState({outfit}, () => {console.log('Current Outfit after removing: ', this.state.outfit)});
+    this.setState({outfit}, () => {
+      console.log('Current Outfit after removing: ', this.state.outfit);
+      localStorage.removeItem(`${productId}`);
+      console.log(localStorage);
+    });
   }
 
   interaction(element, widget) {

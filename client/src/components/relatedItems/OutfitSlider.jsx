@@ -22,8 +22,8 @@ const OutfitSlider = (props) => {
 
     
     useEffect(() => {
-      setItems(props.outfit);
-    });
+      setItems(Object.keys(localStorage));
+    }, [props.outfit]);
 
  
 
