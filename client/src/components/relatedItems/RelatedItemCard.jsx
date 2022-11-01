@@ -107,10 +107,10 @@ class RelatedItemCard extends React.Component {
 
   render() {
    // console.log('product#######', this.state.product);
-    
+
     return (
         <div className="card pointer-cursor" >
-            <a>
+            <a href="#">
             <img className='card-image' alt="ralatedImage" src={this.state.photo} onClick={this.selectProduct.bind(this)} />
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
@@ -125,7 +125,7 @@ class RelatedItemCard extends React.Component {
         </div>
 
 
-    ) 
+    )
     }
 }
 
