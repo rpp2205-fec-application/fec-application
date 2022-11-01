@@ -12,7 +12,6 @@ class RelatedItems extends React.Component {
   }
 
   componentDidMount() {
-    let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interaction";
     axios.get(`/products/${this.props.product.id}/related`)
     .then((response) => {
        console.log('response////////////',  response.data);
@@ -21,16 +20,16 @@ class RelatedItems extends React.Component {
       })
     })
   }
+
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.product != this.props.product) {
-      let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interaction";
-    axios.get(`/products/${this.props.product.id}/related`)
-    .then((response) => {
-       console.log('response',  response.data);
-      this.setState({
-        items: response.data
+      axios.get(`/products/${this.props.product.id}/related`)
+      .then((response) => {
+        console.log('response',  response.data);
+        this.setState({
+          items: response.data
+        })
       })
-    })
     }
   }
 
