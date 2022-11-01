@@ -35,11 +35,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@material-ui/lab": "^4.0.0-alpha.61",
-    "@mui/icons-material": "^5.10.6",
-    "@mui/lab": "^5.0.0-alpha.101",
-    "@mui/material": "^5.10.7",
-    "@mui/styled-engine-sc": "^5.10.6",
     "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "cloudinary": "^1.32.0",
@@ -57,8 +52,7 @@
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
     "save": "^2.9.0",
-    "styled-components": "^5.3.6",
-    "uuid": "^8.3.2"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -67,7 +61,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
     "babel-loader": "^8.2.5",
-    "brotli-webpack-plugin": "^1.1.0",
     "css-loader": "^6.7.1",
     "global-jsdom": "^8.6.0",
     "html-webpack-plugin": "^5.5.0",
