@@ -169,11 +169,11 @@ class App extends React.Component {
       return (
         <div>
           <div className="header" ref={this.topRef}>
-            <a className="logo pointer-cursor" href="#" onClick={this.backToDefaultProduct.bind(this)}>ATELIER</a>
-              <a className="search" href="#">
+            <span className="logo pointer-cursor"  onClick={this.backToDefaultProduct.bind(this)}>ATELIER</span>
+              <span className="search">
                 <input type="text" aira-label="Search" onChange={this.handleSearchChange.bind(this)} value={this.state.keyword}/>
                 <FaSistrix />
-              </a>
+              </span>
           </div>
           <div className='container'>
             <AddReview show={this.state.addReview} product={this.state.product} handleClick={this.togglePop.bind(this)} addReview={this.addReview.bind(this)} chars={this.state.reviewsMeta.characteristics} interaction={this.interaction}/>

@@ -7,7 +7,7 @@ const StarRating = (props) => {
   const presents = ["Poor", "Fair", "Average", "Good", "Great"];
   return (
     <div className="star-rating">
-      {clicked && <a className="small_font">{rating} Star - {presents[rating-1]}</a>}
+      {clicked && <span className="small_font">{rating} Star - {presents[rating-1]}</span>}
       {[...Array(5)].map((value, index) => {
         index += 1;
         return (
