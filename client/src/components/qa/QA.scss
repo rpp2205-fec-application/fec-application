@@ -113,16 +113,32 @@
 }
 
 .answer {
-  color: #393838;
+  color: #a2a8ab;
   font-weight: light;
   font-size: smaller;
   display: grid;
   grid-template-columns: 200px 200px auto;
+  // padding-bottom: 15px;
 }
+
+.answer-reported {
+  background-color: lightgray;
+  height: 85px;
+  text-align: center;
+  color: black;
+  line-height: 85px;
+}
+
 
 .answer-body {
   grid-column: 1 / 4;
   padding-bottom: 15px;
+}
+
+.answer-bottom {
+  display: grid;
+  grid-template-columns: 200px 200px auto;
+  padding-bottom: 20px;
 }
 
 .load-collapse {
