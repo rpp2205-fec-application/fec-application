@@ -44,9 +44,9 @@ const UploadPics = (props) => {
         &times;
       </span>
       <div>
-        <div>Upload Your Pictures</div>
+        <div className="upload-sub-div">Upload Your Pictures</div>
         {images.length < 5 &&
-          <input type="file" name="myImage" onChange={(e) => {handleChange(e.target.files[0])}} required accept="image/png, image/jpeg, image/jpg, image/jfjf"/>
+          <input className="upload-sub-div" type="file" name="myImage" onChange={(e) => {handleChange(e.target.files[0])}} required accept="image/png, image/jpeg, image/jpg, image/jfjf"/>
         }
       </div>
       {!images.length ? null :
@@ -61,6 +61,7 @@ const UploadPics = (props) => {
             </div>
           )
         })}
+      <div className="upload-sub-div-btn"></div>
       <span className="sm-btn" syle={{marginLeft: "45%"}} onClick={(e) => handleSubmit(e)}>Upload!</span>
     </div>
   )
