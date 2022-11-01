@@ -15,7 +15,7 @@ const FactorEntry = (props) => {
       <div className="small_font factor-contain"> {factor === 0 ? "None Selected" : props.explain[1][factor-1]}</div>
       {props.explain[1].map((string, i) => {
         return (
-        <a key={i}>
+        <span key={i}>
           <input
            type="radio"
            className="xs_font"
@@ -24,7 +24,7 @@ const FactorEntry = (props) => {
            onChange={handleOptionChange}
           />
            {i + 1}
-        </a>
+        </span>
         )
       })}
     </div>
