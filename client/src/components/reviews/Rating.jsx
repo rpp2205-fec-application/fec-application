@@ -30,7 +30,14 @@ const Rating = (props) => {
         <div className="stars"><Star rating={roundNearQtr(rating)}/></div>
       </div>
       <div className="xs_font">{recData}% of reviews recommend this product</div>
-      {Object.values(props.toggle).indexOf(true) >= 0 && <div className="sm-btn" onClick={props.clear}>REMOVE ALL FILTER</div>}
+      {Object.values(props.toggle).indexOf(true) >= 0 &&
+       <div className="sm-btn"
+        onClick={()=>{
+          props.interaction('clear filter', 'reviews');
+          props.clear();
+          }
+        }>REMOVE ALL FILTER</div>
+      }
       <div className="rat-body xs_font">
         {[5,4,3,2,1].map(key =>
             <div className="rat-chart" key={key}>

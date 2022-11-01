@@ -52,7 +52,6 @@ class App extends React.Component {
         })
       })
   }
-
   getReviewsMeta() {
     return axios.get(`/reviews/meta/${this.state.product.id}`)
       .then((res) => {
@@ -65,8 +64,8 @@ class App extends React.Component {
       })
   }
 
-  getReviews({count, sort}) {
-    axios.post(`/reviews/${this.state.product.id}`, {count, sort})
+  getReviews({count}) {
+    axios.post(`/reviews/${this.state.product.id}`, {count})
     .then((res) => {
       console.log('Reviews: ', res.data.results)
       this.setState({
@@ -76,11 +75,13 @@ class App extends React.Component {
   }
 
   selectProduct(product) {
+    // location.pathname = ('/' + product.id.toString());
+    // this.init(product.id);
     this.setState({product}, () => {
+      console.log('this.state: ', this.state.product);
       this.getReviewsMeta();
-      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+      this.getReviews({count: this.state.reviewsLength});
     })
-
   }
 
   togglePop(){
@@ -93,7 +94,7 @@ class App extends React.Component {
   addReview(review) {
     console.log('start adding new Reviews: ', review);
     review.recommend = review.recommend === "yes";
-    return axios.post('/addReview', {review});
+    return axios.post('/addReview', {review})
   }
 
   handleScrollToReviews(event) {
@@ -111,6 +112,8 @@ class App extends React.Component {
   }
 
   backToDefaultProduct() {
+    // location.pathname = ('/');
+    // this.init(71697);
     this.setState({
       product: this.state.products[0]
     }, async () => {
@@ -170,7 +173,7 @@ class App extends React.Component {
             <RelatedItems product={this.state.product} selectProduct={this.selectProduct.bind(this)} handleScrollToTop={this.handleScrollToTop.bind(this)} interaction={this.interaction}/>
             <Outfit product={this.state.product} outfit={this.state.outfit}  addToOutfit={this.addToOutfit.bind(this)} removeFromOutfit={this.removeFromOutfit.bind(this)} interaction={this.interaction}/>
             <QA product={this.state.product} interaction={this.interaction}/>
-            <Reviews getReviews={this.getReviews.bind(this)} state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
+            <Reviews state={this.state} scrollToReviews={this.reviewsRef} handleClick={this.togglePop.bind(this)} interaction={this.interaction}/>
           </div>
         </div>
       )
@@ -181,3 +184,37 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+//handle unique url code(replace these code from line33-54)
+// init(id) {
+//   this.getProduct(id)
+//     .then(()=> {
+//       return this.getReviewsMeta();
+//     })
+//     .then(() => {
+//       this.getReviews({count: this.state.reviewsLength});
+//     })
+// }
+
+// componentDidMount() {
+//   let path = location.pathname;
+//   if (path === '/') {
+//     this.init(71697);
+//   } else {
+//     var productId  = path.split('/')[1];
+//     this.init(productId);
+//   }
+// }
+
+// getProduct(productId) {
+//   return axios.get(`/products/${productId}`)
+//     .then(res => {
+//       return this.setState({
+//         product: res.data
+//       }, () => {
+//         console.log('Product: ', this.state.product);
+//       })
+//     })
+// }

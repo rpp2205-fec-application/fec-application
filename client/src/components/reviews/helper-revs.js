@@ -20,15 +20,48 @@ export const getCharMap = (charsObj) => {
 }
 
 export const searchReviews = (reviewsArr, keyWords) => {
+  keyWords = keyWords.toLowerCase();
   return reviewsArr.filter((review) => {
+    review.body = review.body.toLowerCase();
+    review.summary = review.summary.toLowerCase();
     if (review.body.indexOf(keyWords) >= 0|| review.summary.indexOf(keyWords)>=0) {
       return review;
     }
   })
 }
 
+export const sortedReview = (reviewsList, method) => {
+  let copy = reviewsList.slice();
+  if (method === 'helpful') {
+    copy.sort((a, b) => {
+      if (a.helpful >= b.helpful) {
+        return -1;
+      } else {
+        return 1;
+      }
+    })
+    return copy;
+  }
+  if (method === 'newest') {
+    copy.sort((a,b) => {
+      let keyA = new Date(a.date);
+      let keyB = new Date(b.date);
+      if (keyA > keyB) {
+        return -1;
+      } else {
+        return 1;
+      }
+    })
+    return copy;
+  }
+  if (method === 'relevance') {
+    return reviewsList;
+  }
+
+
+}
+
 export const recommend = (recommendData) => {
-  console.log(recommendData);
   if (recommendData['true'] === undefined) {
     return 0;
   }
@@ -36,6 +69,5 @@ export const recommend = (recommendData) => {
     return 100;
   }
   let temp = parseInt(recommendData['true']) / (parseInt(recommendData['true']) + parseInt(recommendData['false']));
-  console.log('temp: ', temp);
   return Math.round(temp * 100);
 }
