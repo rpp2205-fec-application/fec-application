@@ -22,8 +22,16 @@ const root = 'http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp'
 // get all products
 app.get('/products', async (req, res) => {
   let url = `${root}/products?count=20`;
-  const products = await axios.get(url, headers);
-  res.status(200).json(products.data);
+  // const products = await axios.get(url, headers);
+  // res.status(200).json(products.data);
+  axios.get(url, headers)
+    .then((products) => {
+      res.status(200).json(products.data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    })
 })
 
 // get product by id
@@ -111,7 +119,10 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
   let url = `${root}/qa/answers/${req.params.answer_id}/report`;
   axios.put(url, {}, headers)
   .then((response) => res.status(204).json(response.data))
-  .catch((err) => console.error(err))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
 })
 
 
@@ -125,6 +136,10 @@ app.post('/reviews/:product_id', (req, res) => {
     .then((results) => {
       res.status(200).json(results.data);
     })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 })
 
 // update review helpful & report
@@ -134,12 +149,21 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
    .then(() => {
     res.status(200).json('just updated helpful');
    })
+   .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
 })
+
 app.put('/reviews/:review_id/report', (req, res) => {
   let url =`${root}/reviews/${req.params.review_id}/report`;
   return axios.put(url, {}, headers)
     .then(() => {
       res.sendStatus(204);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     })
 })
 
@@ -158,8 +182,9 @@ app.post('/addReview', (req, res) => {
     .then(() => {
       res.status(201).json('added!');
     })
-    .catch((err) => {
-      console.log('add review err: ', err);
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     })
 })
 
@@ -173,7 +198,10 @@ app.post('/upload', (req, res) => {
     .then((results) => {
       res.status(201).json(results);
     })
-    .catch((err) => console.log('upload error: ', error));
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 })
 
 // product reviews meta
@@ -182,6 +210,10 @@ app.get('/reviews/meta/:product_id', (req, res) => {
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     })
 })
 
@@ -192,14 +224,26 @@ app.get('/products/:product_id', (req, res) => {
   return axios.get(url, headers)
           .then(result => {
             res.status(200).json(result.data)})
+            .catch(err => {
+              console.log(err);
+              res.status(500).json(err);
+            })
 });
 
 
 // related products
 app.get('/products/:product_id/related', async (req, res) => {
   let url = `${root}/products/${req.params.product_id}/related`;
-  const relatedItems = await axios.get(url, headers);
-  res.status(200).json(relatedItems.data);
+  // const relatedItems = await axios.get(url, headers);
+  // res.status(200).json(relatedItems.data);
+  axios.get(url, headers)
+  .then((items) => {
+    res.status(200).json(items.data);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
 })
 
 // send interactions detail to API
@@ -212,15 +256,19 @@ app.post('/interactions', (req, res) => {
       console.log('interactions message: ', result.statusText);
       res.status(result.status).json('just created')
     })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 })
 
 app.get('/:productId', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, '../client/dist') }, (err) => {
     if(err) {
-      next(err);
+      res.status(500).json(err);
     } else {
       console.log('Chang id');
-  }
+    }
   })
 
 })
