@@ -43,7 +43,7 @@ class RelatedItems extends React.Component {
     return (
       <div className='widget'>
         <h4>Related Products</h4>
-        <RelatedItemSlider products={this.state.items} curProduct={this.props.product} selectProduct={this.props.selectProduct} handleScrollToTop={this.props.handleScrollToTop}  />
+        <RelatedItemSlider products={this.state.items} curProduct={this.props.product} selectProduct={this.props.selectProduct} handleScrollToTop={this.props.handleScrollToTop} rating={this.props.rating} />
         </div>
 
     )

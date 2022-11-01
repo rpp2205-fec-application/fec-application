@@ -25,7 +25,6 @@ class Outfit extends React.Component {
  
 
   render() {
-    console.log('curProduct/////', this.state.curProduct);
     return (
       <div className='widget'>
         <h4>Your Outfit</h4>

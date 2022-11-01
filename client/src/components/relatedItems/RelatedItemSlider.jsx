@@ -65,7 +65,7 @@ const RelatedItemSlider = (props) => {
 
         { relatedItems.map((item, index) => {
           return (
-                  <RelatedItemCard product={item} key={index} mainProduct={props.curProduct} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
+                  <RelatedItemCard product={item} key={index} mainProduct={props.curProduct} mainRating={props.rating} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
               )
           
            })}
