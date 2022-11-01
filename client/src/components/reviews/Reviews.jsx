@@ -32,6 +32,7 @@ const Reviews = (props) => {
     setToggle(initToggle);
     setSearchList([]);
     setList([]);
+    setKeyWords('');
   }
   // handle the search input change
   const [keyWords, setKeyWords] = useState('');
@@ -39,9 +40,7 @@ const Reviews = (props) => {
     setKeyWords(word);
   }
   // if input more than 3 charactors show the filtered reviews
- //const [searchList, setSearchList] = useState([]);
   const [searchList, setSearchList] = useState([]);
-
   useEffect(() => {
     if (newList.length) {
       if (keyWords.length >= 3) {

@@ -30,46 +30,28 @@ class App extends React.Component {
     this.interaction = this.interaction.bind(this);
   }
 
-  init(id) {
-    this.getProduct(id)
-      .then(()=> {
-        return this.getReviewsMeta();
-      })
-      .then(() => {
-        this.getReviews({count: this.state.reviewsLength});
-      })
-
-  }
   componentDidMount() {
-    let path = location.pathname;
-    if (path === '/') {
-      this.init(71697);
-    } else {
-      var productId  = path.split('/')[1];
-      this.init(productId);
-    }
-
-    // this.getProduct()
-    //   .then(()=> {
-    //     return this.getReviewsMeta();
-    //   })
-    //   .then(() => {
-    //     this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
-    //   })
+    this.getProducts()
+    .then(()=> {
+      return this.getReviewsMeta();
+    })
+    .then(() => {
+      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+    })
   }
 
-  getProduct(productId) {
-    return axios.get(`/products/${productId}`)
+  getProducts() {
+    return axios.get('/products')
       .then(res => {
         return this.setState({
-          product: res.data
+          products: res.data,
+          product: res.data[0]
         }, () => {
-          console.log('Product: ', this.state.product);
-          //return this.state.product.id;
+          console.log('Products: ', this.state.products)
+          console.log('Product: ', this.state.product)
         })
       })
   }
-
   getReviewsMeta() {
     return axios.get(`/reviews/meta/${this.state.product.id}`)
       .then((res) => {
@@ -93,15 +75,13 @@ class App extends React.Component {
   }
 
   selectProduct(product) {
-    location.pathname = ('/' + product.id.toString());
-    this.init(product.id);
-    // this.setState({product}, () => {
-    //   console.log('this.state: ', this.state.product);
-    //   this.getReviewsMeta();
-    //   this.getReviews({count: this.state.reviewsLength});
-    // })
-    //location.pathname = ('/' + product.id.toString());
-
+    // location.pathname = ('/' + product.id.toString());
+    // this.init(product.id);
+    this.setState({product}, () => {
+      console.log('this.state: ', this.state.product);
+      this.getReviewsMeta();
+      this.getReviews({count: this.state.reviewsLength});
+    })
   }
 
   togglePop(){
@@ -132,14 +112,14 @@ class App extends React.Component {
   }
 
   backToDefaultProduct() {
-    location.pathname = ('/');
-    this.init(71697);
-    // this.setState({
-    //   product: this.state.products[0]
-    // }, async () => {
-    //   await this.getReviewsMeta();
-    //   this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
-    // })
+    // location.pathname = ('/');
+    // this.init(71697);
+    this.setState({
+      product: this.state.products[0]
+    }, async () => {
+      await this.getReviewsMeta();
+      this.getReviews({count: this.state.reviewsLength, sort: 'relevant'});
+    })
   }
 
   // Add the product id to the outfit list if product hasn't been added yet
@@ -204,3 +184,37 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+//handle unique url code(replace these code from line33-54)
+// init(id) {
+//   this.getProduct(id)
+//     .then(()=> {
+//       return this.getReviewsMeta();
+//     })
+//     .then(() => {
+//       this.getReviews({count: this.state.reviewsLength});
+//     })
+// }
+
+// componentDidMount() {
+//   let path = location.pathname;
+//   if (path === '/') {
+//     this.init(71697);
+//   } else {
+//     var productId  = path.split('/')[1];
+//     this.init(productId);
+//   }
+// }
+
+// getProduct(productId) {
+//   return axios.get(`/products/${productId}`)
+//     .then(res => {
+//       return this.setState({
+//         product: res.data
+//       }, () => {
+//         console.log('Product: ', this.state.product);
+//       })
+//     })
+// }

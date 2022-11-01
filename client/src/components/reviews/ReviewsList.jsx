@@ -19,18 +19,17 @@ const ReviewsList = (props) => {
       })
     }
 
-    if (props.searchList.length && props.newList.length && reviews.origin !== props.searchList) {
-      console.log('reviews::: ', reviews.origin, props.searchList);
-      handleReviewsChange(props.searchList);
-      return;
-    } else if (props.newList.length && !props.searchList.length && reviews.origin !== props.newList) {
-      handleReviewsChange(props.newList);
-      return;
-    } else if (!props.newList.length && !props.searchList.length && select === 'relevance' && reviews.origin !== props.reviews) {
-      handleReviewsChange(props.reviews);
-      return;
-    }
 
+    useEffect(() => {
+      if (!props.newList.length && !props.searchList.length && select === 'relevance' && reviews.origin !== props.reviews) {
+        handleReviewsChange(props.reviews);
+      } else if (props.searchList.length && props.newList.length && reviews.origin !== props.searchList) {
+        console.log('reviews::: ', reviews.origin, props.searchList);
+        handleReviewsChange(props.searchList);
+      } else if (props.newList.length && !props.searchList.length && reviews.origin !== props.newList) {
+        handleReviewsChange(props.newList);
+      }
+    }, [props.searchList, props.newList, props.reviews])
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
