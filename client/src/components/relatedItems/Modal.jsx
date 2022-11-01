@@ -1,27 +1,25 @@
 
 import React, {useState, useEffect} from 'react';
-import ModelContent from './ModelContent.jsx';
 import './modal.scss';
 import {MdDone} from 'react-icons/md';
-import { set } from 'date-fns/esm';
 
  const Modal = (props) => {
-  console.log(props.mainRating);
+ // console.log(props.mainRating);
   const mainRating = props.mainRating;
 
-  console.log(props.comRating);
+  //console.log(props.comRating);
 
   const showHideClassName = props.show ? " modal display-block" : "modal display-none";
 
   const [curProduct, setCurProduct] = useState(props.mainProduct)
-  console.log('curProduct', curProduct);
+  //console.log('curProduct', curProduct);
 
   const [comparedProduct, setComparedProduct] = useState(props.product);
 
   const [comRating, setComRating] = useState(props.comRating);
 
   const [result, setResult] = useState([]);
-  console.log('comparedProduct', comparedProduct);
+  //console.log('comparedProduct', comparedProduct);
 
 
 
@@ -30,8 +28,8 @@ import { set } from 'date-fns/esm';
     setComparedProduct(props.product);
     setResult(comparedValue(curProduct, props.product, mainRating, props.comRating));
   }, [props.product, props.comRating]);
-  console.log('comparedProduct', comparedProduct);
-  console.log('result', result);
+  //console.log('comparedProduct', comparedProduct);
+  //console.log('result', result);
 
 
   const comparedValue = (curProduct, comparedProduct, mainRating, comRating) => {
@@ -63,7 +61,7 @@ import { set } from 'date-fns/esm';
     var result = {};
     result.value = 'Cotton';
     if (comparedProduct.length !== 0) {
-      console.log(comparedProduct.features);
+      //console.log(comparedProduct.features);
     if (curProduct.features[0].value === '100% Cotton') {
       result.a = true;
     }
@@ -123,7 +121,7 @@ import { set } from 'date-fns/esm';
           })}
         </table>
 
-        {/* <ModelContent /> */}
+       
       </section>
     </div>
   );
