@@ -10,6 +10,12 @@ import Star from './Star/Star.jsx';
 import AddReview from './reviews/addReview/AddReview.jsx';
 import {calculateRating, reviewsCount} from '../helpers.js'
 import OutfitCard from './relatedItems/OutfitCard.jsx';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
