@@ -3,8 +3,9 @@ import UploadPics from './UploadPics.jsx';
 import StarRating from './StarRating.jsx';
 import ProductFactor from './ProductFactor.jsx';
 import { getCharMap } from '../helper-revs.js';
+import AlertMessage from './AlertMessage.jsx';
 const AddReview = (props) => {
-  const [newRev, setRev] = useState({
+  let emptyRev = {
     product_id: props.product.id,
     rating:0,
     summary: "",
@@ -14,7 +15,8 @@ const AddReview = (props) => {
     email: "",
     photos: [],
     characteristics: {}
-  })
+  };
+  const [newRev, setRev] = useState(emptyRev)
   if (newRev.product_id !== props.product.id) {
     setRev({...newRev, product_id: props.product.id})
   }
@@ -48,34 +50,47 @@ const AddReview = (props) => {
   useEffect(() => {
     setRev({...newRev, characteristics: newFactors});
   }, [newFactors])
+  const [message, setMessage] = useState({message: '', className: ''});
 
+  if (message.message !== '') {
+    setTimeout(()=>{setMessage({message: '', className: ''});}, 3000);
+  }
+  const toggleMessage = () => {
+    setMessage({message:'', className: ''});
+  }
   const handleSubmit = (newReview)=> {
-    console.log("handle submit: ", newReview);
+    //console.log("handle submit: ", newReview);
     let stopSubmit = false;
+    let errMessage = ''
     Object.keys(newReview).forEach((key) => {
-      if(key === "body" || key === "charavteristics" || key === "email" || key === "name" || key === "recommend" || key === "rating") {
+      if(key === "rating" || key === "body" || key === "charavteristics" || key === "email" || key === "name" || key === "recommend" ) {
         if (!newReview[key]) {
-          alert(`You must enter the following: ${key.toUpperCase()}!`);
+          errMessage = ` You must enter the ${key.toUpperCase()}!`;
+          setMessage({message: errMessage, className: 'red-error'})
           stopSubmit = true;
           return;
         }
       }
     })
-    if (newReview.body.length < 50){
-      alert('Failed! Review must longer than 50 characters!');
-      stopSubmit = true;
-      return;
-    }
-    if (newReview.email.indexOf('@') === -1) {
-      alert('Failed! Invalid Email address!');
-      stopSubmit = true;
-      return;
-    }
+    let otherLimit = false;
     if (!stopSubmit) {
+      if (newReview.body.length < 50){
+        errMessage ='Failed! Review must longer than 50 characters!';
+        setMessage({message: errMessage, className: 'red-error'})
+        otherLimit = true;
+      } else if (newReview.email.indexOf('@') === -1) {
+        errMessage ='Invalid Email address!';
+        setMessage({message: errMessage, className: 'red-error'})
+        otherLimit = true;
+      }
+    }
+
+    if (!stopSubmit && !otherLimit) {
       return props.addReview(newReview)
       .then(() => {
-        alert('Submit successfully!');
-        props.handleClick()
+        setMessage({message: 'Submit successfully!', className: 'green-success'});
+        setRev(emptyRev);
+        setTimeout(props.handleClick, 2000);
       });
     }
   }
@@ -86,6 +101,7 @@ const AddReview = (props) => {
         <span className="close" onClick={props.handleClick}>
           &times;
         </span>
+        {!message.message.length ? null : <AlertMessage message={message.message} className={message.className} toggle={toggleMessage}/>}
         <form >
           <div className="rev-title">Write Your Review</div>
           <div className="rev-subTitle">About the {props.product.name}</div>

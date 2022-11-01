@@ -38,7 +38,6 @@ describe('ReviewsList component Tests', () => {
 
   })
   test('after click More Review button should render more reviews', async() => {
-   // let list = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]}/>);
     window.HTMLElement.prototype.scrollIntoView = function() {};
     let reviews = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]}/>)
     fireEvent.click(reviews.getByText("MORE REVIEWS"));

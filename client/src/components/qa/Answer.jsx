@@ -69,7 +69,7 @@ class Answer extends React.Component {
           </div>
 
           <div className="answer-body">
-            {this.props.answer.body} <br></br>
+            <p className="answer-text">{this.props.answer.body}</p> <br></br>
             {this.props.answer.photos.map(p => (<img key={p.id} src={p.url} alt="qa-img" className="qa-photo" onClick={(e) => this.makeLarge.bind(this)(e)}/>))}
           </div>
 

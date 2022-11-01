@@ -2,19 +2,18 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 const UploadPics = (props) => {
-  const showOrHideUpload = props.show ? "sub-modal display-block" : "sub-modal display-none";
 
   const [files, setFiles] = useState([]);
   const [images, setImages] = useState([]);
 
-  const handleDelete = (index)=>{
+  const handleDelete = (index) => {
     if (images.length === 1) {
       setImages([]);
     } else {
-      let newImages = images.filter((value, i) => (i !== index))
-      setImages(newImages);
+      setImages(images.splice(index, 1));
     }
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     return axios.post('/upload', {images: images})
@@ -24,7 +23,7 @@ const UploadPics = (props) => {
       })
       .catch(err =>  console.log('submit err: ', err))
       .then(() => {
-        props.toggleUpload();
+        props.close();
       })
   }
   const previewFile = (file) => {
@@ -40,8 +39,8 @@ const UploadPics = (props) => {
   }
 
   return (
-    <div className={showOrHideUpload}>
-      <span className="close" onClick={props.toggleUpload}>
+    <div className="sub-modal">
+      <span className="close" onClick={props.close}>
         &times;
       </span>
       <div>
@@ -56,8 +55,8 @@ const UploadPics = (props) => {
             <div key={index}>
               <img className="thumbnail" alt="previewImage" src={image}/>
               <button onClick={(e)=>{
-                e.preventDefault();
-                handleDelete(index);
+                e.preventDefault();;
+                handleDelete(index)
                 }}>Remove</button>
             </div>
           )

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './qa-modal.scss';
+import UploadPics from './UploadPics.jsx';
 
  const AddAnswer = (props) => {
 
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
   const [questionCharactersRemaining, setQuestionCharactersRemaining] = useState(1000);
 
   const questionChange = (e) => {
@@ -32,8 +34,18 @@ import './qa-modal.scss';
       alert("Must use a valid email!")
     } else {
       props.closeModal();
-      props.handleAddAnswer({body, name, email, photos: []});
+      props.handleAddAnswer({ body, name, email, photos });
     }
+  }
+
+  const [uploadPics, setUploadPics] = useState(false);
+
+  const closePicsModal = () => {
+    setUploadPics(false);
+  }
+
+  const handleUpload = (urls) => {
+    setPhotos(urls);
   }
 
   return (
@@ -46,6 +58,7 @@ import './qa-modal.scss';
         <div className="subTitle add-entry"> {props.product.name}: <span>{props.question.question_body}</span> </div>
         <div className="add-q-entry add-entry"> Your Answer <textarea className="modal-entry" type="text" rows="5" maxLength="1000" placeholder="your question here" onChange={questionChange}/> </div>
         <div className="characters-remaining"> <span className="placeholder">placeholder</span> {questionCharactersRemaining} characters remaining </div>
+        <div> <button onClick={() => setUploadPics(true)}> Upload Pics </button> {uploadPics? <UploadPics handleUpload = {handleUpload} close = {closePicsModal}/>: null} </div>
         <div className="add-q-entry add-entry"> Nick Name <input className="modal-entry" type="text" maxLength="60" placeholder="Example: jackson11!" onChange={nameChange} required/> </div>
         <div className="add-q-entry"> For privacy reasons, do not use your full name or email address </div>
         <div className="add-q-entry add-entry"> Your Email <input className="modal-entry" type="email" maxLength="60" placeholder="xxx@gmail.com" onChange={emailChange} required/> </div>

@@ -11,15 +11,15 @@ import QAList from '../client/src/components/qa/QA.jsx';
 import Add from '../client/src/components/qa/QA.jsx';
 
 
-// const server = setupServer(
-//   rest.get('/qa/questions', (req, res, ctx) => {
-//     return res(ctx.status(200));
-//   })
-// );
+const server = setupServer(
+  rest.get('/qa/questions/:question_id', (req, res, ctx) => {
+    return res(ctx.status(200));
+  })
+);
 
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe('QA Component Test', () => {
   test('Should render Widget Title', () => {
@@ -27,6 +27,12 @@ describe('QA Component Test', () => {
     expect(screen.getByText("QUESTIONS & ANSWERS")).toBeDefined();
   });
 });
+
+// describe('QA List Test', () => {
+//   test('Should render List', () => {
+//     render(<QAList questions={mockData.questions} />);
+//   });
+// });
 
 // describe('Questions List Test', () => {
 //   test('Should render Questions List', () => {

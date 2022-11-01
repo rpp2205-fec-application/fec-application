@@ -13,8 +13,7 @@ class QA extends React.Component {
       shownQuestions: [],
       allQuestions: [],
       loadMore: false,
-      collapse: false,
-      numquestions: 0
+      collapse: false
     }
   }
 
@@ -58,16 +57,10 @@ class QA extends React.Component {
   }
 
   handleMoreQuestions () {
-    let endpoint = this.state.shownQuestions.length + 2
-    let isDone = false
-    if (endpoint >= this.state.allQuestions.length) {
-      isDone = true;
-    }
-    let nextSet = this.state.allQuestions.slice(0, this.state.shownQuestions.length + 2)
     this.setState({
-      shownQuestions: nextSet,
-      loadMore: !isDone,
-      collapse: isDone
+      shownQuestions: this.state.allQuestions,
+      loadMore: false,
+      collapse: true
     });
   }
 

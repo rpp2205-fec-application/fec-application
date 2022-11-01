@@ -19,11 +19,13 @@ import './modal.scss';
       <section className='modal-main' >
         <h2>Comparing</h2>
         <table id="comparions">
-          <tr>
-          <th>{curProduct.name}</th>
-          <th>Features</th>
-          <th>{comparedProduct.name}</th>
-          </tr>
+          <thead>
+            <tr>
+            <th>{curProduct.name}</th>
+            <th>Features</th>
+            <th>{comparedProduct.name}</th>
+            </tr>
+          </thead>
         </table>
 
         {/* <ModelContent /> */}

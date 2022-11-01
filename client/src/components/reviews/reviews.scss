@@ -255,6 +255,26 @@ select {
   z-index: 6000;
 }
 
+.add-review-message {
+  position: fixed;
+  width: 100%;
+  padding: 15px;
+  top: 40px;
+  left:50%;
+  right: auto;
+  text-align: center;
+  transform: translateX(-50%);
+  //background-color: rgb(226, 85, 43);
+  color: rgb(255, 255, 255);
+  z-index: 200;
+  border-radius: 3px;
+}
+.red-error {
+  background-color: rgb(226, 85, 43);
+}
+.green-success {
+  background-color: rgb(57, 186, 109);
+}
 .rev-modal_content{
   background-color: white;
   position: absolute;

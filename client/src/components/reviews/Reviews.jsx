@@ -29,9 +29,10 @@ const Reviews = (props) => {
   }
   // clear all the filter
   const clearFilter =  () => {
-    props.interaction('clear filter', 'reviews');
     setToggle(initToggle);
+    setSearchList([]);
     setList([]);
+    setKeyWords('');
   }
   // handle the search input change
   const [keyWords, setKeyWords] = useState('');
@@ -39,13 +40,23 @@ const Reviews = (props) => {
     setKeyWords(word);
   }
   // if input more than 3 charactors show the filtered reviews
+  const [searchList, setSearchList] = useState([]);
   useEffect(() => {
-    if (keyWords.length >= 3) {
-      setList(searchReviews(props.state.reviews, keyWords));
-    } else if (!keyWords.length || keyWords.length < 3) {
-      setList([]);
+    if (newList.length) {
+      if (keyWords.length >= 3) {
+        setSearchList(searchReviews(newList, keyWords));
+      } else {
+        console.log('length: ', newList.length, searchList.length)
+        setSearchList(newList);
+      }
+    } else {
+      if (keyWords.length >= 3) {
+        setList(searchReviews(props.state.reviews, keyWords));
+      } else {
+        setList([]);
+      }
     }
-  },[keyWords])
+ },[keyWords])
 
   return  (
     <div ref={props.scrollToReviews} className="widget">
@@ -57,7 +68,7 @@ const Reviews = (props) => {
         </div>
         <div className="revs-right">
           <SearchBar reviews={props.state.reviews} keyWords={keyWords} handleSearch={handleSearch}/>
-          <ReviewsList interaction={props.interaction} length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} getReviews={props.getReviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
+          <ReviewsList interaction={props.interaction} length={props.state.reviewsLength} reviews={props.state.reviews} newList={newList} searchList={searchList} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
         </div>
       </div>
     </div>

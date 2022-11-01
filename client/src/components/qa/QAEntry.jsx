@@ -55,16 +55,10 @@ class QAEntry extends React.Component {
   }
 
   handleLoadMore () {
-    let endpoint = this.state.shownAnswers.length + 2
-    let isDone = false
-    if (endpoint >= this.state.all.length) {
-      isDone = true;
-    }
-    let nextSet = this.state.all.slice(0, this.state.shownAnswers.length + 2)
     this.setState({
-      shownAnswers: nextSet,
-      loadMore: !isDone,
-      collapse: isDone
+      shownAnswers: this.state.all,
+      loadMore: false,
+      collapse: true
     });
   }
 

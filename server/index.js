@@ -120,7 +120,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 // product reviews
 app.post('/reviews/:product_id', (req, res) => {
   // console.log('reviews sort and count: ', req.body);
-  let url = `${root}/reviews/?product_id=${req.params.product_id}&sort=${req.body.sort}&count=${req.body.count}`;
+  let url = `${root}/reviews/?product_id=${req.params.product_id}&count=${req.body.count}`;
   return axios.get(url, headers)
     .then((results) => {
       res.status(200).json(results.data);
@@ -214,5 +214,15 @@ app.post('/interactions', (req, res) => {
     })
 })
 
+app.get('/:productId', (req, res) => {
+  res.sendFile('index.html', { root: path.join(__dirname, '../client/dist') }, (err) => {
+    if(err) {
+      next(err);
+    } else {
+      console.log('Chang id');
+  }
+  })
+
+})
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Listening at Port: ${PORT}`));
