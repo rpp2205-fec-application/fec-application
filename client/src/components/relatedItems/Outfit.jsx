@@ -28,7 +28,8 @@ class Outfit extends React.Component {
     return (
       <div className='widget'>
         <h4>Your Outfit</h4>
-          <OutfitSlider product={this.props.product} outfit={this.state.outfit} add={this.props.addToOutfit} delete={this.props.removeFromOutfit}/>
+          <OutfitSlider product={this.props.product} currentProduct={this.props.currentProduct} outfit={this.state.outfit} add={this.props.addToOutfit} delete={this.props.removeFromOutfit}/>
+          {/* <OutfitSlider product={this.props.product} outfit={this.state.curProduct} add={this.props.addToOutfit} delete={this.props.removeFromOutfit}/>  */}
       </div>
     )
   }

@@ -23,9 +23,13 @@ const OutfitSlider = (props) => {
 
 
     useEffect(() => {
-      var productIds = extractLocalStorage(localStorage);
-      setItems(productIds);
+      var products = extractLocalStorage(localStorage);
+      setItems(products);
     }, [props.outfit]);
+
+    // useEffect(() => {
+    //   setItems(Object.keys(localStorage));
+    // }, [props.outfit]);
 
 
 
@@ -46,12 +50,17 @@ const OutfitSlider = (props) => {
     <div id="main-slider-container" >
       <MdChevronLeft size={38} className={showLeft ? "outfit-slider-icon-left" : "slider-icon-invisible"}  onClick={outfitSlideLeft} />
       <div id='outfitSlider'>
-        <AddCard addItem={props.add} id={props.product.id}/>
-        {items.map((item, index) => {
+        <AddCard currentProduct={props.currentProduct} addItem={props.add} id={props.product}/>
+        {Object.keys(items).map((item, index) => {
+          return (
+            <OutfitCard product={items[item]} key={index} deleteItem={props.delete} />
+          )
+        })}
+        {/* {items.map((item, index) => {
           return (
             <OutfitCard product={item} key={index} deleteItem={props.delete} />
           )
-        })}
+        })}  */}
       </div>
       <MdChevronRight size={38} className={showRight ? "outfit-slider-icon-right" : "slider-icon-invisible"} onClick={slideRight} />
 

@@ -43,11 +43,11 @@ export const reviewsCount = (metaObj) => {
 }
 
 export const extractLocalStorage = (storage) => {
-  var extractedArray = [];
+  var extractedObject = {};
   for (var key in storage) {
     if (isNaN(Number(key)) === false) {
-      extractedArray.push(Number(storage[key]))
+      extractedObject[key] = JSON.parse(storage[key])
     }
   }
-  return extractedArray;
+  return extractedObject;
 }

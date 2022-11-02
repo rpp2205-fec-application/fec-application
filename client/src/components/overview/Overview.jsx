@@ -31,7 +31,7 @@ class Overview extends React.Component {
   }
 
   getStyles() {
-    axios.get(`/products/${this.props.product.id}/styles`)
+    return axios.get(`/products/${this.props.product.id}/styles`)
       .then(res => {
         console.log('Styles:', res.data.results)
         var selectedStyle = res.data.results[0];
@@ -81,11 +81,13 @@ class Overview extends React.Component {
       rating: this.props.rating
     }
     console.log('Favorite product: ', product)
-    this.props.addToOutfit(this.props.product.id);
+    this.props.addToOutfit(product);
+    this.props.interaction('Add to outfit button', 'Overview')
   }
 
   removeFromOutfit() {
     this.props.removeFromOutfit(this.props.product.id);
+    this.props.interaction('Remove outfit button', 'Overview')
   }
 
   showDropdown(elementId) {
@@ -118,16 +120,62 @@ class Overview extends React.Component {
 
 
   componentDidMount() {
-    this.getStyles();
+    this.getStyles()
+      .then(() => {
+        const {id, name, category, slogan, description, default_price} = this.props.product;
+        const product = {
+          id,
+          name,
+          category,
+          default_price,
+          thumbnail_url: this.state.selectedStyle.photos[0].thumbnail_url,
+          rating: this.props.rating
+        }
+        this.props.getAllCurrentProductInfo(product);
+      })
   }
+
+  // componentDidMount() {
+  //   // this.getRating();
+  //   this.getStyles();
+  // }
+
 
   //Getting the new style list after the new product is passed to props
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.product.id !== this.props.product.id) {
       this.selectSizeMessageOff();  //Turn off the select size message in case the message was on in previous product props
-      this.getStyles();
+      this.getStyles()
+      .then(() => {
+        const {id, name, category, slogan, description, default_price} = this.props.product;
+        const product = {
+          id,
+          name,
+          category,
+          default_price,
+          thumbnail_url: this.state.selectedStyle.photos[0].thumbnail_url,
+          rating: this.props.rating
+        }
+        this.props.getAllCurrentProductInfo(product);
+      })
     }
   }
+
+  // //Getting the new style list after the new product is passed to props
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.product.id !== this.props.product.id) {
+  //     this.selectSizeMessageOff();  //Turn off the select size message in case the message was on in previous product props
+  //     this.getStyles();
+  //     this.setState({
+  //       favorite: this.props.outfit.includes(this.props.product.id),
+  //     })
+  //   }
+  //   if (JSON.stringify(prevProps.outfit) !==  JSON.stringify(this.props.outfit)) {
+  //     this.setState({
+  //       favorite: this.props.outfit.includes(this.props.product.id),
+  //     })
+  //   }
+  // }
 
 
 
@@ -159,10 +207,16 @@ class Overview extends React.Component {
                     <p>ADD TO BAG</p>
                     <FaPlus />
                   </div>
-                  {this.props.outfit.includes(id)
+                  {this.props.outfit[id]
                       ? <div className='button' onClick={this.removeFromOutfit.bind(this)}><FaHeart className='button-icon heart-icon' /></div>
                       : <div className='button' onClick={this.addToOutfit.bind(this)}><FaRegStar className='button-icon star-favorite-icon' /></div>
                   }
+                  {/* <div className='button' onClick={this.toggleOutfit.bind(this)}>
+                    {this.state.favorite
+                      ? <FaHeart className='button-icon heart-icon' />
+                      : <FaRegStar className='button-icon star-favorite-icon' />
+                    }
+                  </div> */}
                 </div>
               </div>
             </div>
