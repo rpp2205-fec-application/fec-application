@@ -68,7 +68,7 @@ getReview() {
      })
    })
  }
-  
+
  componentDidUpdate(prevProps, prevState){
   if(prevProps.product != this.props.product) {
     let url = "http://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interaction";
@@ -90,7 +90,7 @@ getReview() {
             <a>
             <img className='card-image' alt="outfitImage" src={this.state.photo} />
             </a>
-            <MdClear className='clear-icon' onClick={() => {this.props.deleteItem(this.props.product)}}/>
+            <MdClear className='clear-icon' onClick={() => {this.props.deleteItem(Number(this.props.product))}}/>
             <div className='cardbody'>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>

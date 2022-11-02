@@ -6,7 +6,7 @@ const AddCard = (props) => {
 
 
   return (
-    <div className='addCard' onClick={()=> {props.addItem(props.id)}}>
+    <div className='addCard' onClick={()=> {props.addItem(Number(props.id))}}>
       <div id="addIcon" >
       <MdAdd id='addProductIcon' />
       </div>

@@ -41,3 +41,13 @@ export const reviewsCount = (metaObj) => {
     return acc = acc += parseInt(rating);
    }, 0)
 }
+
+export const extractLocalStorage = (storage) => {
+  var extractedArray = [];
+  for (var key in storage) {
+    if (isNaN(Number(key)) === false) {
+      extractedArray.push(Number(storage[key]))
+    }
+  }
+  return extractedArray;
+}

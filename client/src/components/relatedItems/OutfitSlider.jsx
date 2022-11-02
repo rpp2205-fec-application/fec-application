@@ -3,6 +3,7 @@ import './Slider.scss';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 import  AddCard  from "./AddCard.jsx";
 import OutfitCard from "./OutfitCard.jsx";
+import {extractLocalStorage} from '../../helpers.js'
 
 const OutfitSlider = (props) => {
   const [items, setItems] = useState(props.outfit);
@@ -10,7 +11,7 @@ const OutfitSlider = (props) => {
 
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(true);
-  
+
   const outfitSlideLeft = () => {
     var slider = document.getElementById('outfitSlider');
     slider.scrollLeft -=  150;
@@ -20,12 +21,13 @@ const OutfitSlider = (props) => {
     }
   }
 
-    
+
     useEffect(() => {
-      setItems(Object.keys(localStorage));
+      var productIds = extractLocalStorage(localStorage);
+      setItems(productIds);
     }, [props.outfit]);
 
- 
+
 
   const slideRight = () => {
     var slider = document.getElementById('outfitSlider');
@@ -49,10 +51,10 @@ const OutfitSlider = (props) => {
           return (
             <OutfitCard product={item} key={index} deleteItem={props.delete} />
           )
-        })} 
+        })}
       </div>
       <MdChevronRight size={38} className={showRight ? "outfit-slider-icon-right" : "slider-icon-invisible"} onClick={slideRight} />
-    
+
     </div>
   )
 }

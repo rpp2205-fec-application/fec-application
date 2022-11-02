@@ -8,7 +8,7 @@ import Reviews from './reviews/Reviews.jsx';
 import axios from 'axios';
 import Star from './Star/Star.jsx';
 import AddReview from './reviews/addReview/AddReview.jsx';
-import {calculateRating, reviewsCount} from '../helpers.js'
+import {calculateRating, reviewsCount, extractLocalStorage} from '../helpers.js'
 import OutfitCard from './relatedItems/OutfitCard.jsx';
 import {
   BrowserRouter as Router,
@@ -29,14 +29,14 @@ class App extends React.Component {
       reviewsLength:0,
       addReview: false,
       keyword:'',
-      outfit: []
+      outfit: extractLocalStorage(localStorage)
     }
     this.topRef = React.createRef();
     this.reviewsRef = React.createRef();
     this.interaction = this.interaction.bind(this);
   }
 
-//handle unique url code(replace these code from line33-54)
+  // Handle unique url code(replace these code from line33-54)
   init(id) {
     this.getProduct(id)
       .then(()=> {
@@ -57,6 +57,7 @@ class App extends React.Component {
     }
   }
 
+  // Get info of current product
   getProduct(productId) {
     return axios.get(`/products/${productId}`)
       .then(res => {
@@ -67,6 +68,8 @@ class App extends React.Component {
         })
       })
   }
+
+  // Get Review meta for current product
   getReviewsMeta() {
     return axios.get(`/reviews/meta/${this.state.product.id}`)
       .then((res) => {
@@ -79,6 +82,7 @@ class App extends React.Component {
       })
   }
 
+  // Get reviews of current product
   getReviews({count}) {
     axios.post(`/reviews/${this.state.product.id}`, {count})
     .then((res) => {
@@ -99,6 +103,7 @@ class App extends React.Component {
     // })
   }
 
+  // Open add review popup
   togglePop(){
     console.log('add review clicked!');
     this.setState({
@@ -106,26 +111,31 @@ class App extends React.Component {
     })
   }
 
+  // Add new review
   addReview(review) {
     console.log('start adding new Reviews: ', review);
     review.recommend = review.recommend === "yes";
     return axios.post('/addReview', {review})
   }
 
+  // Scroll to review section
   handleScrollToReviews(event) {
     window.scrollTo(0, this.reviewsRef.current.offsetTop);
   }
 
+  // Scroll to top
   handleScrollToTop(event) {
     window.scrollTo(0, this.topRef.current.offsetTop);
   }
 
+  // Handle search in navbar for future development
   handleSearchChange(e){
     this.setState({
       keyword: e.target.value
     })
   }
 
+  // onClick function for logo to go back to first product in the list
   backToDefaultProduct() {
     location.pathname = ('/');
     this.init(71697);
@@ -137,20 +147,11 @@ class App extends React.Component {
     // })
   }
 
-  // Add the product id to the outfit list if product hasn't been added yet
-  // Remove the product id from the outfit list if the list already includes the product
-  // toggleOutfit(productId) {
-  //   var outfit = [...this.state.outfit];
-  //   if (outfit.includes(productId)) {
-  //     outfit.splice(outfit.indexOf(productId), 1);
-  //   } else {
-  //     outfit.push(productId);
-  //   }
-  //   this.setState({outfit});
-  // }
 
+  // Add the product id to the outfit list if product hasn't been added yet
   addToOutfit(productId) {
     //localStorage.clear();
+    var productId = Number(productId)
     console.log(localStorage);
     var outfit = [...this.state.outfit];
     if (outfit.includes(productId) || localStorage[productId]) {
@@ -159,22 +160,25 @@ class App extends React.Component {
     outfit.push(productId);
     this.setState({outfit}, () => {
       console.log('Current Outfit after adding: ', this.state.outfit);
-      localStorage.setItem(`${this.state.outfit}`, this.state.outfit);
-      console.log(localStorage);
+      localStorage.setItem(`${productId}`, productId);
+      console.log('Local storage after adding: ', localStorage);
     });
     }
   }
 
+  // Remove the product id from the outfit list if the list already includes the product
   removeFromOutfit(productId) {
+    var productId = Number(productId)
     var outfit = [...this.state.outfit];
     outfit.splice(outfit.indexOf(productId), 1);
     this.setState({outfit}, () => {
       console.log('Current Outfit after removing: ', this.state.outfit);
       localStorage.removeItem(`${productId}`);
-      console.log(localStorage);
+      console.log('Local storage after removing: ', localStorage);
     });
   }
 
+  // Track the interaction of clickable elements
   interaction(element, widget) {
     let time = new Date();
     axios.post('/interactions', {element, widget, time})
