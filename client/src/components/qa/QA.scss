@@ -147,6 +147,9 @@
   padding-left: 30px;
   padding-bottom: 15px;
 }
+.load-collapse:hover {
+  cursor: pointer;
+}
 
 .addSection {
   display: grid;
@@ -166,6 +169,10 @@
   text-decoration: none;
 }
 
+.add-answer:hover {
+  cursor: pointer;
+}
+
 .helpful {
   font-weight: bold;
 }
@@ -173,9 +180,16 @@
 .not-helpful {
   font-weight: normal;
 }
+.not-helpful:hover {
+  cursor: pointer;
+}
 
 .reported {
   color: red;
+}
+
+.report-text:hover {
+  cursor: pointer;
 }
 
 .left-border {

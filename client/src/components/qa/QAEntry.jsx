@@ -86,8 +86,8 @@ class QAEntry extends React.Component {
       <div className={scrollOrNot}>
         <Question product={this.props.product} question={this.props.qa} handleAddAnswer={this.handleAddAnswer.bind(this)}/>
         {this.state.shownAnswers}
-        {this.state.loadMore ? <p className="load-collapse" onClick={this.handleLoadMore.bind(this)}> LOAD MORE </p> : null}
-        {this.state.collapse ? <p className="load-collapse" onClick={this.collapseAnswers.bind(this)}> COLLAPSE </p> : null}
+        {this.state.loadMore ? <p className="load-collapse" onClick={this.handleLoadMore.bind(this)}> <u>Load More</u> </p> : null}
+        {this.state.collapse ? <p className="load-collapse" onClick={this.collapseAnswers.bind(this)}> <u>Collapse</u> </p> : null}
       </div>
     )
   }
