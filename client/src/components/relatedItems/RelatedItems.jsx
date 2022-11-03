@@ -14,7 +14,7 @@ class RelatedItems extends React.Component {
   componentDidMount() {
     axios.get(`/products/${this.props.product.id}/related`)
     .then((response) => {
-       console.log('response////////////',  response.data);
+       //console.log('response////////////',  response.data);
       this.setState({
         items: response.data
       })

@@ -78,7 +78,7 @@ class Answer extends React.Component {
             <div className="answer-bottom">
               <p className="answer-additional"> by {this.props.answer.answerer_name === "Seller"? <b>{this.props.answer.answerer_name}</b>: this.props.answer.answerer_name}, {date} </p>
               <p className="answer-additional left-border"> Helpful? &nbsp; <u className={this.state.className} onClick={this.handleYesClick.bind(this)}>Yes</u>  ({this.state.helpfulness}) </p>
-              <p className="answer-additional left-border"> <u onClick={this.handleReportClick.bind(this)}>Report</u> </p>
+              <p className="answer-additional left-border"> <u className="report-text" onClick={this.handleReportClick.bind(this)}>Report</u> </p>
             </div>
 
           </div>:

@@ -120,7 +120,7 @@ const AddReview = (props) => {
           </div>
           <div>
             <label>
-              Review Summary:
+              Review Summary:<br/>
               <input
                 className="input-sum"
                 type="text"
@@ -129,16 +129,16 @@ const AddReview = (props) => {
                 onChange={(e) => setRev({...newRev, summary: e.target.value})}/></label>
           </div>
           <div>
-            <label>Review Body:
-
-            </label>
-            <textarea
+            <label>Review Body:<br/>
+              <textarea
                 className="input-body"
                 placeholder="Why did you like the product or not?"
                 value={newRev.body}
                 onChange={(e) => setRev({...newRev, body: e.target.value})}
-              /><br/>
+              />
+            </label><br/>
               <span className="small_font">{newRev.body.length >= 50 ? "Minimum reached" : `Minimum required characters left: ${50 - newRev.body.length}` }</span>
+            </label>
           </div>
           <div>
             <UploadPics show={uploadShow} toggleUpload={toggleUpload} handleUpload={handleUpload} />
