@@ -114,7 +114,7 @@ class RelatedItemCard extends React.Component {
             <img className='card-image' alt="ralatedImage" src={this.state.photo} onClick={this.selectProduct.bind(this)} />
             </a>
             <MdOutlineStarOutline className='star-icon' onClick={this.showModal}/>
-            <Modal show={this.state.show} hideModal={this.hideModal} mainProduct={this.props.mainProduct} product={this.state.product}/>
+            <Modal show={this.state.show} hideModal={this.hideModal} mainProduct={this.props.mainProduct} product={this.state.product} mainRating={this.props.mainRating} comRating={this.state.rating}/>
             <div className='cardbody' onClick={(e) => {this.selectProduct(e)}}>
             <p className='category'>{this.state.product.category}</p>
             <p className='name'>{this.state.product.name}</p>

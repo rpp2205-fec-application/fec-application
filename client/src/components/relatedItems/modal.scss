@@ -29,16 +29,24 @@
   z-index: 9000;
 
 }
-
+#comparions {
+  align-items: center;
+}
 #comparions td, #comparions th {
-  border: 1px solid #ddd;
+  visibility: visible;
   padding: 8px;
+  align-items: center;
 }
 
 #comparions th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+  background-color: white;
+  color: black;
+  width: 300px;
 }
+
+#features {
+  width: 1000px;
+}
+
