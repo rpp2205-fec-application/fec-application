@@ -38,9 +38,6 @@ const ReviewsList = (props) => {
     const elementRef = useRef(null);
     useEffect(() => {
       if (elementRef.current) {
-        //setScroll(true);
-        // const bottom = elementRef.current.offsetBottom;
-        // window.scrollTo({top: bottom});
         elementRef.current.scrollIntoView();
       }
       setClicked(false);

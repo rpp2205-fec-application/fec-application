@@ -41,7 +41,8 @@
 }
 
 .revs-left {
-  width:35%;
+  // width:35%;
+  margin-right: 10%;
 }
 
 .revs-right {
@@ -220,8 +221,6 @@ select {
 }
 
 .rev-photo {
-  // width: 10%;
-  // height: 10%;
   width: 60px;
   height: 60px;
   cursor: pointer;
