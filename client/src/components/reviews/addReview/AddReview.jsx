@@ -136,7 +136,7 @@ const AddReview = (props) => {
                 value={newRev.body}
                 onChange={(e) => setRev({...newRev, body: e.target.value})}
               />
-            </label><br/>
+              <br/>
               <span className="small_font">{newRev.body.length >= 50 ? "Minimum reached" : `Minimum required characters left: ${50 - newRev.body.length}` }</span>
             </label>
           </div>
