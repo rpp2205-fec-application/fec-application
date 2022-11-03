@@ -3,7 +3,7 @@ import { format, parseJSON } from 'date-fns';
 import Star from '../Star/Star.jsx';
 import {roundNearQtr} from '../../helpers.js'
 import axios from 'axios';
-
+import AlertMessage from './addReview/AlertMessage.jsx';
 const ReviewEntry = (props) => {
   const [helpful, setHelp] = useState(props.review.helpfulness);
   const [clicked, setClick] = useState(false);
@@ -11,6 +11,7 @@ const ReviewEntry = (props) => {
   const [showBig, setBig] = useState({show: false, url: ''});
   const showOrhide = !showBig.show ? "modal trans-bg display-none" : "modal trans-bg dispaly-block";
   const [showReview, setShowReview] = useState(true);
+  const [helpClick, setHelpClick] = useState(false);
   const grayOrNot = !showReview ? "rev-gray" : "rev";
   const sendToServer = (review_id) => {
     return axios.put(`/reviews/${review_id}/helpful`)
@@ -77,7 +78,9 @@ const ReviewEntry = (props) => {
            </div>)
           }
         </div>
+        {helpClick && <AlertMessage message="You already Clicked." className='red-error'/>}
         <div className="rev-footer xs_font">
+
           <div>Helpful?
             <span className="underline rev-helpful"
             onClick={() => {
@@ -86,7 +89,9 @@ const ReviewEntry = (props) => {
                 setHelp(helpful + 1);
                 sendToServer(props.review.review_id);
               } else {
-                alert('You already clicked!');
+                setHelpClick(true);
+                setTimeout(() => {setHelpClick(false)}, 2000);
+                //alert('You already clicked!');
               }
             }
             }>
