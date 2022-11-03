@@ -29,7 +29,7 @@ From within the root directory:
 npm install
 ```
 
-### Accessing Atelier API
+### Accessing Atelier API && Accessing Cloudinary image host
 Refactor config.example.js using instructions provided.
 
 ### Running App In Development
