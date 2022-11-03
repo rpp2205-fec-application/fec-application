@@ -10,12 +10,7 @@ import Star from './Star/Star.jsx';
 import AddReview from './reviews/addReview/AddReview.jsx';
 import {calculateRating, reviewsCount, extractLocalStorage} from '../helpers.js'
 import OutfitCard from './relatedItems/OutfitCard.jsx';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +44,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //localStorage.clear();
     let path = location.pathname;
     if (path === '/') {
       this.init(71697);
