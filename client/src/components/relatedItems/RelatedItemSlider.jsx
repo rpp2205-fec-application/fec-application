@@ -24,9 +24,9 @@ const RelatedItemSlider = (props) => {
     var slider = document.getElementById('slider');
     slider.scrollLeft +=  150;
     setShowLeft(true);
-    console.log('sliderLeft///', slider.scrollWidth)
-    console.log('sliderLeft>>>>>', slider.clientWidth)
-    console.log('sliderleft', slider.scrollLeft);
+    // console.log('sliderLeft///', slider.scrollWidth)
+    // console.log('sliderLeft>>>>>', slider.clientWidth)
+    // console.log('sliderleft', slider.scrollLeft);
     if(slider.scrollLeft >= (slider.scrollWidth - slider.clientWidth)) {
       setShowRight(false);
     }
@@ -65,7 +65,7 @@ const RelatedItemSlider = (props) => {
 
         { relatedItems.map((item, index) => {
           return (
-                  <RelatedItemCard product={item} key={index} mainProduct={props.curProduct} mainRating={props.rating} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
+                  <RelatedItemCard product={item} key={index} mainProduct={props.curProduct}  mainRating={props.rating} selectProduct={props.selectProduct} handleScrollToTop={props.handleScrollToTop} />
               )
           
            })}

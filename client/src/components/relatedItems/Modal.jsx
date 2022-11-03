@@ -60,7 +60,7 @@ import {MdDone} from 'react-icons/md';
   const compareFabric = (curProduct, comparedProduct) => {
     var result = {};
     result.value = 'Cotton';
-    if (comparedProduct.length !== 0) {
+    if (comparedProduct.length !== 0  && comparedProduct.features.length !== 0) {
       //console.log(comparedProduct.features);
     if (curProduct.features[0].value === '100% Cotton') {
       result.a = true;
@@ -74,6 +74,10 @@ import {MdDone} from 'react-icons/md';
     if (comparedProduct.features[0].value !== '100% Cotton') {
       result.b = false;
     }
+    if (comparedProduct.length !== 0 && comparedProduct.features.length === 0) {
+      result.b = false;
+   }
+   
   }
     return result;
   }
