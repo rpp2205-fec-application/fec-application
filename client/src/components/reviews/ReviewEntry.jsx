@@ -91,7 +91,6 @@ const ReviewEntry = (props) => {
               } else {
                 setHelpClick(true);
                 setTimeout(() => {setHelpClick(false)}, 2000);
-                //alert('You already clicked!');
               }
             }
             }>

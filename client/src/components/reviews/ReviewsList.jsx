@@ -34,6 +34,18 @@ const ReviewsList = (props) => {
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
     const [clicked, setClicked] = useState(false);
+    const [scrollBottom, setScroll] = useState(false);
+    const elementRef = useRef(null);
+    useEffect(() => {
+      if (elementRef.current) {
+        //setScroll(true);
+        // const bottom = elementRef.current.offsetBottom;
+        // window.scrollTo({top: bottom});
+        elementRef.current.scrollIntoView();
+      }
+      setClicked(false);
+
+    }, [clicked])
 
     useEffect(() => {
       if (select !== 'relevance') {
@@ -64,12 +76,13 @@ const ReviewsList = (props) => {
         </div>
         <div className = {scrollOrNot}>
           <ul className="revs-list-main">
-            {reviews.renderList.map(review => <ReviewEntry interaction={props.interaction} review={review} key={review.review_id}/>)}
-            {clicked && <ScroolToBotton />}
+            {reviews.renderList.map(review=>  <ReviewEntry interaction={props.interaction} review={review} key={review.review_id}/>)}
+            {clicked && <div ref={elementRef} />}
+
           </ul>
         </div>
 
-        <div className="revs-footer">
+        <div className="revs-footer" >
           {isEnd ? null : <button onClick={(e) => {
             props.interaction(e.target.value, 'reviews');
             setClicked(true);
@@ -92,12 +105,6 @@ const ReviewsList = (props) => {
       </div>
     )
   }
-}
-
-const ScroolToBotton = () => {
-  const elementRef = useRef();
-  useEffect(() => elementRef.current.scrollIntoView());
-  return <div ref={elementRef} />
 }
 
 export default ReviewsList;
