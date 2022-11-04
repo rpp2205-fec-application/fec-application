@@ -1,4 +1,9 @@
-
+@media screen and (max-width:480px) {
+  .rev-modal_content {
+    top: 35%;
+    left: 35%;
+  }
+}
 //-----------------> fonts <--------------------
 .small_font {
   font-size: 13px;
@@ -304,6 +309,7 @@ select {
 
 .close{
   color:rgb(161, 158, 158);
+  transform: scale(2);
   float:right;
 }
 .close:hover{

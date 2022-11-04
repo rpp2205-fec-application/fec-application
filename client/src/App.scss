@@ -1,11 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Poppins:wght@300;400;500;600&display=swap');
-
+@media screen and (max-width:480px) {
+  body {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding:0px;
+  }
+  .rev-modal_content {
+    top: 35%;
+    left: 35%;
+  }
+  .modal-main {
+    top: 35%;
+    left: 35%;
+  }
+}
 body {
   font-family: 'Poppins', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  white-space: nowrap;
   padding: 10px;
 }
 
