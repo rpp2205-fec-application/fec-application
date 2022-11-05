@@ -56,7 +56,7 @@ app.get('/products/:product_id/styles', async (req, res) => {
 
 // get questions
 app.get('/qa/questions/:product_id', (req, res) => {
-  let url = `${root}/qa/questions/?product_id=${req.params.product_id}&count=300`;
+  let url = `${root}/qa/questions/?product_id=${req.params.product_id}&count=50`;
   axios.get(url, headers)
   .then((response) => res.status(200).json(response.data))
   .catch((err) => console.error(err))
@@ -64,7 +64,7 @@ app.get('/qa/questions/:product_id', (req, res) => {
 
 // get answers
 app.get('/qa/questions/:question_id/answers', (req, res) => {
-  let url = `${root}/qa/questions/${req.params.question_id}/answers?count=300`;
+  let url = `${root}/qa/questions/${req.params.question_id}/answers?count=50`;
   axios.get(url, headers)
   .then((response) => res.status(200).json(response.data))
   .catch((err) => console.error(err))
