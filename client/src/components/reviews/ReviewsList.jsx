@@ -19,43 +19,35 @@ const ReviewsList = (props) => {
       })
     }
 
-
     useEffect(() => {
-      if (!props.newList.length && !props.searchList.length && select === 'relevance' && reviews.origin !== props.reviews) {
-        handleReviewsChange(props.reviews);
-      } else if (props.searchList.length && props.newList.length && reviews.origin !== props.searchList) {
-        console.log('reviews::: ', reviews.origin, props.searchList);
-        handleReviewsChange(props.searchList);
-      } else if (props.newList.length && !props.searchList.length && reviews.origin !== props.newList) {
-        handleReviewsChange(props.newList);
-      }
-    }, [props.searchList, props.newList, props.reviews])
+      handleReviewsChange(props.reviews)
+    }, [props.reviews])
+
     const [isEnd, setIsEnd] = useState(false);
     const [select, setSelect] = useState("relevance");
     const [id, setId] = useState(props.id);
     const [clicked, setClicked] = useState(false);
     const [scrollBottom, setScroll] = useState(false);
     const elementRef = useRef(null);
+
     useEffect(() => {
       if (elementRef.current) {
         elementRef.current.scrollIntoView();
       }
       setClicked(false);
-
     }, [clicked])
 
     useEffect(() => {
-      if (select !== 'relevance') {
-        handleReviewsChange(sortedReview(props.reviews, select));
-      }
+      handleReviewsChange(sortedReview(reviews.origin, select));
     },[select]);
 
-    if (id !== props.id) {
+    useEffect(() => {
       console.log('different product');
       setSelect("relevance");
       setId(props.id);
       setClicked(false);
-    }
+    }, [props.id])
+
     !reviews.renderList.length ? setReviews({...reviews, renderList: reviews.copy.splice(0, 2)}) : reviews.renderList
     const scrollOrNot = reviews.renderList.length >= 4 ? "revs-list display-scroll" : "revs-list display-no-scroll";
 
@@ -64,7 +56,6 @@ const ReviewsList = (props) => {
         <div roll="sum" className="rev-sum">{reviews.origin.length} reviews, sorted by
         <select value={select} onChange={(e) => {
           setSelect(e.target.value);
-          props.clear();
           }}>
           <option value="relevance">relevance</option>
           <option value="newest">newest</option>

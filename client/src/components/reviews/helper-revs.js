@@ -24,7 +24,7 @@ export const searchReviews = (reviewsArr, keyWords) => {
   return reviewsArr.filter((review) => {
     review.body = review.body.toLowerCase();
     review.summary = review.summary.toLowerCase();
-    if (review.body.indexOf(keyWords) >= 0|| review.summary.indexOf(keyWords)>=0) {
+    if (review.body.indexOf(keyWords) >= 0 || review.summary.indexOf(keyWords)>=0) {
       return review;
     }
   })
@@ -34,13 +34,12 @@ export const sortedReview = (reviewsList, method) => {
   let copy = reviewsList.slice();
   if (method === 'helpful') {
     copy.sort((a, b) => {
-      if (a.helpful >= b.helpful) {
+      if (a.helpfulness >= b.helpfulness) {
         return -1;
       } else {
         return 1;
       }
     })
-    return copy;
   }
   if (method === 'newest') {
     copy.sort((a,b) => {
@@ -52,13 +51,15 @@ export const sortedReview = (reviewsList, method) => {
         return 1;
       }
     })
-    return copy;
   }
   if (method === 'relevance') {
-    return reviewsList;
+    copy.sort((a, b) => {
+      let keyA = new Date(a.date);
+      let keyB = new Date(b.date);
+      return b.helpfulness - a.helpfulness || keyA - keyB;
+    })
   }
-
-
+  return copy;
 }
 
 export const recommend = (recommendData) => {
