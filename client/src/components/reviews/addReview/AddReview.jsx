@@ -61,16 +61,22 @@ const AddReview = (props) => {
   const handleSubmit = (newReview)=> {
     let stopSubmit = false;
     let errMessage = ''
-    Object.keys(newReview).forEach((key) => {
-      if(key === "rating" || key === "body" || key === "charavteristics" || key === "email" || key === "name" || key === "recommend" ) {
-        if (!newReview[key]) {
-          errMessage = ` You must enter the ${key.toUpperCase()}!`;
-          setMessage({message: errMessage, className: 'red-error'})
-          stopSubmit = true;
-          return;
-        }
+    const mandatory = ['rating', 'recommend', 'characteristics','body', 'name', 'email']
+    for (let i = 0; i < mandatory.length; i++) {
+      if (!newReview[mandatory[i]] && mandatory[i] !== 'characteristics') {
+        errMessage = ` You must enter the ${mandatory[i].toUpperCase()}!`;
+        setMessage({message: errMessage, className: 'red-error'})
+        stopSubmit = true;
+        return;
       }
-    })
+      if (mandatory[i] === 'characteristics' && JSON.stringify(newReview[mandatory[i]])==='{}') {
+        errMessage = ` You must enter the characteristics!`;
+        setMessage({message: errMessage, className: 'red-error'})
+        stopSubmit = true;
+        return;
+      }
+    }
+
     let otherLimit = false;
     if (!stopSubmit) {
       if (newReview.body.length < 50){
@@ -93,7 +99,7 @@ const AddReview = (props) => {
       });
     }
   }
-  //console.log('New review in prosessing: ', newRev);
+
   return (
     <div className={showOrHide}>
       <div className="rev-modal_content">
@@ -105,16 +111,16 @@ const AddReview = (props) => {
           <div className="rev-title">Write Your Review</div>
           <div className="rev-subTitle">About the {props.product.name}</div>
           <div>
-            <label>How would you rate this?
+            <label>How would you rate this?*
               <StarRating getRating={getRating}/>
             </label>
           </div>
-          <div>Recommend?
+          <div>Recommend?*
             <label><input type="radio" value="yes" onChange={(e) => {setRev({...newRev, recommend: e.target.value})}} checked={newRev.recommend === "yes"} />Yes</label>
             <label><input type="radio" value="no" onChange={(e) => {setRev({...newRev, recommend: e.target.value})}} checked={newRev.recommend === "no"} />No</label>
           </div>
           <div>
-            <label>Characteristics:</label>
+            <label>Characteristics:*</label>
             <ProductFactor getFactor={getFactor} rev={newRev}/>
           </div>
           <div>
@@ -128,7 +134,7 @@ const AddReview = (props) => {
                 onChange={(e) => setRev({...newRev, summary: e.target.value})}/></label>
           </div>
           <div>
-            <label>Review Body:<br/>
+            <label>Review Body*:<br/>
               <textarea
                 className="input-body"
                 placeholder="Why did you like the product or not?"
@@ -148,12 +154,12 @@ const AddReview = (props) => {
               }}>Upload your photos</button>
           </div>
           <div>
-            <label>Nick Name:
+            <label>Nick Name*:
               <input className="addRev-input" type="text" placeholder="Example: jackson11!" value={newRev.nane} onChange={(e) => {setRev({...newRev, name: e.target.value})}} />
             </label>
             <br/>
             <label>
-              Your Email:
+              Your Email* :
               <input className="addRev-input" type="email" placeholder="Example: jackson11@email.com" value={newRev.email} onChange={(e) => {setRev({...newRev, email: e.target.value})}}/>
               <div className="xs_font">For authentication reasons, you will not be emailed</div></label>
           </div>
