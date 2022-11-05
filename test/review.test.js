@@ -32,19 +32,19 @@ describe('Parent component Reviews Tests', () => {
 describe('ReviewsList component Tests', () => {
 
   test('should render multiple reviews', async() => {
-    const { container }= render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]}/>)
+    const { container }= render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]} interaction={() => {}}/>)
     expect(container.querySelector('.rev-sum')).toBeDefined();
     expect(container.querySelectorAll('li')).toHaveLength(2);
 
   })
   test('after click More Review button should render more reviews', async() => {
     window.HTMLElement.prototype.scrollIntoView = function() {};
-    let reviews = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]}/>)
+    let reviews = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]} interaction={() => {}}/>)
     fireEvent.click(reviews.getByText("MORE REVIEWS"));
     expect(reviews.getAllByRole('reviews', {exact: false})).toHaveLength(3);
   })
   test('after click Add a review button should popup a window', async() => {
-    const {baseElement, queryByText} = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]}/>);
+    const {baseElement, queryByText} = render(<ReviewsList reviews={mockData.reviews} id={mockData.product.id} newList={[]} interaction={() => {}} handleClick ={() => {}}/>);
     fireEvent.click(screen.getByText(/Add A REVIEW/i));
     await waitFor(() => expect(queryByText("Write Your Review")).toBeDefined());
   })
@@ -58,7 +58,7 @@ describe('ReviewsEntry component Tests', () => {
     expect(container.querySelector('.rev-recommend')).toBeInTheDocument();
   })
   test ('should handle click report button', async() => {
-    const {baseElement, queryByText} = render(<ReviewEntry review={mockData.reviews[1]} />);
+    const {baseElement, queryByText} = render(<ReviewEntry review={mockData.reviews[1]} interaction={() => {}}/>);
     fireEvent.click(screen.getByText('Report'));
     await waitFor(() => expect(queryByText("This review won't show again")).toBeDefined());
   })
@@ -102,7 +102,7 @@ describe('Test all the helpers', () => {
   })
   test ('searchReviews function should return reviews contain key words', () => {
     expect(searchReviews(mockData.reviews, "This").length).toBe(2);
-    expect(searchReviews(mockData.reviews, "test").length).toBe(1);
+    expect(searchReviews(mockData.reviews, "test").length).toBe(2);
   })
 })
 
