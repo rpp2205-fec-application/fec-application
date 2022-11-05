@@ -40,7 +40,11 @@ const ReviewsList = (props) => {
     useEffect(() => {
       handleReviewsChange(sortedReview(reviews.origin, select));
     },[select]);
-
+    useEffect(() => {
+      if (props.clear) {
+        setSelect('relevance');
+      }
+    },[props.clear])
     useEffect(() => {
       console.log('different product');
       setSelect("relevance");

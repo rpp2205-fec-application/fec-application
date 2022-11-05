@@ -40,9 +40,11 @@ const Reviews = (props) => {
   }, [props.state.reviews, newList])
 
   // clear all the filter
+  const [clear, setClear] = useState(false);
   const clearFilter =  () => {
     setToggle(initToggle);
     setReviews(props.state.reviews);
+    setClear(true);
     setList([]);
     setKeyWords('');
   }
@@ -75,7 +77,7 @@ const Reviews = (props) => {
         </div>
         <div className="revs-right">
           <SearchBar reviews={props.state.reviews} keyWords={keyWords} handleSearch={handleSearch}/>
-          <ReviewsList interaction={props.interaction} length={props.state.reviewsLength} reviews={reviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
+          <ReviewsList clear={clear} interaction={props.interaction} length={props.state.reviewsLength} reviews={reviews} id={props.state.product.id} handleClick={props.handleClick} clear={clearFilter}/>
         </div>
       </div>
     </div>
