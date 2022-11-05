@@ -59,7 +59,6 @@ const AddReview = (props) => {
     setMessage({message:'', className: ''});
   }
   const handleSubmit = (newReview)=> {
-    //console.log("handle submit: ", newReview);
     let stopSubmit = false;
     let errMessage = ''
     Object.keys(newReview).forEach((key) => {
