@@ -85,7 +85,8 @@
 .question-section {
   display: grid;
   grid-template-columns: 30px 650px 100px 100px;
-  padding-bottom: 15px;
+  padding-bottom: 25px;
+  border-bottom: 1px #000000;
 }
 
 .fake {
@@ -104,7 +105,7 @@
 .answer-section {
   display: grid;
   grid-template-columns: 30px auto;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .questionBody {
@@ -234,9 +235,15 @@
   overflow-y: scroll;
 }
 
+.qa-entry {
+  border-bottom: solid 1px lightgray;
+  padding-top: 10px;
+}
+
 .qa-entry-scroll {
   max-height: 300px;
   overflow-y: scroll;
+  border-bottom: 2px black;
 }
 
 .upload-btn {
