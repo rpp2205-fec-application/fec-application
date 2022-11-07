@@ -38,6 +38,6 @@ From within the root directory:
 
 ```sh
 npm run build
-npm run cliend-dev
+npm run client-dev
 npm run server-dev
 ```
