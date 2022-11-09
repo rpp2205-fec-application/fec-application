@@ -175,7 +175,6 @@ app.post('/addReview', (req, res) => {
   let url = `${root}/reviews`;
   const {review} = req.body;
   console.log('new Review in server: ', review);
-  //let newObj = {};
   for (let key in review.characteristics) {
     review.characteristics[key] = parseInt(review.characteristics[key]);
   }
@@ -191,7 +190,7 @@ app.post('/addReview', (req, res) => {
     })
 })
 
-// upload pics to imgbb.com image hosting
+// upload pics to image hosting
 app.post('/upload', (req, res) => {
   let promises = []
   req.body.images.forEach((image) => {
@@ -222,16 +221,16 @@ app.get('/reviews/meta/:product_id', (req, res) => {
 
 
 // product
-app.get('/products/:product_id', (req, res) => {
-  let url = `${root}/products/${req.params.product_id}`;
-  return axios.get(url, headers)
-          .then(result => {
-            res.status(200).json(result.data)})
-            .catch(err => {
-              console.log(err);
-              res.status(500).json(err);
-            })
-});
+// app.get('/products/:product_id', (req, res) => {
+//   let url = `${root}/products/${req.params.product_id}`;
+//   return axios.get(url, headers)
+//           .then(result => {
+//             res.status(200).json(result.data)})
+//             .catch(err => {
+//               console.log(err);
+//               res.status(500).json(err);
+//             })
+// });
 
 
 // related products
